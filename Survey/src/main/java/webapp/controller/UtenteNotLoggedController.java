@@ -12,6 +12,31 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/")
 public class UtenteNotLoggedController{
+
+    //return the home page
+    @RequestMapping
+    public String getHome(Model model){
+        return 'home';
+    }
+
+
+
+
+
+
+
+
+
+
+
+    public void registrazioneUtente() {
+
+    }
+
+    public void LoginUtente() {
+
+    }
 
 }

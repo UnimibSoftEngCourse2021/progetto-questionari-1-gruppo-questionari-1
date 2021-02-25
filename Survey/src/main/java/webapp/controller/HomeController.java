@@ -57,7 +57,6 @@ public class HomeController
 	public void initialiseBinder(WebDataBinder binder)
 	{
 		binder.setAllowedFields("nome", "cognome", "email", "password");
-
 	}
 	
 }
