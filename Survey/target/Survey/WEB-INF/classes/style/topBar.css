@@ -1,0 +1,15 @@
+#bar {
+   height: 5vh;
+   background-color: #4d4d4d; 
+   position: fixed;
+} 
+ 
+#title {
+    font-size: 90%;
+    color: white;
+    float: left;
+}
+
+#buttons {
+    float: right;
+}

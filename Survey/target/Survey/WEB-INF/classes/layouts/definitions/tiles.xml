@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
+"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	<!-- start base layout -->
+
+	<definition name="baseLayout" template="/layouts/template/base.jsp">
+		<put-attribute name="topBar" value="topBar" />
+		<put-attribute name="content" value="" />
+	</definition>
+
+	<definition name="topBar" template="/layout/template/topBar.jsp">
+		<put-attribute name="loginButton" value="" /> 
+		<put-attribute name="registerButton" value="" />
+	</definition>
+
+	<!-- end base layout-->
+
+	<!-- start home layout -->
+
+	<definition name="index" extends="baseLayout">
+		<put-attribute name="topBar" value="homeTopBar" />
+		<put-attribute name="content" value="/viste/home.jsp" />  
+	</definition>
+
+	<definition name="homeTopBar" extends="topBar">
+		<put-attribute name="loginButton" value="/layout/template/loginButton.jsp" />
+		<put-attribute name="registerButton" value="/layout/template/registerButton.jsp" />  
+	</definition>
+
+	<!-- end home layout-->
+	
+	<definition name="registrazione" extends="baseLayout">
+		<put-attribute name="content" value="/viste/registrazioneUtente.jsp" />  
+	</definition>
+	
+	<definition name="accedi" extends="baseLayout">
+		<put-attribute name="content" value="/viste/accedi.jsp" />  
+	</definition>
+
+</tiles-definitions>

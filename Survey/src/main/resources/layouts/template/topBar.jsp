@@ -4,7 +4,8 @@
 <link rel = "stylesheet" type = "text/css" href = "style/topBar.css">
 <div id = "bar">
 	<h1 id = "title">Survey.io</h1>
-	<div>
-		
+	<div id="buttons">
+		<tiles:insert-attribute name="loginButton" />
+		<tiles:insert-attribute name="registerButton" /> 
 	</div>
 </div>
