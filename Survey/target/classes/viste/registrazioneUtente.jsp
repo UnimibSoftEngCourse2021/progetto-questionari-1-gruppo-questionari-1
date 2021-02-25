@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <h1>Registrazione utente</h1>
-<p>${Titolo}</p>
 
 <section class="container">
 	<div class="portlet light bordered">
