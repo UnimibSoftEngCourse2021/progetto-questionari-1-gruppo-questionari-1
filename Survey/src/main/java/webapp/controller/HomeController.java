@@ -1,3 +1,4 @@
+/*
 package webapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,8 @@ public class HomeController
 	private UtenteRepository utenteRepository;
 	
 	/* metodo per arrivare alla home
-	 * http://localhost:8080/Survey/
-	 */
+	 * http://localhost:8080/Survey/2
+	 *//*
 	@RequestMapping
 	public String getHome(Model model)
 	{
@@ -33,7 +34,7 @@ public class HomeController
 	
 	/*metodi per la registrazione di un nuovo utente 
 	 * http://localhost:8080/Survey/nuovoUtente/
-	 */
+	 *//*
 	@GetMapping(value = "/nuovoUtente")
 	public String InsArticoli(Model model)
 	{
@@ -60,3 +61,4 @@ public class HomeController
 	}
 	
 }
+*/

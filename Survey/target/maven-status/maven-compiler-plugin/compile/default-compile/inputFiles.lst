@@ -1,6 +1,9 @@
 C:\Users\Simone\Desktop\Simone\ingegneriaDelSoftware\progetto-questionari-1-gruppo-questionari-1\Survey\src\main\java\webapp\config\TilesConfig.java
 C:\Users\Simone\Desktop\Simone\ingegneriaDelSoftware\progetto-questionari-1-gruppo-questionari-1\Survey\src\main\java\webapp\config\DispatcherServletInit.java
+C:\Users\Simone\Desktop\Simone\ingegneriaDelSoftware\progetto-questionari-1-gruppo-questionari-1\Survey\src\main\java\webapp\controller\UtenteController.java
 C:\Users\Simone\Desktop\Simone\ingegneriaDelSoftware\progetto-questionari-1-gruppo-questionari-1\Survey\src\main\java\webapp\repository\UtenteRepository.java
+C:\Users\Simone\Desktop\Simone\ingegneriaDelSoftware\progetto-questionari-1-gruppo-questionari-1\Survey\src\main\java\webapp\controller\UtenteLoggedController.java
 C:\Users\Simone\Desktop\Simone\ingegneriaDelSoftware\progetto-questionari-1-gruppo-questionari-1\Survey\src\main\java\webapp\domain\Utente.java
 C:\Users\Simone\Desktop\Simone\ingegneriaDelSoftware\progetto-questionari-1-gruppo-questionari-1\Survey\src\main\java\webapp\config\WebMvcConfig.java
+C:\Users\Simone\Desktop\Simone\ingegneriaDelSoftware\progetto-questionari-1-gruppo-questionari-1\Survey\src\main\java\webapp\controller\UtenteNotLoggedController.java
 C:\Users\Simone\Desktop\Simone\ingegneriaDelSoftware\progetto-questionari-1-gruppo-questionari-1\Survey\src\main\java\webapp\controller\HomeController.java
