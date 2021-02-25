@@ -1,3 +1,5 @@
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+
 <!-- this bar will stay upon every web app page, it contains the web app title on the left and it could contain some buttons on the right-->
 
 
