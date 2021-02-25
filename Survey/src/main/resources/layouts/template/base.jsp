@@ -6,10 +6,9 @@
 	<title><tiles:getAsString name="titolo" /></title>
 </head>
 <body>
-	<div><p>Base</p></div>
+	<tiles:insertAttribute name="topBar"/>
 	<div>
-	 <tiles:insertAttribute name="content" /> </div> 
-	<div>
-     <tiles:insertAttribute name="footer" />  </div>
+		<tiles:insertAttribute name="content" />
+	</div>
 </body>
 </html> 
