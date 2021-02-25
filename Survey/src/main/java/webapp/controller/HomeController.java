@@ -28,7 +28,7 @@ public class HomeController
 	public String getHome(Model model)
 	{
 		model.addAttribute("intestazione", "Benvenuti nel sito Survey.io");
-		return "home";
+		return "index";
 	}
 	
 	/*metodi per la registrazione di un nuovo utente 
