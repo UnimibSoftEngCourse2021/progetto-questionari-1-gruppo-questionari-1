@@ -23,8 +23,11 @@ public class GestoreUtenti {
     }
 
     public static boolean login(String email, String password) {
-
-        // ricerca nel databse un untente con stessa mail e password
-        return true;
+        UtenteRegistrato u = UteUserDataMapper.find(email); // cerca nel database un utente con la stessa mail passata per parametri
+        if(u.getPassword().equals(password)) { // controlla se la password della suddetta mail corrisponde a quella passata via parametri
+            return true;
+        } else {
+            return false;
+        }
     }
 }
