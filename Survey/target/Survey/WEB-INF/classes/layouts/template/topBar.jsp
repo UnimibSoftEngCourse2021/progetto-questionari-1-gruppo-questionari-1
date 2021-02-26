@@ -10,7 +10,6 @@
 <div id = "bar">
 	<h1 id = "title">Survey.io</h1>
 	<div id="buttons">
-		<tiles:insertAttribute name="loginButton" />
-		<tiles:insertAttribute name="registerButton" /> 
+		<tiles:insertAttribute name="notLoggedButtons" />
 	</div>
 </div>

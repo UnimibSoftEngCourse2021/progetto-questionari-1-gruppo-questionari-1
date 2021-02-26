@@ -1,6 +1,8 @@
 webapp\config\DispatcherServletInit.class
 webapp\controller\UtenteController.class
+webapp\config\JdbcConfig.class
+webapp\model\UtenteRegistrato.class
 webapp\config\TilesConfig.class
-UtenteRegistrato.class
 webapp\controller\UtenteNotLoggedController.class
+webapp\repository\UtenteRegistratoRepository.class
 webapp\config\WebMvcConfig.class

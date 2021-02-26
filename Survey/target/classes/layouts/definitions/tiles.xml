@@ -12,8 +12,9 @@
 	</definition>
 
 	<definition name="topBar" template="/layouts/template/topBar.jsp">
-		<put-attribute name="loginButton" value="" /> 
-		<put-attribute name="registerButton" value="" />
+		<!--<put-attribute name="loginButton" value="" /> 
+		<put-attribute name="registerButton" value="" />-->
+		<put-attribute name="notLoggedButtons" value="" />
 	</definition>
 
 	<!-- end base layout-->
@@ -26,8 +27,10 @@
 	</definition>
 
 	<definition name="homeTopBar" extends="topBar">
-		<put-attribute name="loginButton" value="/layouts/template/loginButton.jsp" />
+		<!--<put-attribute name="loginButton" value="/layouts/template/loginButton.jsp" />
 		<put-attribute name="registerButton" value="/layouts/template/registerButton.jsp" />  
+		-->
+		<put-attribute name="notLoggedButtons" value="/layouts/template/notLoggedButtons.jsp" />
 	</definition>
 
 	<!-- end home layout-->
