@@ -54,7 +54,7 @@ public class UtenteRegistrato{
         }
 	}
 
-	public Strong getPassword() {
+	public String getPassword() {
 		return this.password;
 	}
 

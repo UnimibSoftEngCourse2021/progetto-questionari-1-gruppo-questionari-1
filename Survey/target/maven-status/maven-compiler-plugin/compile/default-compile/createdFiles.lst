@@ -1,7 +1,6 @@
 webapp\config\DispatcherServletInit.class
 webapp\controller\UtenteController.class
-webapp\repository\UtenteRepository.class
 webapp\config\TilesConfig.class
+UtenteRegistrato.class
 webapp\controller\UtenteNotLoggedController.class
-webapp\domain\Utente.class
 webapp\config\WebMvcConfig.class
