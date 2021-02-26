@@ -10,37 +10,37 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class UtenteNotLoggedController{
 
+//-------------------> start controller LoginView
     @RequestMapping("/accedi") // Manages Accedi events
-    public String LoginView() {
+    public String getLoginView() {
             System.out.println("Show Accedi");
             return "accedi";
-       /* @RequestMapping
-        public String getView() { // Mostra la pagina Accedi
-
+    }
+    @PostMapping("/accedi/login") // Esegue il login 
+    public String makeLogin(@RequestParam("Email") String Username, @RequestParam("Password") String Password) {
+        if(Username != null && Password != null){ // Se Username e Password hanno dei valori validi allora richiamo il metodo Login
+            boolean res = login(Username, Password);
+            System.out.println("Eseguito il login : " + res);
+        }else{ // Se i valori di login non sono validi restituisco un Errore
+            System.out.println("Errore nel login Username o Password NULL");
         }
 
-        @PostMapping("/login") // Esegue il login 
-        public String makeLogin(@RequestParam("Email") String Username, @RequestParam("Password") String Password) {
-            if(Username != null && Password != null){ // Se Username e Password hanno dei valori validi allora richiamo il metodo Login
-                boolean res = login(Username, Password);
-                System.out.println("Eseguito il login : " + res);
-            }else{ // Se i valori di login non sono validi restituisco un Errore
-                System.out.println("Errore nel login Username o Password NULL");
-            }
-
-            return "Redirect:/";
-        }*/
+        return "redirect:/";
     }
+//-------------------> end controller LoginView
+
+        
 
 
+// ------------------> metodi controller 
 
-// ------------->
-/*
     public boolean login(String Email, String Password){
 
+        return true;
     }
 
     public boolean registrazioneUtente() {
 
-    }*/
+        return true;
+    }
 }

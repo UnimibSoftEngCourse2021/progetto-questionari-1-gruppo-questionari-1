@@ -15,10 +15,5 @@ public class UtenteController {
     public String getHome(Model model) { //gestisce gli accessi alla pagina home
         System.out.println("Show index Page");
         return "index";
-        /*@RequestMapping
-        public String getHome() {
-            
-        }*/
-
     }
 }

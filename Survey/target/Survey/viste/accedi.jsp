@@ -8,10 +8,10 @@
 
 <h1>Login</h1>
 
-<form action="">
+<form action="/accedi/login" method="POST">
     <label>Email:</label><br>
-    <input type="text" id="Email" name="Email" value="Email"><br>
+    <input type="text" name="Email" value="Email"><br>
     <label>Password:</label><br>
-    <input type="text" id="lname" name="lname" value="Pawword"><br><br>
+    <input type="text" name="Password" value="Password"><br><br>
     <input type="submit" value="Accedi">
 </form>
