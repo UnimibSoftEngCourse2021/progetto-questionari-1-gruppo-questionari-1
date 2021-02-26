@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;  
 
+import webapp.model.*;
+
 
 @Controller
 public class UtenteNotLoggedController{
@@ -35,12 +37,16 @@ public class UtenteNotLoggedController{
 // ------------------> metodi controller 
 
     public boolean login(String Email, String Password){
-
-        return true;
+        return GestoreUtenti.login(Email, Password);
     }
 
-    public boolean registrazioneUtente() {
-
-        return true;
+    public boolean registrazioneUtente(String nome, String cognome, String email, String password ) {
+        boolean ris = GestoreUtenti.creaUtete(nome, cognome, email, password);
+        if(ris) {
+            return true;
+        } else {
+            System.out.println("~registrazione non andata a buon fine");
+            return false;
+        }
     }
 }
