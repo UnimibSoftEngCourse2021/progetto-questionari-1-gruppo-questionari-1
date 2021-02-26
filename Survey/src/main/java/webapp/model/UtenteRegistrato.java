@@ -5,7 +5,7 @@ public class UtenteRegistrato{
     private String nome;
     private String cognome;
     private String mail;
-    private Strong password;
+    private String password;
 
 // --------------------> costruttore
 
@@ -58,7 +58,7 @@ public class UtenteRegistrato{
 		return this.password;
 	}
 
-	public void setPassword(Strong password) {
+	public void setPassword(String password) {
 		if(password != null){
             this.password = password;
         }else{
