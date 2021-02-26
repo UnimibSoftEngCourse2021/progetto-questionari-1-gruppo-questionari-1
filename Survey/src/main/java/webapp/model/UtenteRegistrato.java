@@ -1,4 +1,4 @@
-
+package webapp.model;
 
 public class UtenteRegistrato{
     
