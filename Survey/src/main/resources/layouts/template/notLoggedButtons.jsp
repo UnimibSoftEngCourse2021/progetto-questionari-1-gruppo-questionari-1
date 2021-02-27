@@ -4,9 +4,15 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 
 
-<form action="/accedi">
-    <input type="submit" value="Accedi">
-</form>
-<form action="/registrazioneUtente">
-    <input type="submit" value="Registrati">
-</form>
+
+<link rel="stylesheet" type="text/css" href="style/barButtons.css" >
+<a href="/accedi">
+    
+        <p><b>Accedi</b></p>
+    
+</a>
+<a href="/registrazioneUtente">
+    
+    <p><b>Registrati</b></p>
+
+</a>
