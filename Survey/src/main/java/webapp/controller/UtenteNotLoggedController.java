@@ -1,5 +1,6 @@
 package webapp.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,6 +17,8 @@ import webapp.model.*;
 @Controller
 public class UtenteNotLoggedController{
 
+	
+	
 //-------------------> start controller LoginView
     @GetMapping("/accedi") // Manages Accedi events
     public String getLoginView() {
@@ -52,15 +55,16 @@ public class UtenteNotLoggedController{
 	@PostMapping(value="/registrazioneUtente")
 	public String GestRegistraUtente(@ModelAttribute("newUtente") UtenteRegistrato utente, BindingResult result)
 	{
+		System.out.println("utente registrato, nome:"+ utente.getMail());
 		registrazioneUtente(utente);
-		System.out.println("utente registrato, nome:"+ utente.getNome());
+		
 		return "redirect:/";
 	}
 
 	@InitBinder
 	public void initialiseBinder(WebDataBinder binder)
 	{
-		binder.setAllowedFields("nome", "cognome", "email", "password");
+		binder.setAllowedFields("nome", "cognome", "mail", "password");
 
 	}
 
@@ -68,11 +72,12 @@ public class UtenteNotLoggedController{
 //-------------------> metodi controller 
 
     public boolean login(String Email, String Password){
-        return GestoreUtenti.login(Email, Password);
+        return gestoreUtenti.login(Email, Password);
+        
     }
 
     public boolean registrazioneUtente(UtenteRegistrato utente) {
-        boolean ris = GestoreUtenti.creaUtente(utente);
+        boolean ris = gestoreUtenti.creaUtente(utente);
         if(ris) {
             return true;
         } else {
@@ -80,4 +85,7 @@ public class UtenteNotLoggedController{
             return false;
         }
     }
+    
+    @Autowired 
+    GestoreUtenti gestoreUtenti;
 }

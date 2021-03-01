@@ -1,14 +1,21 @@
 package webapp.model;
 
-public class UtenteRegistrato{
+import java.io.Serializable;
+
+public class UtenteRegistrato implements Serializable{
     
-    private String nome;
+	private static final long serialVersionUID = 8097216674312855410L;
+	
+	private String nome;
     private String cognome;
     private String mail;
     private String password;
 
 // --------------------> costruttore
 
+    public UtenteRegistrato() {
+    }
+    
     public UtenteRegistrato(String nome, String cognome, String mail, String password) {
         this.setNome(nome);
         this.setCognome(cognome);

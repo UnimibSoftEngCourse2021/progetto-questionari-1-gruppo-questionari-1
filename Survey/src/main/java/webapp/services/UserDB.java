@@ -12,9 +12,9 @@ import webapp.model.UtenteRegistrato;
 public class UserDB{
 
 	@Autowired
-	static JdbcTemplate jdbcTemplate;
+	private JdbcTemplate jdbcTemplate;
 	
-    public static UtenteRegistrato find(String email){
+    public UtenteRegistrato find(String email){
     	// cercare utente nel database e ritornarne l'istanza
     	
     	String sql = "SELECT * FROM utente WHERE utente.Email = ' "+email+" ' ;";
@@ -25,20 +25,22 @@ public class UserDB{
        // return new UtenteRegistrato("a", "b", "c", "d"); // ritorna n utente di esempio creato con dati presi casualmente
     }
 
-    public static void insert(UtenteRegistrato u) {
-    	String sql="INSERT INTO `utente` (`Email`, `Nome`, `Cognome`, `Password`) VALUES ('prova3@gmail', 'e', 'f', 'psw3');";
-    	
+    public boolean insert(UtenteRegistrato u) {
+    	System.out.println("insert UserDB");
+    	String sql="INSERT INTO `utente` (`Email`, `Nome`, `Cognome`, `Password`) VALUES ('"+u.getMail()+"', '"+u.getNome()+"', '"+u.getCognome()+"', '"+u.getPassword()+"');";
+    	jdbcTemplate.update(sql);
+    	return true;
         // inserisce all'interno del database l'utente u
     }
 
-    public static boolean delete(String email) {
+    public boolean delete(String email) {
 
         // elimina dal databse l'utente con email passata per parametri
 
         return true;
     }
      
-    public static boolean update(String email, String nome, String cognome, String password) {
+    public boolean update(String email, String nome, String cognome, String password) {
 
         //aggiorna i dati di un utente con i dati passati per parametri
 
