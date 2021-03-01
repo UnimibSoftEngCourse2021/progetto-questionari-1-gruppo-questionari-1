@@ -41,7 +41,7 @@ public class UtenteNotLoggedController{
     }
 
     public boolean registrazioneUtente(String nome, String cognome, String email, String password ) {
-        boolean ris = GestoreUtenti.creaUtete(nome, cognome, email, password);
+        boolean ris = GestoreUtenti.creaUtente(nome, cognome, email, password);
         if(ris) {
             return true;
         } else {
