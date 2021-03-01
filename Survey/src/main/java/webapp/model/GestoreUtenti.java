@@ -7,8 +7,8 @@ import webapp.services.*;
 public class GestoreUtenti {
 
 
-    public static boolean creaUtente(String nome, String cognome, String email, String password){
-        UtenteRegistrato u = new UtenteRegistrato(nome, cognome, email, password);
+    public static boolean creaUtente(UtenteRegistrato utente){
+        UtenteRegistrato u = utente;
         UserDB.insert(u);
         // aggiunta dell'utente al database
         return true;

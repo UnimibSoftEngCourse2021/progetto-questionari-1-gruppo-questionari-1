@@ -22,8 +22,8 @@
 					</div>
 					
 					<div class="form-group">
-						<label for="email">inserisci l'email</label>
-						<form:input id="email" path="email" type="text" class="form-control" placeholder="inserisci l'email"/> 	 
+						<label for="mail">inserisci l'email</label>
+						<form:input id="mail" path="mail" type="text" class="form-control" placeholder="inserisci l'email"/> 	 
 					</div>
 					
 					<div class="form-group">
