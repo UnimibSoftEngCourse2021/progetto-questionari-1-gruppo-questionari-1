@@ -9,6 +9,12 @@
   <name>Survey.io</name>
   <description>WebApp per la gestione di questionari</description>
   
+  <properties>
+  	<sonar.projectKey>UnimibSoftEngCourse2021_progetto-questionari-1-gruppo-questionari-1</sonar.projectKey>
+  	<sonar.organization>unimibsoftengcourse2021</sonar.organization>
+  	<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+  </properties>
+  
   <dependencies>
 	
 		<!-- Spring -->
