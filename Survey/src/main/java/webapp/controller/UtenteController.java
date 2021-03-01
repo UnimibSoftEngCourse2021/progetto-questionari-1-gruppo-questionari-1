@@ -11,9 +11,9 @@ import org.springframework.ui.Model;
 @Controller
 public class UtenteController {
 
-    @RequestMapping(value="/")
+    @RequestMapping(value="/home")
     public String getHome(Model model) { //gestisce gli accessi alla pagina home
-        System.out.println("Show index Page");
-        return "index";
+        System.out.println("Show Home Page");
+        return "home";
     }
 }

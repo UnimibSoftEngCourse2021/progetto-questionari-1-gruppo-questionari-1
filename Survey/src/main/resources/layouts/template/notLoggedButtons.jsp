@@ -6,12 +6,12 @@
 
 
 <link rel="stylesheet" type="text/css" href="style/barButtons.css" >
-<a href="/accedi">
+<a href="accedi">
     
         <p><b>Accedi</b></p>
     
 </a>
-<a href="/registrazioneUtente">
+<a href="registrazioneUtente">
     
     <p><b>Registrati</b></p>
 

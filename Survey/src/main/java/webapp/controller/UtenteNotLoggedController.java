@@ -16,7 +16,7 @@ public class UtenteNotLoggedController{
     @RequestMapping("/accedi") // Manages Accedi events
     public String getLoginView() {
             System.out.println("Show Accedi");
-            return "accedi";
+            return "/accedi";
     }
     @PostMapping("/accedi/login") // Esegue il login 
     public String makeLogin(@RequestParam("Email") String Username, @RequestParam("Password") String Password) {
