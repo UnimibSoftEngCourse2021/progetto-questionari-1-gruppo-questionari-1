@@ -7,4 +7,3 @@ webapp\services\UserDataMapper.class
 webapp\config\TilesConfig.class
 webapp\controller\UtenteNotLoggedController.class
 webapp\config\WebMvcConfig.class
-webapp\services\UserDB.class
