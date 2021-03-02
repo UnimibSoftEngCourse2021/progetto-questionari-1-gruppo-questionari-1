@@ -9,7 +9,10 @@
 <link rel = "stylesheet" type = "text/css" href = "style/topBar.css">
 <div id = "bar">
 	<h1 id = "title">Survey.io</h1>
-	<div id="buttons">
+	<div class="buttons" id = "buttons">
+
 		<tiles:insertAttribute name="notLoggedButtons" />
-	</div>
+		
+		
+	  </div>
 </div>
