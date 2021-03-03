@@ -28,7 +28,7 @@ Software utilizzato :
 
 ## Come Avviare l'App
 
-Per avviare l'app in locale e necessario aver installato Maven, Tomcat 7 e aver un server con MySql Workbench con all'interno il database presente nella Repository.
+Per avviare l'app in locale e necessario aver installato Maven, Tomcat 7 e aver un server con MySql Workbench con all'interno il database presente nella Repository, infine è necessario inserire l'username e la password di accesso al database all'interno del file application.properties, che si trova al percorso Survey\src\main\resources.
 
 Se si vuole avviare da terminale basta spostarsi tramite il comando ```cd``` all'interno della cartella dell'applicazione ed eseguire il seguente comando per poi spostarsi su un browser e recarsi alla pagina ```localhost:8080```.
 
@@ -36,7 +36,11 @@ Se si vuole avviare da terminale basta spostarsi tramite il comando ```cd``` all
 mvn clean package tomcat7:war-run
 ```
 
-Se si vuole avviare da Eclipse
+Se si vuole avviare da Eclipse, è necessario:
 
+1. Importare il progetto in Eclipse come Maven project
+2. Cliccare con il tasto destro sul progetto, scegliere Maven > Update Project e aspettare che Maven importi tutte le dipendenze necessarie, 
+3. Cliccare di nuovo con il testo destro sul progetto e scegliere Run As >  Run on Server e scegliere il server Tomcat installato.
+4. Si aprirà in automatico una pagina web con indirizzo http://localhost:8080/Survey/, che si può visualizzare allo stesso indirizzo in ogni browser.
 
 
