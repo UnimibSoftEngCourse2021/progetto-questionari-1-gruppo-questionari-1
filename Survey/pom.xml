@@ -50,13 +50,6 @@
 
 	    <!-- PERSISTENCE -->
 
-		<!-- Jdbc -->
-		<dependency>
-    		<groupId>org.springframework</groupId>
-    		<artifactId>spring-jdbc</artifactId>
-    		<version>5.2.13.RELEASE</version>
-		</dependency>
-		
 		<!-- MySQL  -->
 		<dependency>
     		<groupId>mysql</groupId>
