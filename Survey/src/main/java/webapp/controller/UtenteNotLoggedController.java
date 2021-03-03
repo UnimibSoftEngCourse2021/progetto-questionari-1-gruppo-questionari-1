@@ -73,8 +73,13 @@ public class UtenteNotLoggedController{
 //-------------------> metodi controller 
 
     public boolean login(String Email, String Password){
-        return gestoreUtenti.login(Email, Password);
-        
+    	boolean ris = gestoreUtenti.login(Email,Password);
+        if(ris) {
+            return true;
+        } else {
+            System.out.println("~login non andato a buon fine");
+            return false;
+        }
     }
 
     public boolean registrazioneUtente(UtenteRegistrato utente) {
