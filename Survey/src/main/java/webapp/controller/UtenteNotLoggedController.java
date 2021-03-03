@@ -17,7 +17,8 @@ import webapp.model.*;
 @Controller
 public class UtenteNotLoggedController{
 
-	
+    @Autowired 
+    GestoreUtenti gestoreUtenti;
 	
 //-------------------> start controller LoginView
     @GetMapping("/accedi") // Manages Accedi events
@@ -55,7 +56,7 @@ public class UtenteNotLoggedController{
 	@PostMapping(value="/registrazioneUtente")
 	public String GestRegistraUtente(@ModelAttribute("newUtente") UtenteRegistrato utente, BindingResult result)
 	{
-		System.out.println("utente registrato, nome:"+ utente.getMail());
+		System.out.println("utente registrato, email:"+ utente.getMail());
 		registrazioneUtente(utente);
 		
 		return "redirect:/";
@@ -86,6 +87,4 @@ public class UtenteNotLoggedController{
         }
     }
     
-    @Autowired 
-    GestoreUtenti gestoreUtenti;
 }

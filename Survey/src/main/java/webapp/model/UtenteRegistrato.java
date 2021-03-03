@@ -1,6 +1,5 @@
 package webapp.model;
 
-import java.io.Serializable;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Column;
@@ -9,8 +8,6 @@ import javax.persistence.Entity;
 @Entity(name="utente")
 @Table(name="utente")
 public class UtenteRegistrato{
-    // implements Serializable
-	//private static final long serialVersionUID = 8097216674312855410L;
 
     @Id
     @Column(name="Email")
