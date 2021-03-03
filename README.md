@@ -15,13 +15,9 @@ Tecnologie adottate :
 Software utilizzato :
 
 - Eclipse / IntelliJ
-
 - Git
-
 - MySql WorkBench
-
 - Sonarcube 
-
 - Visual Paradigm
 
   
