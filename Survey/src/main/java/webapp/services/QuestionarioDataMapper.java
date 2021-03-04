@@ -44,10 +44,6 @@ public class QuestionarioDataMapper {
 		entityManager.close();
 		return questionario;
 	}
-	
-	public boolean remove(Questionario quesitoanrio) {
-		
-	}
 
 	public boolean remove(String ID){
 		System.out.println("Recuperando il Questionario dal database..");
