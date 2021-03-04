@@ -114,7 +114,6 @@ fabric.properties
 DB Connections
 
 src/main/resources/application.properties
-src/main/resources/META-INF/persistence.xml
 
 
 

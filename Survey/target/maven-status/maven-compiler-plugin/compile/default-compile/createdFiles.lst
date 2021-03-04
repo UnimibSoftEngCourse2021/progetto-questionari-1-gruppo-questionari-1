@@ -5,9 +5,12 @@ webapp\config\TilesConfig.class
 webapp\model\Domanda.class
 webapp\config\WebMvcConfig.class
 webapp\services\DomandaDataMapper.class
+webapp\services\QuestionarioDataMapper.class
 webapp\controller\UtenteController.class
 webapp\controller\UtenteLoggedController.class
 webapp\model\GestoreUtenti.class
 webapp\model\UtenteRegistrato.class
 webapp\services\UserDataMapper.class
+webapp\model\Questionario.class
+webapp\services\OpzioneDataMapper.class
 webapp\controller\UtenteNotLoggedController.class
