@@ -11,7 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-@Entity
+@Entity(name="Domanda")
 @Table(name="Domanda")
 public class Domanda {
 	
@@ -34,7 +34,7 @@ public class Domanda {
 	@Column(name="Creatore")
 	private String creatore;
 	
-	//EAGER, carico tutte le opzioni della domanda, mappedBy domanda  il nome del campo nella classe Opzione
+	//EAGER, carico tutte le opzioni della domanda, mappedBy domanda � il nome del campo nella classe Opzione
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "domanda")
 	private Set<Opzione> opzioni = new HashSet<>();
 	

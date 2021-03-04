@@ -5,6 +5,8 @@ import javax.persistence.Table;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
+import java.util*
+
 @Entity(name="utente")
 @Table(name="utente")
 public class UtenteRegistrato{
@@ -18,6 +20,8 @@ public class UtenteRegistrato{
     private String cognome;
     @Column(name="Password")
     private String password;
+    @OneToMany(mappedBy = "creatore")
+    private Set<Questionario> questionariCreati= new HashSet<Questionario>();
 
 // --------------------> costruttore
 

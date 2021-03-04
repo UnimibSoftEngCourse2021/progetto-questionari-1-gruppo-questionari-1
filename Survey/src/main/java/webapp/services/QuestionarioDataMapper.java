@@ -18,6 +18,7 @@ public class QuestionarioDataMapper {
 		entityManager.persist(questionario);
 		entityManager.getTransaction().commit();
 		entityManager.close();
+		System.out.println("Aggiunto il questionario appena recuperato..");
 		return true;
 	}
 
@@ -48,4 +49,15 @@ public class QuestionarioDataMapper {
 		
 	}
 
+	public boolean remove(String ID){
+		System.out.println("Recuperando il Questionario dal database..");
+		Questionario toDeleteQuestionario = this.findByID(ID)
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		entityManager.getTransaction().begin();
+		entityManager.remove(toDeleteQuestionario);
+		entityManager.getTransaction().commit();
+		entityManager.close();
+		System.out.println("Eliminato il questionario appena recuperato..");
+		return true;
+	}
 }
