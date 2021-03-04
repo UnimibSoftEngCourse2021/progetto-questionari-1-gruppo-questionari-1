@@ -1,10 +1,11 @@
 package webapp.model;
 
 import org.springframework.stereotype.Service;
+import java.util.*;
 import webapp.services.*;
 
 @Service
-public class GestioneQuestionario{
+public class GestoreQuestionario{
 
     UserDataMapper udm = new UserDataMapper();
     QuestionarioDataMapper qdm = new QuestionarioDataMapper();
@@ -19,26 +20,30 @@ public class GestioneQuestionario{
 
     public boolean aggiungiDomanda(Domanda domanda, String ID){
         //TTTTTTTTTTTTTTODO
+        return true;
     }
 
     public Questionario getQuestionarioById(String ID){
+
         return qdm.findByID(ID);
     }
 
-    public Questionario getQuestionarioByName(String name){
+    public List<Questionario> getQuestionarioByName(String name){
         return qdm.findByName(name);
     }
 
-    public Questionario getQuestionarioByWord(String word){
+    public List<Questionario> getQuestionarioByWord(String word){
         // TTTTTTTTTTTTTODO
+        return null;
     }
 
     public boolean eliminaQuestionario(String ID){
         System.out.println("Eliminando il questionario " + ID);
-        retrun qdm.remove(ID);
+        return qdm.remove(ID);
     }
 
     public boolean modificaQuestionario(String ID){
         // TTTTTTTTTTODO
+        return true;
     }
 }

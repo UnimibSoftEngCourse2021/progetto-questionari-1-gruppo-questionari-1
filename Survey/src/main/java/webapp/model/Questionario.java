@@ -1,6 +1,7 @@
 package webapp.model;
 
 import javax.persistence.*;
+import java.util.*;
 
 
 @Entity(name = "Questionario")
@@ -19,14 +20,14 @@ public class Questionario {
     private String categoria;
 
     @ManyToOne
-    private Utente creatore;
+    private UtenteRegistrato creatore;
 
-    @OneToMany(mappedBy="...")
-    private set<Compilazione> compilazioni = new HashSet<Compilazioni>();
+   // @OneToMany(mappedBy="...")
+   // private Set<Compilazione> compilazioni = new HashSet<Compilazione>();
 
     //------------------> Costruttore
 
-    public Questionario(String nome, String categoria, Utente creatore){
+    public Questionario(String nome, String categoria, UtenteRegistrato creatore){
         this.setNome(nome);
         this.setCategoria(categoria);
         this.setCreatore(creatore);
@@ -57,11 +58,11 @@ public class Questionario {
         this.categoria = categoria;
     }
 
-    public Utente getCreatore() {
+    public UtenteRegistrato getCreatore() {
         return creatore;
     }
 
-    public void setCreatore(Utente creatore) {
+    public void setCreatore(UtenteRegistrato creatore) {
         this.creatore = creatore;
     }
 

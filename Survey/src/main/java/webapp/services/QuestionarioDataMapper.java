@@ -47,7 +47,7 @@ public class QuestionarioDataMapper {
 
 	public boolean remove(String ID){
 		System.out.println("Recuperando il Questionario dal database..");
-		Questionario toDeleteQuestionario = this.findByID(ID)
+		Questionario toDeleteQuestionario = this.findByID(ID);
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
 		entityManager.remove(toDeleteQuestionario);
