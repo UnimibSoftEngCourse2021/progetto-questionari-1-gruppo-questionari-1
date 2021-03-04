@@ -30,5 +30,25 @@ public class UserDataMapper{
 		entityManager.close();
 		return utenteRegistrato.get(0);
 	}
+	
+	public boolean remove(String email) {
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		entityManager.getTransaction().begin();
+		UtenteRegistrato utente = find(email);
+		entityManager.remove(utente);
+		entityManager.getTransaction().commit();
+		entityManager.close();
+		return true;
+	}
+	
+	public boolean update(UtenteRegistrato utenteRegistrato) {
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		entityManager.getTransaction().begin();
+		boolean checkRemove = remove(utenteRegistrato.getMail());
+		boolean checkInsert = insert(utenteRegistrato);
+		entityManager.getTransaction().commit();
+		entityManager.close();
+		return (checkRemove && checkInsert);
+	}
 }
 

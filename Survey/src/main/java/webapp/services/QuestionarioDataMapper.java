@@ -43,5 +43,9 @@ public class QuestionarioDataMapper {
 		entityManager.close();
 		return questionario;
 	}
+	
+	public boolean remove(Questionario quesitoanrio) {
+		
+	}
 
 }
