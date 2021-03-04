@@ -22,8 +22,8 @@ public class Questionario {
     @ManyToOne
     private UtenteRegistrato creatore;
 
-   // @OneToMany(mappedBy="...")
-   // private Set<Compilazione> compilazioni = new HashSet<Compilazione>();
+    @OneToMany(mappedBy="Questionario_ID")
+    private Set<Compilazione> compilazioni = new HashSet<Compilazione>();
 
     //------------------> Costruttore
 

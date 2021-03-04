@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
 
 
-@Controller
+@Controller 
 public class UtenteController {
 
     @RequestMapping(value="/")

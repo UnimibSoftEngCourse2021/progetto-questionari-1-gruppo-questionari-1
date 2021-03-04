@@ -5,6 +5,7 @@ webapp\config\TilesConfig.class
 webapp\model\Domanda.class
 webapp\config\WebMvcConfig.class
 webapp\services\DomandaDataMapper.class
+webapp\model\GestoreQuestionario.class
 webapp\services\QuestionarioDataMapper.class
 webapp\controller\UtenteController.class
 webapp\controller\UtenteLoggedController.class
@@ -14,3 +15,4 @@ webapp\services\UserDataMapper.class
 webapp\model\Questionario.class
 webapp\services\OpzioneDataMapper.class
 webapp\controller\UtenteNotLoggedController.class
+webapp\model\Compilazione.class

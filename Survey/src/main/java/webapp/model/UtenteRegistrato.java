@@ -18,7 +18,9 @@ public class UtenteRegistrato{
     @Column(name="Password")
     private String password;
     @OneToMany(mappedBy = "creatore")
-    private Set<Questionario> questionariCreati= new HashSet<Questionario>();
+    private Set<Questionario> questionariCreati = new HashSet<Questionario>();
+    @OneToMany(mappedBy = "compilatore")
+    private Set<Compilazione> questionariCompilati = new HashSet<Compilazione>();
 
 // --------------------> costruttore
 
