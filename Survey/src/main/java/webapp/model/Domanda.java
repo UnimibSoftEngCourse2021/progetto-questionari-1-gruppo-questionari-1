@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -37,8 +38,21 @@ public class Domanda {
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "domanda")
 	private Set<Opzione> opzioni = new HashSet<>();
 	
-	public Domanda() {
-		
+	@ManyToMany
+	private Set<Questionario> questionari = new HashSet<>();
+
+	@OneToMany(mappedBy = "Domanda_ID")
+	private Set<CompilazioneDomanda> compilazioni = new HashSet<CompilazioneDomanda>();
+
+	public Domanda(){};
+
+	public Domanda(int id, String testo, String immagine, String categoria, boolean domandaChiusa, String creatore) {
+		this.id = id;
+		this.testo = testo;
+		this.immagine = immagine;
+		this.categoria = categoria;
+		this.domandaChiusa = domandaChiusa;
+		this.creatore = creatore;
 	}
 
 	public int getId() {

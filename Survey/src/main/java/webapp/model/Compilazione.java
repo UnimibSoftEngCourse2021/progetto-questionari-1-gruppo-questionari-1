@@ -1,10 +1,12 @@
 package webapp.model;
 
-
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -21,6 +23,9 @@ public class Compilazione {
 
     @ManyToOne
     private UtenteRegistrato compilatore;
+
+    @OneToMany(mappedBy = "Compilazione_ID")
+    private Set<CompilazioneDomanda> domande = new HashSet<CompilazioneDomanda>();
 
     
     public String getID() {

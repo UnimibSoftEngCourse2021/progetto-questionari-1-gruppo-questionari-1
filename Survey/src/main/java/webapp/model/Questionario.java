@@ -25,6 +25,14 @@ public class Questionario {
     @OneToMany(mappedBy="Questionario_ID")
     private Set<Compilazione> compilazioni = new HashSet<Compilazione>();
 
+    @ManyToMany
+    @JoinTable(
+        name = "domandaquestionario",
+        joinColumns = @JoinColumn(name = "Questionario_ID"),
+        inverseJoinColumns = @JoinColumn(name = "Domanda_ID")
+    )
+    private Set<Domanda> domande = new HashSet<>();
+
     //------------------> Costruttore
 
     public Questionario(String nome, String categoria, UtenteRegistrato creatore){
