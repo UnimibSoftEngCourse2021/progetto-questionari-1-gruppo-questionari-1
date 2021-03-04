@@ -33,4 +33,8 @@ public class Opzione {
 	public void setDescrizioneOpzione(String descrizioneOpzione) {
 		this.descrizioneOpzione = descrizioneOpzione;
 	}
+	
+	public void setDomanda(Domanda domanda) {
+		this.domanda = domanda;
+	}
 }
