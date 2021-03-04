@@ -1,11 +1,13 @@
 C:\Users\albit\Desktop\Progetto_Questionario\progetto-questionari-1-gruppo-questionari-1\Survey\src\main\java\webapp\model\GestoreUtenti.java
 C:\Users\albit\Desktop\Progetto_Questionario\progetto-questionari-1-gruppo-questionari-1\Survey\src\main\java\webapp\config\TilesConfig.java
 C:\Users\albit\Desktop\Progetto_Questionario\progetto-questionari-1-gruppo-questionari-1\Survey\src\main\java\webapp\services\UserDataMapper.java
-C:\Users\albit\Desktop\Progetto_Questionario\progetto-questionari-1-gruppo-questionari-1\Survey\src\main\java\webapp\controller\UtenteController.java
+C:\Users\albit\Desktop\Progetto_Questionario\progetto-questionari-1-gruppo-questionari-1\Survey\src\main\java\webapp\model\GestoreDomande.java
+C:\Users\albit\Desktop\Progetto_Questionario\progetto-questionari-1-gruppo-questionari-1\Survey\src\main\java\webapp\services\DomandaDataMapper.java
 C:\Users\albit\Desktop\Progetto_Questionario\progetto-questionari-1-gruppo-questionari-1\Survey\src\main\java\webapp\model\UtenteRegistrato.java
 C:\Users\albit\Desktop\Progetto_Questionario\progetto-questionari-1-gruppo-questionari-1\Survey\src\main\java\webapp\config\WebMvcConfig.java
-C:\Users\albit\Desktop\Progetto_Questionario\progetto-questionari-1-gruppo-questionari-1\Survey\src\main\java\webapp\controller\UtenteNotLoggedController.java
-C:\Users\albit\Desktop\Progetto_Questionario\progetto-questionari-1-gruppo-questionari-1\Survey\src\main\java\webapp\services\UserDB.java
 C:\Users\albit\Desktop\Progetto_Questionario\progetto-questionari-1-gruppo-questionari-1\Survey\src\main\java\webapp\config\DispatcherServletInit.java
-C:\Users\albit\Desktop\Progetto_Questionario\progetto-questionari-1-gruppo-questionari-1\Survey\src\main\java\webapp\config\JdbcConfig.java
+C:\Users\albit\Desktop\Progetto_Questionario\progetto-questionari-1-gruppo-questionari-1\Survey\src\main\java\webapp\controller\UtenteController.java
+C:\Users\albit\Desktop\Progetto_Questionario\progetto-questionari-1-gruppo-questionari-1\Survey\src\main\java\webapp\model\Opzione.java
+C:\Users\albit\Desktop\Progetto_Questionario\progetto-questionari-1-gruppo-questionari-1\Survey\src\main\java\webapp\model\Domanda.java
+C:\Users\albit\Desktop\Progetto_Questionario\progetto-questionari-1-gruppo-questionari-1\Survey\src\main\java\webapp\controller\UtenteNotLoggedController.java
 C:\Users\albit\Desktop\Progetto_Questionario\progetto-questionari-1-gruppo-questionari-1\Survey\src\main\java\webapp\controller\UtenteLoggedController.java

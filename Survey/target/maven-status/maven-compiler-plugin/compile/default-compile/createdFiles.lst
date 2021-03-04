@@ -1,9 +1,13 @@
 webapp\config\DispatcherServletInit.class
+webapp\model\GestoreDomande.class
+webapp\model\Opzione.class
+webapp\config\TilesConfig.class
+webapp\model\Domanda.class
+webapp\config\WebMvcConfig.class
+webapp\services\DomandaDataMapper.class
 webapp\controller\UtenteController.class
+webapp\controller\UtenteLoggedController.class
 webapp\model\GestoreUtenti.class
-webapp\config\JdbcConfig.class
 webapp\model\UtenteRegistrato.class
 webapp\services\UserDataMapper.class
-webapp\config\TilesConfig.class
 webapp\controller\UtenteNotLoggedController.class
-webapp\config\WebMvcConfig.class

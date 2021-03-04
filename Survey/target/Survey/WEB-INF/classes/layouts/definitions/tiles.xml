@@ -42,5 +42,9 @@
 	<definition name="accedi" extends="baseLayout">
 		<put-attribute name="content" value="/viste/accedi.jsp" />  
 	</definition>
+	
+	<definition name="creaDomanda" extends="baseLayout">
+		<put-attribute name="content" value="/viste/creaDomanda.jsp" />  
+	</definition>
 
 </tiles-definitions>

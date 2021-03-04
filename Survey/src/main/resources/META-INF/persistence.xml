@@ -5,6 +5,8 @@
              http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
     <persistence-unit name="org.hibernate.survey.jpa">
         <class>src.main.java.webapp.model.UtenteRegistrato</class>
+        <class>src.main.java.webapp.model.Domanda</class>
+        <class>src.main.java.webapp.model.Questionario</class>
         <properties>
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/mydb"/>
