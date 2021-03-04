@@ -24,7 +24,7 @@ Software utilizzato :
 
 ## Come Avviare l'App
 
-Per avviare la web app in locale è necessario aver installato Maven, Tomcat 7 e aver un server con MySql Workbench con all'interno il database presente nella Repository, infine si deve inserire l'username e la password di accesso al database all'interno del file application.properties, che si trova al percorso Survey\src\main\resources.
+Per avviare la web app in locale è necessario aver installato Maven, Tomcat 7 e aver un server con MySql Workbench con all'interno il database presente nella Repository, infine si deve inserire l'username e la password di accesso al database all'interno del file persistence.xml, che si trova al percorso Survey\src\main\resources\META-INF, nel campo value di hibernate.connection.username e hibernate.connection.password .
 
 Se si vuole avviare da terminale basta spostarsi tramite il comando ```cd``` all'interno della cartella dell'applicazione ed eseguire il seguente comando per poi spostarsi su un browser e recarsi alla pagina ```localhost:8080```.
 
