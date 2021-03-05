@@ -7,7 +7,7 @@ import javax.persistence.Persistence;
 import webapp.model.Opzione;
 
 public class OpzioneDataMapper {
-	public EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("org.hibernate.survey.jpa");
+	private EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("org.hibernate.survey.jpa");
 
 	public boolean insert(Opzione opzione){
 		EntityManager entityManager = entityManagerFactory.createEntityManager();

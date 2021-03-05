@@ -27,7 +27,6 @@ public class Compilazione {
     @OneToMany(mappedBy = "Compilazione_ID")
     private Set<CompilazioneDomanda> domande = new HashSet<CompilazioneDomanda>();
 
-    
     public String getID() {
         return this.ID;
     }
