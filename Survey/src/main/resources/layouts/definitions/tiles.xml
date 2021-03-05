@@ -21,8 +21,8 @@
 	<!-- start index layout -->
 
 	<definition name="index" template = "/viste/index.jsp" >
-		<put-attribute name="head" value="/layout/template/head.jsp" />
-		<put-attribute name="navBarNotLogged" value="/viste/navBarNotLogged.jsp" /> 
+		<put-attribute name="head" value="/layouts/template/head.jsp" />
+		<put-attribute name="navBarNotLogged" value="/layouts/template/navBarNotLogged.jsp" /> 
 		<put-attribute name="masthead" value="/template/masthead.jsp" />
 		<put-attribute name="scripts" value="/viste/scripts.jsp" /> 
 
@@ -33,7 +33,7 @@
 	
 	<!--start question layout-->
 	<definition name="questions" template = "/viste/questions.jsp" >
-		<put-attribute name="head" value="/layout/template/head.jsp" />
+		<put-attribute name="head" value="/layouts/template/head.jsp" />
 		<put-attribute name="navBarLogged" value="/template/navBarLogged.jsp" /> 
 		<put-attribute name="containerDomande" value="/template/containerDomande.jsp" />
 		<put-attribute name="scripts" value="/template/scripts.jsp" /> 
@@ -47,7 +47,7 @@
 <!--start create Survey layout-->
 	
 	<definition name="createSurvey" template = "/viste/createSurvey.jsp" >
-		<put-attribute name="head" value="/layout/template/head.jsp" />
+		<put-attribute name="head" value="/layouts/template/head.jsp" />
 		<put-attribute name="navBarLogged" value="/template/navBarLogged.jsp" /> 
 		
 		<put-attribute name="scripts" value="/template/scripts.jsp" /> 
@@ -60,7 +60,7 @@
 <!--start manage Survey layout-->
 	
 	<definition name="manageSurvey" template = "/viste/manageSurvey.jsp" >
-		<put-attribute name="head" value="/layout/template/head.jsp" />
+		<put-attribute name="head" value="/layouts/template/head.jsp" />
 		<put-attribute name="navBarLogged" value="/template/navBarLogged.jsp" /> 
 		
 		<put-attribute name="scripts" value="/template/scripts.jsp" /> 
@@ -73,7 +73,7 @@
 <!--start compiled Survey layout-->
 	
 	<definition name="compiledSurvey" template = "/viste/compiledSurvey.jsp" >
-		<put-attribute name="head" value="/layout/template/head.jsp" />
+		<put-attribute name="head" value="/layouts/template/head.jsp" />
 		<put-attribute name="navBarLogged" value="/template/navBarLogged.jsp" /> 
 		
 		<put-attribute name="scripts" value="/template/scripts.jsp" /> 
