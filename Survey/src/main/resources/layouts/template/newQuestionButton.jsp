@@ -3,12 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 
-<html>
-<head>
 
-</head>
-<body>
-	
-		<tiles:insertAttribute name="content" />
-</body>
-</html> 
+
+
+<a class="pulsanti-aggiungi btn btn-light" data-target="#aggiungi-domanda" data-toggle="modal">
+    <i class="fas fa-plus"></i>
+  </a>
