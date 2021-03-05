@@ -32,6 +32,7 @@ public class Questionario {
         joinColumns = @JoinColumn(name = "Questionario_ID"),
         inverseJoinColumns = @JoinColumn(name = "Domanda_ID")
     )
+    private Set<Domanda> domande = new HashSet<>();
     
 
     //------------------> Costruttore
@@ -82,7 +83,6 @@ public class Questionario {
     public void setCompilazioni(Set<Compilazione> compilazioni) {
         this.compilazioni = compilazioni;
     }
-    private Set<Domanda> domande = new HashSet<>();
 
     public Set<Domanda> getDomande() {
         return this.domande;

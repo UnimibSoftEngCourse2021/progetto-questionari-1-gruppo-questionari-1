@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import webapp.model.Domanda;
 import webapp.model.Questionario;
 
 public class QuestionarioDataMapper {
@@ -57,4 +58,17 @@ public class QuestionarioDataMapper {
 		System.out.println("Eliminato il questionario appena recuperato..");
 		return true;
 	}
+
+	public boolean addDomanda(String idQuestionario, Domanda domanda){
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		Questionario toUpdateQuestionario = this.findByID(idQuestionario);
+		entityManager.getTransaction().begin();
+		System.out.println("Sto aggiungendo una domanda");
+		toUpdateQuestionario.getDomande().add(domanda);
+		entityManager.getTransaction().commit();
+		entityManager.close();
+		System.out.println("Ho aggiunto una domanda");
+		return true;
+	}
+
 }

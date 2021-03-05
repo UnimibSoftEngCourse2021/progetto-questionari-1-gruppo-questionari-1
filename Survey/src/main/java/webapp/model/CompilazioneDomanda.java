@@ -2,6 +2,7 @@ package webapp.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -13,7 +14,7 @@ public class CompilazioneDomanda implements Serializable{
     
     
     @Id
-    private int temp;
+    private int id;
 
     @ManyToOne
     @MapsId("studentId")
@@ -24,6 +25,10 @@ public class CompilazioneDomanda implements Serializable{
     @MapsId("studentId")
     @JoinColumn(name = "Compilazione_ID")
     private Compilazione Compilazione_ID;
+
+    @Column(name="Risposta")
+    private String risposta;
+
 
 
 }
