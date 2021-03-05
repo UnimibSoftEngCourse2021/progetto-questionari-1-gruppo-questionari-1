@@ -74,7 +74,7 @@ public class Domanda {
 		return domandaChiusa;
 	}
 
-	public String getCreatore() {
+	public UtenteRegistrato getCreatore() {
 		return creatore;
 	}
 
