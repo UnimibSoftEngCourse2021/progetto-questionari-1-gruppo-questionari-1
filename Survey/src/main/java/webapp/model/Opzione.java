@@ -2,6 +2,7 @@ package webapp.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -11,6 +12,7 @@ import javax.persistence.Table;
 public class Opzione {
 	
 	@Id
+	@GeneratedValue
 	@Column(name ="idOpzione")
 	private int idOpzione;
 	
@@ -21,8 +23,9 @@ public class Opzione {
 	// @JoinColumn(name = "ID") non funziona
 	private Domanda domanda;
 	
-	public Opzione() {
-		
+	public Opzione(String descrizione, Domanda domanda) {
+		this.setDescrizioneOpzione(descrizione);
+		this.setDomanda(domanda);
 	}
 
 	public String getDescrizioneOpzione() {

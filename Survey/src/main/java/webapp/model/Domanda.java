@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -31,8 +32,9 @@ public class Domanda {
 	@Column(name="DomandaChiusa")
 	private boolean domandaChiusa;
 	
+	@ManyToOne
 	@Column(name="Creatore")
-	private String creatore;
+	private UtenteRegistrato creatore;
 	
 	//EAGER, carico tutte le opzioni della domanda, mappedBy domanda � il nome del campo nella classe Opzione
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "domanda")
@@ -44,10 +46,7 @@ public class Domanda {
 	@OneToMany(mappedBy = "Domanda_ID")
 	private Set<CompilazioneDomanda> compilazioni = new HashSet<CompilazioneDomanda>();
 
-	public Domanda(){};
-
-	public Domanda(int id, String testo, String immagine, String categoria, boolean domandaChiusa, String creatore) {
-		this.id = id;
+	public Domanda(String testo, String immagine, String categoria, boolean domandaChiusa, UtenteRegistrato creatore) {
 		this.testo = testo;
 		this.immagine = immagine;
 		this.categoria = categoria;

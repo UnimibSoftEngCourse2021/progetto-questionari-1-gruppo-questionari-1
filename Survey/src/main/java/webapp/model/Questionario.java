@@ -25,6 +25,7 @@ public class Questionario {
     @OneToMany(mappedBy="Questionario_ID")
     private Set<Compilazione> compilazioni = new HashSet<Compilazione>();
 
+
     @ManyToMany
     @JoinTable(
         name = "domandaquestionario",
@@ -74,6 +75,13 @@ public class Questionario {
         this.creatore = creatore;
     }
 
+    public Set<Compilazione> getCompilazioni() {
+        return this.compilazioni;
+    }
+
+    public void setCompilazioni(Set<Compilazione> compilazioni) {
+        this.compilazioni = compilazioni;
+    }
 
 
 }

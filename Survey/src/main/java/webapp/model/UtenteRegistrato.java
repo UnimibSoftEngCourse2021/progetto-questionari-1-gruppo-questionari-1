@@ -21,6 +21,8 @@ public class UtenteRegistrato{
     private Set<Questionario> questionariCreati = new HashSet<Questionario>();
     @OneToMany(mappedBy = "compilatore")
     private Set<Compilazione> questionariCompilati = new HashSet<Compilazione>();
+    @OneToMany(mappedBy = "creatore")
+    private Set<Domanda> domandeCreate = new HashSet<Domanda>();
 
 // --------------------> costruttore
 
