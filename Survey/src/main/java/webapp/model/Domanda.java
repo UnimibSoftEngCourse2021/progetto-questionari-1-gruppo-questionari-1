@@ -83,6 +83,9 @@ public class Domanda {
 	public Set<Opzione> getOpzioni() {
 		return opzioni;
 	}
+	public Set<Questionario> getQuestionari(){
+		return questionari;
+	}
 
 	public void setTesto(String testo) {
 		this.testo = testo;

@@ -71,4 +71,16 @@ public class QuestionarioDataMapper {
 		return true;
 	}
 
+	public boolean removeDomanda(String idQuestionario, Domanda domanda){
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		Questionario toUpdateQuestionario = this.findByID(idQuestionario);
+		entityManager.getTransaction().begin();
+		System.out.println("Sto eliminando una domanda");
+		toUpdateQuestionario.getDomande().remove(domanda);
+		entityManager.getTransaction().commit();
+		entityManager.close();
+		System.out.println("Ho eliminato una domanda");
+		return true;
+	}
+
 }
