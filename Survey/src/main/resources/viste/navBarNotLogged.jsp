@@ -9,13 +9,14 @@
     <div class="container">
       <a class="navbar-brand" href="#">Survey.io</a>
       <div style="float: right;">
-      <a class="btn btn-light trigger" data-target="#login" data-toggle="modal" href="accedi" >Log In</a>
-	    <a class="btn btn-light trigger" data-target="#signup" data-toggle="modal" href="registrazioneUtente">Sign Up</a>
+      <a class="btn btn-light trigger" data-target="#login" data-toggle="modal" href="" >Log In</a>
+	    <a class="btn btn-light trigger" data-target="#signup" data-toggle="modal" href="">Sign Up</a>
 	  </div>
     </div>
   </nav>
   
-  <tiles:insertAttribute name="popUpLogin"/>
-  <tiles:insertAttribute name="popUpSignin"/>
+  <tiles:insertAttribute name="popuplogin"/>
+  <tiles:insertAttribute name="popupsignin"/>
+  
   
         
