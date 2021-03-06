@@ -20,7 +20,7 @@ public class GestoreQuestionario{
     }
 
     public boolean aggiungiDomanda(Domanda domanda, String ID){
-        //TTTTTTTTTTTTTTODO
+        //TODO : aggiugiDomanda
         return true;
     }
 
@@ -34,7 +34,7 @@ public class GestoreQuestionario{
     }
 
     public List<Questionario> getQuestionarioByWord(String word){
-        // TTTTTTTTTTTTTODO
+        // TODO : getQuestionarioByWord
         return null;
     }
 
@@ -44,7 +44,7 @@ public class GestoreQuestionario{
     }
 
     public boolean modificaQuestionario(String ID){
-        // TTTTTTTTTTODO
+        // TODO : modificaQuestionario
         return true;
     }
 }
