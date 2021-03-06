@@ -1,34 +1,38 @@
 package webapp.model;
 
-import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 
 @Entity
-public class CompilazioneDomanda implements Serializable{
+public class CompilazioneDomanda{
     
-    
-    @Id
-    private int id;
+    @EmbeddedId
+    CompilazioneDomandaKeys cdk;
+
 
     @ManyToOne
-    @MapsId("studentId")
+    @MapsId("Domanda_ID")
     @JoinColumn(name = "Domanda_ID")
     private Domanda Domanda_ID;
 
     @ManyToOne
-    @MapsId("studentId")
+    @MapsId("Compilazione_ID")
     @JoinColumn(name = "Compilazione_ID")
     private Compilazione Compilazione_ID;
 
     @Column(name="Risposta")
     private String risposta;
 
+    public String getRisposta() {
+        return this.risposta;
+    }
 
-
+    public void setRisposta(String risposta) {
+        this.risposta = risposta;
+    }
 }

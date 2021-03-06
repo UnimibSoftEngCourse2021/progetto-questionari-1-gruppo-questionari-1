@@ -98,7 +98,7 @@ public class Domanda {
 		this.domandaChiusa = domandaChiusa;
 	}
 
-	public void setCreatore(String creatore) {
+	public void setCreatore(UtenteRegistrato creatore) {
 		this.creatore = creatore;
 	}
 
