@@ -5,8 +5,8 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -37,7 +37,8 @@ public class Domanda {
 	private UtenteRegistrato creatore;
 	
 	//EAGER, carico tutte le opzioni della domanda, mappedBy domanda � il nome del campo nella classe Opzione
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "domanda")
+	@OneToMany
+	@JoinColumn(name = "Domanda_ID")
 	private Set<Opzione> opzioni = new HashSet<>();
 	
 	@ManyToMany
@@ -46,12 +47,13 @@ public class Domanda {
 	@OneToMany(mappedBy = "Domanda_ID")
 	private Set<CompilazioneDomanda> compilazioni = new HashSet<CompilazioneDomanda>();
 
-	public Domanda(String testo, String immagine, String categoria, boolean domandaChiusa, UtenteRegistrato creatore) {
+	public Domanda(String testo, String immagine, String categoria, boolean domandaChiusa, UtenteRegistrato creatore, Set<Opzione> listaOpzioni) {
 		this.testo = testo;
 		this.immagine = immagine;
 		this.categoria = categoria;
 		this.domandaChiusa = domandaChiusa;
 		this.creatore = creatore;
+		this.opzioni = listaOpzioni;
 	}
 
 	public int getId() {

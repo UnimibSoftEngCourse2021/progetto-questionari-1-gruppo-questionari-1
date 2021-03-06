@@ -10,12 +10,13 @@ public class GestoreQuestionario{
     UserDataMapper udm = new UserDataMapper();
     QuestionarioDataMapper qdm = new QuestionarioDataMapper();
 
-    public boolean creaQuestionario(String email, String nome, String categoria){
+    public Questionario creaQuestionario(String email, String nome, String categoria){
         UtenteRegistrato creatore = udm.find(email);
         System.out.println("Generando Il Questionario da aggiungere..");
         Questionario newQuestionario = new Questionario(nome, categoria, creatore);
         System.out.println("Aggiungendo al database il questionario appena generato..");
-        return qdm.insert(newQuestionario);
+        qdm.insert(newQuestionario);
+        return newQuestionario;
     }
 
     public boolean aggiungiDomanda(Domanda domanda, String ID){

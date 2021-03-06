@@ -18,18 +18,19 @@ public class GestoreDomande {
 	OpzioneDataMapper opzioneDataMapper = new OpzioneDataMapper();
 	UserDataMapper userDataMapper = new UserDataMapper();
 	
-	public boolean creaDomanda(String testo, String Immagine, String categoria, boolean domandaChiusa, String creatore) {
+	public Domanda creaDomanda(String testo, String Immagine, String categoria, boolean domandaChiusa, String creatore, Set<Opzione> listaOpzioni) {
 		System.out.println("Creazione di una domanda...");
 		UtenteRegistrato utente = userDataMapper.find(creatore);
-		Domanda d = new Domanda(testo, Immagine, categoria, domandaChiusa, utente);
-        return domandaDataMapper.insert(d);
+		Domanda d = new Domanda(testo, Immagine, categoria, domandaChiusa, utente, listaOpzioni);
+		domandaDataMapper.insert(d);
+		return d;
 	}
 
-	public boolean creaOpzione(String descrizione, int IdDomanda) {
+	public Opzione creaOpzione(String descrizione) {
 		System.out.println("Creazione di una opzione...");
-		Domanda domanda = domandaDataMapper.findByID(IdDomanda);
-		Opzione o = new Opzione(descrizione, domanda);
-		return opzioneDataMapper.insert(o);
+		Opzione o = new Opzione(descrizione);
+		opzioneDataMapper.insert(o);
+		return o;
 	}
 
 	public boolean rimuoviDomanda(int ID) {
@@ -38,6 +39,10 @@ public class GestoreDomande {
 
 	public List<Domanda> getDomandaByCategoria(String categoria) {
 		return domandaDataMapper.findByCategory(categoria);
+	}
+
+	public Domanda getDomandaByID(int ID) {
+		return domandaDataMapper.findByID(ID);
 	}
 
 }
