@@ -7,7 +7,6 @@ import java.util.*;
 @Entity(name="utente")
 @Table(name="utente")
 public class UtenteRegistrato{
-
     @Id
     @Column(name="Email")
     private String mail;

@@ -24,8 +24,8 @@ public class Compilazione {
     @ManyToOne
     private UtenteRegistrato compilatore;
 
-    @OneToMany(mappedBy = "Compilazione_ID")
-    private Set<CompilazioneDomanda> domande = new HashSet<CompilazioneDomanda>();
+    @OneToMany
+    private Set<CompilazioneDomanda> domande = new HashSet<>();
 
     public String getID() {
         return this.ID;

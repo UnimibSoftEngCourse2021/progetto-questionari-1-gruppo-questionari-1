@@ -1,5 +1,6 @@
 package webapp.model;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,7 +15,7 @@ import javax.persistence.Table;
 
 @Entity(name="Domanda")
 @Table(name="Domanda")
-public class Domanda {
+public class Domanda{
 	
 	@Id
 	@Column(name="ID")
@@ -33,7 +34,7 @@ public class Domanda {
 	private boolean domandaChiusa;
 	
 	@ManyToOne
-	@Column(name="Creatore")
+	@JoinColumn(name="Creatore")
 	private UtenteRegistrato creatore;
 	
 	//EAGER, carico tutte le opzioni della domanda, mappedBy domanda � il nome del campo nella classe Opzione
@@ -44,8 +45,8 @@ public class Domanda {
 	@ManyToMany
 	private Set<Questionario> questionari = new HashSet<>();
 
-	@OneToMany(mappedBy = "Domanda_ID")
-	private Set<CompilazioneDomanda> compilazioni = new HashSet<CompilazioneDomanda>();
+	@OneToMany
+	private Set<CompilazioneDomanda> compilazioni = new HashSet<>();
 
 	public Domanda(String testo, String immagine, String categoria, boolean domandaChiusa, UtenteRegistrato creatore, Set<Opzione> listaOpzioni) {
 		this.testo = testo;

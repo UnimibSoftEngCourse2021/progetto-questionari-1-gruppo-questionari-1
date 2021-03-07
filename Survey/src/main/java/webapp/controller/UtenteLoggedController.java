@@ -89,7 +89,7 @@ public class UtenteLoggedController{
 		// Aggiunge una domanda esistente ad un questionario
 		System.out.println("Controller : aggiungendo la domanda esistente al questionario");
 		Domanda d = gestoreDomande.getDomandaByID(IdDomanda);
-		gestoreQuestionario.aggiungiDomanda(d, IdQuestionario);
+		gestoreQuestionario.addDomanda(d, IdQuestionario);
 		return true;
 	}
 
@@ -97,7 +97,7 @@ public class UtenteLoggedController{
 		// Aggiunge una domanda al qustionario IdQuestionario subito dopo averla creata 
 		System.out.println("Controller : creando la domanda e aggiungendola al questionario");
 		Domanda d = this.creaDomanda(testo, Immagine, categoria, domandaChiusa, creatore, opzioni); 
-		gestoreQuestionario.aggiungiDomanda(d, IdQuestionario);
+		gestoreQuestionario.addDomanda(d, IdQuestionario);
 		return true;
 	}
 

@@ -14,16 +14,15 @@ public class CompilazioneDomanda{
     @EmbeddedId
     CompilazioneDomandaKeys cdk;
 
-
     @ManyToOne
-    @MapsId("Domanda_ID")
+    @MapsId("domandaId")
     @JoinColumn(name = "Domanda_ID")
-    private Domanda Domanda_ID;
+    private Domanda domandaId;
 
     @ManyToOne
-    @MapsId("Compilazione_ID")
+    @MapsId("compilazioneId")
     @JoinColumn(name = "Compilazione_ID")
-    private Compilazione Compilazione_ID;
+    private Compilazione compilazioneId;
 
     @Column(name="Risposta")
     private String risposta;

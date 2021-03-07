@@ -5,7 +5,7 @@ import java.util.*;
 import webapp.services.*;
 
 @Service
-public class GestoreQuestionario{
+public class GestoreQuestionario {
 
     private UserDataMapper udm = new UserDataMapper();
     private QuestionarioDataMapper qdm = new QuestionarioDataMapper();
@@ -20,11 +20,11 @@ public class GestoreQuestionario{
         return newQuestionario;
     }
 
-    public boolean aggiungiDomanda(Domanda domanda, String id){
+    public boolean addDomanda(Domanda domanda, String id){
         return qdm.addDomanda(id, domanda);
     }
 
-    public boolean eliminaDomanda(Domanda domanda, String id){
+    public boolean removeDomanda(Domanda domanda, String id){
         return qdm.removeDomanda(id, domanda);
     }
 
