@@ -6,33 +6,36 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-@Entity(name = "compilazione")
-@Table(name = "compilazione")
+@Entity
+@Table(name = "compilazioni")
 public class Compilazione {
 
     @Id
     @Column(name = "ID")
-    private String ID;
+    private String id;
     
     @ManyToOne
-    private Questionario Questionario_ID;
+    @JoinColumn(name = "Questionario_ID")
+    private Questionario questionarioId;
 
     @ManyToOne
+    @JoinColumn(name = "Compilatore")
     private UtenteRegistrato compilatore;
 
-    @OneToMany
+    @OneToMany(mappedBy = "Compilazione_ID")
     private Set<CompilazioneDomanda> domande = new HashSet<>();
 
     public String getID() {
-        return this.ID;
+        return this.id;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setID(String id) {
+        this.id = id;
     }
 
 }

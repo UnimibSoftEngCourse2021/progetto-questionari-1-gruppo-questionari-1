@@ -1,11 +1,11 @@
 package webapp.model;
 
-import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
@@ -13,11 +13,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-@Entity(name="Domanda")
-@Table(name="Domanda")
+@Entity(name="domande")
+@Table(name="domande")
 public class Domanda{
 	
 	@Id
+	@GeneratedValue
 	@Column(name="ID")
 	private int id;
 	

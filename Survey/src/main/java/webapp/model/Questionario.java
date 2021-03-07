@@ -1,29 +1,42 @@
 package webapp.model;
 
-import javax.persistence.*;
-import java.util.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Table;
+import javax.persistence.Column;
+import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 
-@Entity(name = "Questionario")
-@Table(name = "Questionario")
+import java.util.Set;
+import java.util.HashSet;
+
+
+@Entity(name = "questionari")
+@Table(name = "questionari")
 public class Questionario {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue
     @Column(name = "ID")
-    private String ID;
+    private String id;
 
-    @Column(name = "nome")
+    @Column(name = "Nome")
     private String nome;
 
-    @Column(name = "categoria")
+    @Column(name = "Categoria")
     private String categoria;
 
     @ManyToOne
+    @JoinColumn(name = "Creatore")
     private UtenteRegistrato creatore;
 
-    @OneToMany(mappedBy="Questionario_ID")
-    private Set<Compilazione> compilazioni = new HashSet<Compilazione>();
+    @OneToMany(mappedBy="questionarioId")
+    private Set<Compilazione> compilazioni = new HashSet<>();
 
 
     @ManyToMany
@@ -45,11 +58,11 @@ public class Questionario {
 
     //------------------> Getters & Setters
     public String getID() {
-        return ID;
+        return id;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setID(String id) {
+        this.id = id;
     }
 
     public String getNome() {

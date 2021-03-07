@@ -1,27 +1,39 @@
 package webapp.model;
 
-import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
-import java.util.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Column;
+import javax.persistence.OneToMany;
 
-@Entity(name="utente")
-@Table(name="utente")
+
+@Entity
+@Table(name="utenti")
 public class UtenteRegistrato{
     @Id
     @Column(name="Email")
     private String mail;
+
     @Column(name="Nome")
 	private String nome;
+
     @Column(name="Cognome")
     private String cognome;
+
     @Column(name="Password")
     private String password;
+
     @OneToMany(mappedBy = "creatore")
-    private Set<Questionario> questionariCreati = new HashSet<Questionario>();
+    private Set<Questionario> questionariCreati = new HashSet<>();
+
     @OneToMany(mappedBy = "compilatore")
-    private Set<Compilazione> questionariCompilati = new HashSet<Compilazione>();
+    private Set<Compilazione> questionariCompilati = new HashSet<>();
+
     @OneToMany(mappedBy = "creatore")
-    private Set<Domanda> domandeCreate = new HashSet<Domanda>();
+    private Set<Domanda> domandeCreate = new HashSet<>();
 
 // --------------------> costruttore
 
