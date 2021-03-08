@@ -119,14 +119,12 @@ public class UtenteLoggedController{
 		return true;
 	}
 
-	public Questionario cercaQuestionarioByID(String ID) { // Questo metodo cerca all'interno del databse un questionario in base al sui ID
-		System.out.println("Controller : cercando un questionario in base all'id");
-		Questionario questionario = gestoreQuestionario.getQuestionarioById(ID);
-		return questionario;
+	public void cercaQuestionarioByID(String ID) { // Questo metodo cerca all'interno del databse un questionario in base al sui ID
+		// TODO : ricerca Questionario in base all'id e all'utente
 	}
 
 	public List<Questionario> cercaQuestionarioByWord (String word) { // Questo metodo cerca all'interno del databse tutti i questionari con all'interno la parola word
-	System.out.println("Controller : cercando un questionario in base ad una parola");
+		System.out.println("Controller : cercando un questionario in base ad una parola");
 		List<Questionario> questionariTrovati = gestoreQuestionario.getQuestionarioByWord(word);
 		return questionariTrovati;
 	}

@@ -59,4 +59,6 @@ public class GestoreQuestionario {
         // TODO : modificaQuestionario
         return true;
     }
+
+    // TODO : aggiungere la aggiunta / rimozione / modifica al database di una compilazione
 }
