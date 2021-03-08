@@ -12,16 +12,15 @@ import webapp.services.UserDataMapper;
 
 @Service
 public class GestoreDomande {
-	// private Domanda domandaAttuale = null;
+	//private Domanda domandaAttuale;
 	
 	DomandaDataMapper domandaDataMapper = new DomandaDataMapper();
 	OpzioneDataMapper opzioneDataMapper = new OpzioneDataMapper();
 	UserDataMapper userDataMapper = new UserDataMapper();
 	
-	public Domanda creaDomanda(String testo, String Immagine, String categoria, boolean domandaChiusa, String creatore, Set<Opzione> listaOpzioni) {
+	public Domanda creaDomanda(String testo, String Immagine, String categoria, boolean domandaChiusa, UtenteRegistrato creatore, Set<Opzione> listaOpzioni) {
 		System.out.println("Creazione di una domanda...");
-		UtenteRegistrato utente = userDataMapper.find(creatore);
-		Domanda d = new Domanda(testo, Immagine, categoria, domandaChiusa, utente, listaOpzioni);
+		Domanda d = new Domanda(testo, Immagine, categoria, domandaChiusa, creatore, listaOpzioni);
 		domandaDataMapper.insert(d);
 		return d;
 	}
@@ -29,7 +28,7 @@ public class GestoreDomande {
 	public Opzione creaOpzione(String descrizione) {
 		System.out.println("Creazione di una opzione...");
 		Opzione o = new Opzione(descrizione);
-		opzioneDataMapper.insert(o);
+		// opzioneDataMapper.insert(o); dovrebbe farlo in automatico quando salvo la domanda
 		return o;
 	}
 

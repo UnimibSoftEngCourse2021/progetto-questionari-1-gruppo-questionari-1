@@ -16,10 +16,8 @@ public class GestoreQuestionario {
     private DomandaDataMapper ddm = new DomandaDataMapper();
     private CompilazioneDataMapper cdm = new CompilazioneDataMapper();
 
-    public Questionario creaQuestionario(String email, String nome, String categoria){
-        UtenteRegistrato creatore = udm.find(email);
-        System.out.println("Generando il Questionario da aggiungere..");
-        Questionario newQuestionario = new Questionario(nome, categoria, creatore);
+    public Questionario creaQuestionario(UtenteRegistrato creatore, String nome, String categoria){
+    	Questionario newQuestionario = new Questionario(nome, categoria, creatore);
         System.out.println("Aggiungendo al database il questionario appena generato..");
         qdm.insert(newQuestionario);
         return newQuestionario;
