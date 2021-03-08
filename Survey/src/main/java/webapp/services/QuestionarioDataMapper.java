@@ -6,11 +6,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import webapp.model.Domanda;
 import webapp.model.Questionario;
 
 public class QuestionarioDataMapper {
 	
-	public EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("org.hibernate.survey.jpa");
+	private EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("org.hibernate.survey.jpa");
 	
 	public boolean insert(Questionario questionario){
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -45,15 +46,41 @@ public class QuestionarioDataMapper {
 		return questionario;
 	}
 
-	public boolean remove(String ID){
+	public boolean remove(String id){
 		System.out.println("Recuperando il Questionario dal database..");
-		Questionario toDeleteQuestionario = this.findByID(ID);
+		Questionario toDeleteQuestionario = this.findByID(id);
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
+		System.out.println("Rimuovendo un questionario");
 		entityManager.remove(toDeleteQuestionario);
 		entityManager.getTransaction().commit();
 		entityManager.close();
 		System.out.println("Eliminato il questionario appena recuperato..");
 		return true;
 	}
+
+	public boolean addDomanda(String idQuestionario, Domanda domanda){
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		Questionario toUpdateQuestionario = this.findByID(idQuestionario);
+		entityManager.getTransaction().begin();
+		System.out.println("Sto aggiungendo una domanda");
+		toUpdateQuestionario.getDomande().add(domanda);
+		entityManager.getTransaction().commit();
+		entityManager.close();
+		System.out.println("Ho aggiunto una domanda");
+		return true;
+	}
+
+	public boolean removeDomanda(String idQuestionario, Domanda domanda){
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		Questionario toUpdateQuestionario = this.findByID(idQuestionario);
+		entityManager.getTransaction().begin();
+		System.out.println("Sto eliminando una domanda");
+		toUpdateQuestionario.getDomande().remove(domanda);
+		entityManager.getTransaction().commit();
+		entityManager.close();
+		System.out.println("Ho eliminato una domanda");
+		return true;
+	}
+
 }

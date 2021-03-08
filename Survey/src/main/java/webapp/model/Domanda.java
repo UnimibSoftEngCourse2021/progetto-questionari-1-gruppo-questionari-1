@@ -5,17 +5,20 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-@Entity(name="Domanda")
-@Table(name="Domanda")
-public class Domanda {
+@Entity
+@Table(name="domande")
+public class Domanda{
 	
 	@Id
+	@GeneratedValue
 	@Column(name="ID")
 	private int id;
 	
@@ -31,28 +34,28 @@ public class Domanda {
 	@Column(name="DomandaChiusa")
 	private boolean domandaChiusa;
 	
-	@Column(name="Creatore")
-	private String creatore;
+	@ManyToOne
+	@JoinColumn(name="Creatore")
+	private UtenteRegistrato creatore;
 	
 	//EAGER, carico tutte le opzioni della domanda, mappedBy domanda � il nome del campo nella classe Opzione
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "domanda")
+	@OneToMany
+	@JoinColumn(name = "Domanda_ID")
 	private Set<Opzione> opzioni = new HashSet<>();
 	
 	@ManyToMany
 	private Set<Questionario> questionari = new HashSet<>();
 
-	@OneToMany(mappedBy = "Domanda_ID")
-	private Set<CompilazioneDomanda> compilazioni = new HashSet<CompilazioneDomanda>();
+	@OneToMany(mappedBy = "domandaId")
+	private Set<CompilazioneDomanda> compilazioni = new HashSet<>();
 
-	public Domanda(){};
-
-	public Domanda(int id, String testo, String immagine, String categoria, boolean domandaChiusa, String creatore) {
-		this.id = id;
+	public Domanda(String testo, String immagine, String categoria, boolean domandaChiusa, UtenteRegistrato creatore, Set<Opzione> listaOpzioni) {
 		this.testo = testo;
 		this.immagine = immagine;
 		this.categoria = categoria;
 		this.domandaChiusa = domandaChiusa;
 		this.creatore = creatore;
+		this.opzioni = listaOpzioni;
 	}
 
 	public int getId() {
@@ -75,12 +78,15 @@ public class Domanda {
 		return domandaChiusa;
 	}
 
-	public String getCreatore() {
+	public UtenteRegistrato getCreatore() {
 		return creatore;
 	}
 
 	public Set<Opzione> getOpzioni() {
 		return opzioni;
+	}
+	public Set<Questionario> getQuestionari(){
+		return questionari;
 	}
 
 	public void setTesto(String testo) {
@@ -99,7 +105,7 @@ public class Domanda {
 		this.domandaChiusa = domandaChiusa;
 	}
 
-	public void setCreatore(String creatore) {
+	public void setCreatore(UtenteRegistrato creatore) {
 		this.creatore = creatore;
 	}
 

@@ -9,7 +9,7 @@ import webapp.model.UtenteRegistrato;
 
 public class UserDataMapper{
 
-	public EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("org.hibernate.survey.jpa");
+	private EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("org.hibernate.survey.jpa");
 
 	public boolean insert(UtenteRegistrato utenteRegistrato){
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
