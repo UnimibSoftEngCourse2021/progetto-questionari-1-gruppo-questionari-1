@@ -1,7 +1,11 @@
 package webapp.model;
 
+import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 import java.util.*;
+
+import com.mysql.cj.xdevapi.JsonParser;
+
 import webapp.services.*;
 
 @Service
@@ -67,12 +71,14 @@ riferisce la risposta, e immegiatamente sotto la voce "risposta" che si riferisc
 per creare vari oggetti di tipo CompilazioneDomanda. */
     
     public Compilazione aggiungiCompilazione(String email, String ID, List<String> risposte) { //prende in input la mail dell'utente che ha compilato il questionario, lid del questionario compilato e una lista di risposte
+        JsonParser parser = new JsonParser();    
         Questionario questionarioCompilato = qdm.findByID(ID);
         UtenteRegistrato utente = udm.find(email);
         Compilazione compilazione = new Compilazione(questionarioCompilato, utente);
         for (String e : risposte) {
-            Domanda domanda = ddm.findByID(e.id);
-            compilazione.getDomande().add(new CompilazioneDomanda(domanda, compilazione, e.risposta));
+            JSONObject json = (JSONObject) parser.parseDoc(e);
+            Domanda domanda = ddm.findByID(json.getInt("id"));
+            compilazione.getDomande().add(new CompilazioneDomanda(domanda, compilazione, json.getString("risposta")));
         }
         cdm.insert(compilazione);
         return compilazione;

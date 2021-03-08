@@ -92,6 +92,13 @@
 		  <version>0.9.5.2</version>
 	  </dependency>
 
+	  <!-- JSON -->
+	  <dependency>
+		<groupId>org.json</groupId>
+		<artifactId>json</artifactId>
+		<version>20201115</version>
+	</dependency>
+
 
 
 

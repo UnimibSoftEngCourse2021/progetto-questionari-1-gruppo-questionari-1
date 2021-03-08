@@ -29,6 +29,12 @@ public class CompilazioneDomanda{
     @Column(name="Risposta")
     private String risposta;
 
+    public CompilazioneDomanda(Domanda domandaId, Compilazione compilazioneId, String risposta) {
+        this.domandaId = domandaId;
+        this.compilazioneId = compilazioneId;
+        this.setRisposta(risposta);
+    }
+
     public String getRisposta() {
         return this.risposta;
     }
