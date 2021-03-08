@@ -7,6 +7,7 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -29,26 +30,42 @@ public class UtenteLoggedController{
 	@Autowired
 	GestoreQuestionario gestoreQuestionario;
 
-
-    @GetMapping(value = "/creaDomanda")
-	public String getCreaDomanda()
-	{
-    	System.out.println("Show CreaDomanda");
-		return "creaDomanda";
-	}
-
-	@PostMapping(value="/creaDomanda")
+	@GetMapping(value="/creaDomanda")
 	public String gestRegistraDomanda(  @RequestParam("testo") String testo,
 										@RequestParam("immagine") String immagine,
 										@RequestParam("categoria") String categoria,
 										@RequestParam("domandaChiusa") boolean domandaChiusa,
-										@RequestParam(required = false, name="opzioni") List<String> listaOpzioni)
+										@RequestParam(required = false, name="opzioni") List<String> listaOpzioni,
+										Model model)
 	{
 		System.out.println("nuova domanda:"+domandaChiusa);
-		Domanda c = creaDomanda(testo, immagine, categoria, domandaChiusa, listaOpzioni);
-		return "redirect:/";
+		Domanda d = creaDomanda(testo, immagine, categoria, domandaChiusa, listaOpzioni);
+		model.addAttribute("domanda", d);
+		return "?";
 	}
-
+	
+	@GetMapping(value="/cercaDomanda")
+	public String gestCercaDomanda(@RequestParam("categoria") String categoria, Model model)
+	{
+		System.out.println("cerca per:"+categoria);
+		List<Domanda> listaDomande = cercaDomanda(categoria);
+		model.addAttribute("listaDomande",listaDomande);
+		return "?";
+	}
+	
+	@GetMapping(value="/creaQuestionario")
+	public String gestRegistraQuestionario(@RequestParam("categoria") String categoria, 
+										   @RequestParam("nome") String nome,
+										   Model model)
+	{
+		System.out.println("crea Questionario");
+		Questionario c = creaQuestionario(nome, categoria);
+		model.addAttribute("questionario",c);
+		return "?";
+	}
+	
+	
+	
 	//---------------------> Funzioni Controller
 	
 
@@ -97,9 +114,9 @@ public class UtenteLoggedController{
 		return true;
 	}
 
-	private Questionario creaQuestionario(String email, String nome, String categoria){ // Qui si crea un nuovo questionario e lo si restituisce al chiamante
+	private Questionario creaQuestionario(String nome, String categoria){ // Qui si crea un nuovo questionario e lo si restituisce al chiamante
 		System.out.println("Controller : creando un questionario");
-		Questionario newQuestionario = gestoreQuestionario.creaQuestionario(email, nome, categoria);
+		Questionario newQuestionario = gestoreQuestionario.creaQuestionario(gestoreUtente.getUtenteLoggato(), nome, categoria);
 		return newQuestionario;
 	}
 
