@@ -12,7 +12,7 @@ import webapp.services.UserDataMapper;
 
 @Service
 public class GestoreDomande {
-	private Domanda domandaAttuale;
+	//private Domanda domandaAttuale;
 	
 	DomandaDataMapper domandaDataMapper = new DomandaDataMapper();
 	OpzioneDataMapper opzioneDataMapper = new OpzioneDataMapper();
@@ -28,7 +28,7 @@ public class GestoreDomande {
 	public Opzione creaOpzione(String descrizione) {
 		System.out.println("Creazione di una opzione...");
 		Opzione o = new Opzione(descrizione);
-		opzioneDataMapper.insert(o);
+		// opzioneDataMapper.insert(o); dovrebbe farlo in automatico quando salvo la domanda
 		return o;
 	}
 
