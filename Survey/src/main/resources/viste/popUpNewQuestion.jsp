@@ -18,9 +18,13 @@
         
         <h4>Create new question</h4>
         <form>
-          <input type="text" name="domanda" class="form-control" placeholder="Domanda"/>
-          <input type="text" name="password" class="password form-control" placeholder="Password"/>
-          <input class="btn trigger " type="submit" value="Login" />
+          <p>Insert questions</p>
+          <input type="text" name="domanda" class="form-control" placeholder="Example?"/>
+          <p>Insert options seprated by ";" or leave empty if it's an open question</p>
+          <input type="text" name="opzioni" class="form-control" placeholder="option1;option2"/>
+          <p>Insert Categories separate by ";"</p>
+          <input type="text" name="categoia" class="form-control" placeholder="category1;category2"/>
+          <input style="margin-left: 40%;" class="btn trigger " type="submit" value="Conferma" />
         </form>
       </div>
       </div>
