@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.ui.Model;
 
 import webapp.model.*;
 
@@ -25,11 +24,11 @@ public class UtenteController {
 	GestoreQuestionario gestoreQuestionario;
 
     @RequestMapping(value="/")
-    public String getHome(Model model) { //gestisce gli accessi alla pagina home
+    public String getHome() { //gestisce gli accessi alla pagina home
         System.out.println("Show Home Page");
         return "index";
     }
-
+    
 
     //---------------------> funzioni 
 

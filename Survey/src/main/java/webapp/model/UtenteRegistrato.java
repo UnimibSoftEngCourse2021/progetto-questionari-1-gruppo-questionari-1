@@ -40,7 +40,7 @@ public class UtenteRegistrato{
     public UtenteRegistrato() {
     }
     
-    public UtenteRegistrato(String nome, String cognome, String mail, String password) {
+    public UtenteRegistrato(String mail, String nome, String cognome, String password) {
         this.setNome(nome);
         this.setCognome(cognome);
         this.setMail(mail);
