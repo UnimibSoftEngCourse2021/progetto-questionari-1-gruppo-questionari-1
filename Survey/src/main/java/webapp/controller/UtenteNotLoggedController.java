@@ -21,16 +21,10 @@ public class UtenteNotLoggedController{
     GestoreUtenti gestoreUtenti;
 	
 //-------------------> start controller LoginView
-    @GetMapping("/accedi") // Manages Accedi events
-    public String getLoginView() {
-            System.out.println("Show Accedi");
-            return "/accedi";
-    }
-   
-    @PostMapping("/accedi") // Esegue il login 
-    public String makeLogin(@RequestParam("Email") String Username, @RequestParam("Password") String Password) {
-        if(Username != null && Password != null){ // Se Username e Password hanno dei valori validi allora richiamo il metodo Login
-            boolean res = login(Username, Password);
+    @GetMapping("/accedi") // Esegue il login 
+    public String makeLogin(@RequestParam("email") String email, @RequestParam("password") String password) {
+        if(email != null && password != null){ // Se Username e Password hanno dei valori validi allora richiamo il metodo Login
+            boolean res = login(email, password);
             System.out.println("Eseguito il login : " + res);
         }else{ // Se i valori di login non sono validi restituisco un Errore
             System.out.println("Errore nel login Username o Password NULL");
@@ -40,33 +34,17 @@ public class UtenteNotLoggedController{
     }
     
 //-------------------> end controller LoginView
-
-    @GetMapping(value = "/registrazioneUtente")
-	public String RegistraUtente(Model model)
+    
+	@GetMapping(value="/registrazioneUtente")
+	public String GestRegistraUtente(@RequestParam("email") String email, 
+									 @RequestParam("nome") String nome, 
+									 @RequestParam("cognome") String cognome, 
+									 @RequestParam("password") String password)
 	{
-    	System.out.println("Show registrati");
-    	UtenteRegistrato utente = new UtenteRegistrato();
-
-		model.addAttribute("Titolo", "Registrati!");
-		model.addAttribute("newUtente", utente);
-
-		return "registrazioneUtente";
-	}
-
-	@PostMapping(value="/registrazioneUtente")
-	public String GestRegistraUtente(@ModelAttribute("newUtente") UtenteRegistrato utente, BindingResult result)
-	{
-		System.out.println("utente registrato, email:"+ utente.getMail());
-		registrazioneUtente(utente);
+		System.out.println("utente registrato, email:"+ email);
+		registrazioneUtente(email, nome, cognome, password);
 		
 		return "redirect:/";
-	}
-
-	@InitBinder
-	public void initialiseBinder(WebDataBinder binder)
-	{
-		binder.setAllowedFields("nome", "cognome", "mail", "password");
-
 	}
 
 
@@ -82,8 +60,8 @@ public class UtenteNotLoggedController{
         }
     }
 
-    public boolean registrazioneUtente(UtenteRegistrato utente) {
-        boolean ris = gestoreUtenti.creaUtente(utente);
+    public boolean registrazioneUtente(String email, String nome, String cognome, String password) {
+        boolean ris = gestoreUtenti.creaUtente(email, nome, cognome, password);
         if(ris) {
             return true;
         } else {

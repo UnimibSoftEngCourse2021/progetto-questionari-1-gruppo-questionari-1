@@ -24,11 +24,11 @@ public class UserDataMapper{
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
 		System.out.println("Sto cercando l'utente");
-		List<UtenteRegistrato> utenteRegistrato = entityManager.createQuery("from utente where Email = :email", UtenteRegistrato.class).setParameter("email", email).getResultList();
+		UtenteRegistrato utente = entityManager.find(UtenteRegistrato.class, email);
 		System.out.println("Ho trovato l'utente");
 		entityManager.getTransaction().commit();
 		entityManager.close();
-		return utenteRegistrato.get(0);
+		return utente;
 	}
 	
 	public boolean remove(String email) {

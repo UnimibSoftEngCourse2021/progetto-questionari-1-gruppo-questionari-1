@@ -12,8 +12,9 @@ public class GestoreUtenti {
 	
     UserDataMapper userDataMapper = new UserDataMapper();
     
-    public boolean creaUtente(UtenteRegistrato utente){
+    public boolean creaUtente(String email, String nome, String cognome, String password){
         System.out.println("Creazione di un utente...");
+        UtenteRegistrato utente = new UtenteRegistrato(email, nome, cognome, password);
         if (userDataMapper.insert(utente)){
         	this.utenteLoggato = utente;
         	return true;
