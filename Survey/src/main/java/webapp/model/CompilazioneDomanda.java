@@ -2,25 +2,24 @@ package webapp.model;
 
 
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
+
 
 @Entity
 public class CompilazioneDomanda{
-    
-    @EmbeddedId
-    CompilazioneDomandaKeys cdk;
 
+
+
+    @Id
+    private String id;
+    
     @ManyToOne
-    @MapsId("domandaId")
-    @JoinColumn(name = "Domanda_ID")
+    @JoinColumn(name = "Domanda")
     private Domanda domandaId;
 
     @ManyToOne
-    @MapsId("compilazioneId")
     @JoinColumn(name = "Compilazione_ID")
     private Compilazione compilazioneId;
 

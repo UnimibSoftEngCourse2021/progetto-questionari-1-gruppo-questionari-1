@@ -10,22 +10,16 @@
 		<put-attribute name="content" value="" />
 	</definition>
 
-	<definition name="navBarNotLogged" template="/layouts/template/navBarNotLogged.jsp">
-		<!--<put-attribute name="loginButton" value="" /> 
-		<put-attribute name="registerButton" value="" />-->
-		<put-attribute name="notLoggedButtons" value="" />
-	</definition>
 
 	<!-- end base layout-->
 
 	<!-- start index layout -->
 
 	<definition name="index" template = "/viste/index.jsp" >
-		<put-attribute name="head" value="/layout/template/head.jsp" />
-		<put-attribute name="navBarNotLogged" value="/viste/navBarNotLogged.jsp" /> 
-		<put-attribute name="masthead" value="/template/masthead.jsp" />
+		<put-attribute name="head" value="/viste/head.jsp" />
+		<put-attribute name="navBarNotLogged" value="navBarNotLogged" /> 
+		<put-attribute name="masthead" value="/viste/masthead.jsp" />
 		<put-attribute name="scripts" value="/viste/scripts.jsp" /> 
-
 
 	</definition>
 
@@ -33,10 +27,10 @@
 	
 	<!--start question layout-->
 	<definition name="questions" template = "/viste/questions.jsp" >
-		<put-attribute name="head" value="/layout/template/head.jsp" />
-		<put-attribute name="navBarLogged" value="/template/navBarLogged.jsp" /> 
-		<put-attribute name="containerDomande" value="/template/containerDomande.jsp" />
-		<put-attribute name="scripts" value="/template/scripts.jsp" /> 
+		<put-attribute name="head" value="/viste/head.jsp" />
+		<put-attribute name="navBarLogged" value="/viste/navBarLogged.jsp" /> 
+		<put-attribute name="containerDomande" value="containerDomande" />
+		<put-attribute name="scripts" value="/viste/scripts.jsp" /> 
 
 
 	</definition>
@@ -44,13 +38,17 @@
 <!--end questions layout-->
 
 
+
+
+
+
 <!--start create Survey layout-->
 	
 	<definition name="createSurvey" template = "/viste/createSurvey.jsp" >
-		<put-attribute name="head" value="/layout/template/head.jsp" />
-		<put-attribute name="navBarLogged" value="/template/navBarLogged.jsp" /> 
+		<put-attribute name="head" value="/viste/head.jsp" />
+		<put-attribute name="navBarLogged" value="/viste/navBarLogged.jsp" /> 
 		
-		<put-attribute name="scripts" value="/template/scripts.jsp" /> 
+		<put-attribute name="scripts" value="/viste/scripts.jsp" /> 
 
 
 	</definition>
@@ -60,10 +58,10 @@
 <!--start manage Survey layout-->
 	
 	<definition name="manageSurvey" template = "/viste/manageSurvey.jsp" >
-		<put-attribute name="head" value="/layout/template/head.jsp" />
-		<put-attribute name="navBarLogged" value="/template/navBarLogged.jsp" /> 
+		<put-attribute name="head" value="/viste/head.jsp" />
+		<put-attribute name="navBarLogged" value="/viste/navBarLogged.jsp" /> 
 		
-		<put-attribute name="scripts" value="/template/scripts.jsp" /> 
+		<put-attribute name="scripts" value="/viste/scripts.jsp" /> 
 
 
 	</definition>
@@ -73,10 +71,10 @@
 <!--start compiled Survey layout-->
 	
 	<definition name="compiledSurvey" template = "/viste/compiledSurvey.jsp" >
-		<put-attribute name="head" value="/layout/template/head.jsp" />
-		<put-attribute name="navBarLogged" value="/template/navBarLogged.jsp" /> 
+		<put-attribute name="head" value="/viste/head.jsp" />
+		<put-attribute name="navBarLogged" value="/viste/navBarLogged.jsp" /> 
 		
-		<put-attribute name="scripts" value="/template/scripts.jsp" /> 
+		<put-attribute name="scripts" value="/viste/scripts.jsp" /> 
 
 
 	</definition>
@@ -84,5 +82,38 @@
 <!--end compiled Survey layout-->
 
 
+<!--start nav bar non logged layout-->
+	<definition name="navBarNotLogged" template = "/viste/navBarNotLogged.jsp" >
+		
+		<put-attribute name="popuplogin" value="/viste/popUpLogin.jsp" />
+		<put-attribute name="popupsignin" value="/viste/popUpSignin.jsp" /> 
+
+
+	</definition>
+
+<!--end nav bar non logged layout-->
+
+<!--start nav bar logged layout-->
+	<definition name="navBarLogged" template = "/viste/navBarLogged.jsp" >
+		
+		<put-attribute name="popupmenu" value="/viste/popUpMenu.jsp" />
+		
+
+	</definition>
+
+<!--end nav bar logged layout-->
+
+<!--start question container layout-->
+	<definition name="containerDomande" template = "/viste/cntainerDomande.jsp" >
+		
+		<put-attribute name="newQuestionButton" value="/viste/newQuestionButton.jsp" />
+		<put-attribute name="popUpNewQuestion" value="/viste/popUpNewQuestion.jsp" />
+		
+
+	</definition>
+
+<!--end question container layout-->
 	
 </tiles-definitions>
+
+

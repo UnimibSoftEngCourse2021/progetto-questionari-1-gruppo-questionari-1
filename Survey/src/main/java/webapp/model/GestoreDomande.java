@@ -33,16 +33,16 @@ public class GestoreDomande {
 		return o;
 	}
 
-	public boolean rimuoviDomanda(int ID) {
-		return domandaDataMapper.remove(ID);
+	public boolean rimuoviDomanda(int id) {
+		return domandaDataMapper.remove(id);
 	}
 
 	public List<Domanda> getDomandaByCategoria(String categoria) {
 		return domandaDataMapper.findByCategory(categoria);
 	}
 
-	public Domanda getDomandaByID(int ID) {
-		return domandaDataMapper.findByID(ID);
+	public Domanda getDomandaByID(int id) {
+		return domandaDataMapper.findByID(id);
 	}
 
 }

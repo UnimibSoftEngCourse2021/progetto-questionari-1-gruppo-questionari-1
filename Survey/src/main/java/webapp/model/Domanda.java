@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-@Entity(name="domande")
+@Entity
 @Table(name="domande")
 public class Domanda{
 	
@@ -46,7 +46,7 @@ public class Domanda{
 	@ManyToMany
 	private Set<Questionario> questionari = new HashSet<>();
 
-	@OneToMany
+	@OneToMany(mappedBy = "domandaId")
 	private Set<CompilazioneDomanda> compilazioni = new HashSet<>();
 
 	public Domanda(String testo, String immagine, String categoria, boolean domandaChiusa, UtenteRegistrato creatore, Set<Opzione> listaOpzioni) {

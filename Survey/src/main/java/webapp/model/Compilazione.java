@@ -27,7 +27,7 @@ public class Compilazione {
     @JoinColumn(name = "Compilatore")
     private UtenteRegistrato compilatore;
 
-    @OneToMany(mappedBy = "Compilazione_ID")
+    @OneToMany(mappedBy = "compilazioneId")
     private Set<CompilazioneDomanda> domande = new HashSet<>();
 
     public String getID() {
