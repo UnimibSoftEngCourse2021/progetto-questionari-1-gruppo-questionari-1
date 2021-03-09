@@ -1,6 +1,5 @@
 package webapp.model;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -52,9 +51,9 @@ public class Domanda{
 	@OneToMany(mappedBy = "domandaId")
 	private Set<CompilazioneDomanda> compilazioni = new HashSet<>();
 
-	public Domanda(String testo, /* byte[] immagine, */ String categoria, boolean domandaChiusa, UtenteRegistrato creatore, HashSet<Opzione> listaOpzioni) {
+	public Domanda(String testo,  byte[] immagine,  String categoria, boolean domandaChiusa, UtenteRegistrato creatore, HashSet<Opzione> listaOpzioni) {
 		this.testo = testo;
-		//this.immagine = immagine;
+		this.immagine = immagine;
 		this.categoria = categoria;
 		this.domandaChiusa = domandaChiusa;
 		this.creatore = creatore;
@@ -63,6 +62,10 @@ public class Domanda{
 
 	public int getId() {
 		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getTesto() {
@@ -102,6 +105,10 @@ public class Domanda{
 
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
+	}
+
+	public boolean getDomandaChiusa() {
+		return this.domandaChiusa;
 	}
 
 	public void setDomandaChiusa(boolean domandaChiusa) {

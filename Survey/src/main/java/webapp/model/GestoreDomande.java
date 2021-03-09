@@ -1,11 +1,9 @@
 package webapp.model;
 
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
@@ -20,9 +18,9 @@ public class GestoreDomande {
 	OpzioneDataMapper opzioneDataMapper = new OpzioneDataMapper();
 	UserDataMapper userDataMapper = new UserDataMapper();
 	
-	public Domanda creaDomanda(String testo,/* byte[] Immagine, */ String categoria, boolean domandaChiusa, UtenteRegistrato creatore, HashSet<Opzione> listaOpzioni) {
+	public Domanda creaDomanda(String testo, byte[] Immagine, String categoria, boolean domandaChiusa, UtenteRegistrato creatore, HashSet<Opzione> listaOpzioni) {
 		System.out.println("Creazione di una domanda...");
-		Domanda d = new Domanda(testo, /* Immagine,*/ categoria, domandaChiusa, creatore, listaOpzioni);
+		Domanda d = new Domanda(testo, Immagine, categoria, domandaChiusa, creatore, listaOpzioni);
 		Iterator<Opzione> i = listaOpzioni.iterator();
 		while(i.hasNext())
 		{
@@ -50,6 +48,20 @@ public class GestoreDomande {
 
 	public Domanda getDomandaByID(int id) {
 		return domandaDataMapper.findByID(id);
+	}
+
+	public boolean modificaDomanda(int idDomanda, String testo, byte[] Immagine, List<String> opzioni) {
+		Domanda vecchiaDomanda = domandaDataMapper.findByID(idDomanda);
+		UtenteRegistrato creatore = vecchiaDomanda.getCreatore();
+		HashSet<Opzione> opzioniDomanda = new HashSet<>(); 
+		for (String opzione : opzioni) {
+			opzioniDomanda.add(new Opzione(opzione));
+		}
+		Domanda nuovaDomanda = new Domanda(testo, Immagine, vecchiaDomanda.getCategoria(), vecchiaDomanda.getDomandaChiusa(),  creatore, opzioniDomanda);
+		nuovaDomanda.setId(idDomanda);
+		domandaDataMapper.remove(idDomanda);
+		domandaDataMapper.insert(nuovaDomanda);
+		return true;
 	}
 
 }

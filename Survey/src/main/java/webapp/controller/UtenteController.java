@@ -3,7 +3,6 @@ package webapp.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.annotation.Id;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -38,9 +37,7 @@ public class UtenteController {
         System.out.println("Controller : cercando un questionario in base all'id");
 		Questionario questionario = gestoreQuestionario.getQuestionarioById(id);
 		return questionario;
-    }
-
-    // TODO : gestore delle compilazione magari all'interno del GestoreQuestionari e Un 
+    } 
      
     public boolean eliminazioneQuestionarioCompilato(String compilazioneId) {
         return gestoreQuestionario.rimuoviCompilazione(compilazioneId);
