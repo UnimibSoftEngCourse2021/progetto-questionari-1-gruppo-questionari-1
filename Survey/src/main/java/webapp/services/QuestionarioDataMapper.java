@@ -8,6 +8,7 @@ import javax.persistence.Persistence;
 
 import webapp.model.Domanda;
 import webapp.model.Questionario;
+import webapp.model.UtenteRegistrato;
 
 public class QuestionarioDataMapper {
 	
@@ -83,7 +84,7 @@ public class QuestionarioDataMapper {
 		return true;
 	}
 
-	public List<Questionario> questionariUtene(Utente utente){
+	public List<Questionario> questionariUtene(UtenteRegistrato utente){
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
 		List<Questionario> questionari = entityManager.createQuery("from questionari where creatore := email", Questionario.class).setParameter("email", utente.email).getResultList();

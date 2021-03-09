@@ -1,6 +1,8 @@
 package webapp.model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -96,6 +98,11 @@ public class UtenteRegistrato{
             System.out.println("~valore nullo");
         }
 	}
+
+    public List<Compilazione> getQuestionariCompilati() {
+        List<Compilazione> compilazioni = new ArrayList<>(this.questionariCompilati);
+        return compilazioni;
+    }
 
 
 }

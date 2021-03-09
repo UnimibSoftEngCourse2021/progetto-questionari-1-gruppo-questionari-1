@@ -53,18 +53,24 @@ public class GestoreQuestionario {
         return new ArrayList<>(questionariCercati);
     }
 
+    public List<Questionario> getQuestionarioByUtente(String email) {
+        UtenteRegistrato creatore = udm.find(email);
+        return qdm.questionariUtene(creatore);
+    }
+
     public boolean eliminaQuestionario(String id){
         System.out.println("Eliminando il questionario " + id);
         return qdm.remove(id);
     }
 
     public boolean modificaQuestionario(String id, String nome,  String categoria, String email){
-        Questionario questionario = qdm.findByID(id);
-        Questionario questionarioModificato = new Questionario(id, nome, categoria, email);
+        UtenteRegistrato creatore = udm.find(email);
+        Questionario questionarioModificato = new Questionario(id, nome, categoria, creatore);
         qdm.remove(id);
         qdm.insert(questionarioModificato);
         return true;
     }
+
 
 
 /* la lista di risposte passate come parametro sono una liata di json che contengono rispettivamente sotto la voce "id" l'id della domanda a cui si 

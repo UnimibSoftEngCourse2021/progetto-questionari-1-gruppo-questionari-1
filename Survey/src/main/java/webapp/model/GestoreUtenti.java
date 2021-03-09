@@ -35,6 +35,10 @@ public class GestoreUtenti {
         }
         
     }
+
+    public UtenteRegistrato getUtenteByMail(String mail) {
+        return userDataMapper.find(mail);
+    }
     
     public UtenteRegistrato getUtenteLoggato() {
     	return utenteLoggato;

@@ -161,8 +161,13 @@ public class UtenteLoggedController{
 
 	//TODO : visualizza questionari compilati
 
+	private List<Questionario> visualizzaQuestionariCreati(String email) {
+		System.out.println("Controller : cercando tutti i questiornari creati da un utente con mail 'email'");
+		return gestoreQuestionario.getQuestionarioByUtente(email);
+	}
+
 	private List<Compilazione> visualizzaQuestionariCompilati(String email) {
-		
+		return gestoreUtente.getUtenteByMail(email).getQuestionariCompilati();
 	}
 
 	private boolean eliminaQuestionarioCompilato(String id) {
