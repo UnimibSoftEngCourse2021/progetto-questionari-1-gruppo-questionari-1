@@ -48,7 +48,7 @@ public class UtenteLoggedController{
 	{
 		System.out.println("cerca per:"+categoria);
 		List<Domanda> listaDomande = cercaDomanda(categoria);
-		model.addAttribute("listaDomande",listaDomande);
+		//model.addAttribute("listaDomande",listaDomande);
 		return "questions";
 	}
 	

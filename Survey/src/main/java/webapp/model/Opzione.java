@@ -25,6 +25,10 @@ public class Opzione {
 	@JoinColumn(name = "Domanda_ID")
 	private Domanda domanda;
 	
+	public Opzione() {
+		super();
+	}
+	
 	public Opzione(String descrizione) {
 		this.setDescrizioneOpzione(descrizione);
 	}

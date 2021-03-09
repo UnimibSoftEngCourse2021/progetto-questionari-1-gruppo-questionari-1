@@ -1,11 +1,9 @@
 package webapp.model;
 
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
@@ -29,7 +27,6 @@ public class GestoreDomande {
 			Opzione o = i.next();
 			o.setDomanda(d);
 			System.out.println("Creazione di una opzione..."+ o.getDomanda().toString());
-			//opzioneDataMapper.insert(o);
 		}
 		domandaDataMapper.insert(d);
 		return d;

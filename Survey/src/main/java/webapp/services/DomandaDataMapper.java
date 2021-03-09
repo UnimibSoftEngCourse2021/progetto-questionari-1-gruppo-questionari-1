@@ -4,7 +4,16 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 import webapp.model.Domanda;
 
@@ -36,11 +45,20 @@ public class DomandaDataMapper {
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
 		System.out.println("Sto cercando le domande");
-		List<Domanda> domanda = entityManager.createQuery("from domande where Categoria = :categoria", Domanda.class).setParameter("categoria", categoria).getResultList();
-		System.out.println("Ho trovato le domande");
-		entityManager.getTransaction().commit();
-		entityManager.close();
-		return domanda;
+		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+		CriteriaQuery<Domanda> criteria = builder.createQuery(Domanda.class);
+		Root<Domanda> from = criteria.from(Domanda.class);
+		criteria.select(from);
+		criteria.where(builder.equal(from.get("categoria"), categoria));
+		TypedQuery<Domanda> typed = entityManager.createQuery(criteria);
+		    try {
+		        	List<Domanda> listaDomande = typed.getResultList();
+		        	Domanda d = listaDomande.get(0);
+		        	System.out.println("Ho trovato le domande"+d.getOpzioni().toString());
+		        	return listaDomande;
+		    } catch (final NoResultException nre) {
+		        return null;
+		    }
 	}
 
 	public Domanda findByID(int id){
@@ -53,6 +71,8 @@ public class DomandaDataMapper {
 		entityManager.close();
 		return questionario.get(0);
 	}
+	
+	
 
 	public boolean remove(int id){
 		Domanda toDeleteDomanda = this.findByID(id);
