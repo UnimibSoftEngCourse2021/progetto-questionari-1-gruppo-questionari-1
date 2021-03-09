@@ -17,10 +17,14 @@
         
         
         <h4>Create new question</h4>
-        <form>
-          <input type="text" name="domanda" class="form-control" placeholder="Domanda"/>
-          <input type="text" name="password" class="password form-control" placeholder="Password"/>
-          <input class="btn trigger " type="submit" value="Login" />
+        <form action="creaDomanda" method="get">
+          <p>Insert questions</p>
+          <input type="text" name="testo" class="form-control" placeholder="Example?"/>
+          <p>Insert options seprated by ";" or leave empty if it's an open question</p>
+          <input type="text" name="opzioni" class="form-control" placeholder="option1;option2"/>
+          <p>Insert Category</p>
+          <input type="text" name="categoria" class="form-control" placeholder="category1"/>
+          <input style="margin-left: 40%;" class="btn trigger " type="submit" value="Conferma" />
         </form>
       </div>
       </div>

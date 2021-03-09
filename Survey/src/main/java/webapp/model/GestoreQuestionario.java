@@ -1,7 +1,11 @@
 package webapp.model;
 
+import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 import java.util.*;
+
+import com.mysql.cj.xdevapi.JsonParser;
+
 import webapp.services.*;
 
 @Service
@@ -10,11 +14,10 @@ public class GestoreQuestionario {
     private UserDataMapper udm = new UserDataMapper();
     private QuestionarioDataMapper qdm = new QuestionarioDataMapper();
     private DomandaDataMapper ddm = new DomandaDataMapper();
+    private CompilazioneDataMapper cdm = new CompilazioneDataMapper();
 
-    public Questionario creaQuestionario(String email, String nome, String categoria){
-        UtenteRegistrato creatore = udm.find(email);
-        System.out.println("Generando il Questionario da aggiungere..");
-        Questionario newQuestionario = new Questionario(nome, categoria, creatore);
+    public Questionario creaQuestionario(UtenteRegistrato creatore, String nome, String categoria){
+    	Questionario newQuestionario = new Questionario(nome, categoria, creatore);
         System.out.println("Aggiungendo al database il questionario appena generato..");
         qdm.insert(newQuestionario);
         return newQuestionario;
@@ -63,5 +66,27 @@ public class GestoreQuestionario {
         return true;
     }
 
-    // TODO : aggiungere la aggiunta / rimozione / modifica al database di una compilazione
+
+/* la lista di risposte passate come parametro sono una liata di json che contengono rispettivamente sotto la voce "id" l'id della domanda a cui si 
+riferisce la risposta, e immegiatamente sotto la voce "risposta" che si riferisce alla risposta alla suddetta domanda. Questi due dati vengono utilizzati
+per creare vari oggetti di tipo CompilazioneDomanda. */
+    
+    public Compilazione aggiungiCompilazione(String email, String ID, List<String> risposte) { //prende in input la mail dell'utente che ha compilato il questionario, lid del questionario compilato e una lista di risposte
+        JsonParser parser = new JsonParser();    
+        Questionario questionarioCompilato = qdm.findByID(ID);
+        UtenteRegistrato utente = udm.find(email);
+        Compilazione compilazione = new Compilazione(questionarioCompilato, utente);
+        for (String e : risposte) {
+            JSONObject json = (JSONObject) parser.parseDoc(e);
+            Domanda domanda = ddm.findByID(json.getInt("id"));
+            compilazione.getDomande().add(new CompilazioneDomanda(domanda, compilazione, json.getString("risposta")));
+        }
+        cdm.insert(compilazione);
+        return compilazione;
+    }
+
+    public boolean rimuoviCompilazione(String idCompilazione) {
+        return cdm.remove(idCompilazione);
+    }
+
 }

@@ -28,7 +28,7 @@
 	<!--start question layout-->
 	<definition name="questions" template = "/viste/questions.jsp" >
 		<put-attribute name="head" value="/viste/head.jsp" />
-		<put-attribute name="navBarLogged" value="/viste/navBarLogged.jsp" /> 
+		<put-attribute name="navBarLogged" value="navBarLogged" /> 
 		<put-attribute name="containerDomande" value="containerDomande" />
 		<put-attribute name="scripts" value="/viste/scripts.jsp" /> 
 
@@ -46,7 +46,7 @@
 	
 	<definition name="createSurvey" template = "/viste/createSurvey.jsp" >
 		<put-attribute name="head" value="/viste/head.jsp" />
-		<put-attribute name="navBarLogged" value="/viste/navBarLogged.jsp" /> 
+		<put-attribute name="navBarLogged" value="navBarLogged" /> 
 		
 		<put-attribute name="scripts" value="/viste/scripts.jsp" /> 
 
@@ -59,7 +59,7 @@
 	
 	<definition name="manageSurvey" template = "/viste/manageSurvey.jsp" >
 		<put-attribute name="head" value="/viste/head.jsp" />
-		<put-attribute name="navBarLogged" value="/viste/navBarLogged.jsp" /> 
+		<put-attribute name="navBarLogged" value="navBarLogged" /> 
 		
 		<put-attribute name="scripts" value="/viste/scripts.jsp" /> 
 
@@ -96,7 +96,7 @@
 <!--start nav bar logged layout-->
 	<definition name="navBarLogged" template = "/viste/navBarLogged.jsp" >
 		
-		<put-attribute name="popupmenu" value="/viste/popUpMenu.jsp" />
+		<put-attribute name="popUpMenu" value="/viste/popUpMenu.jsp" />
 		
 
 	</definition>
@@ -104,8 +104,9 @@
 <!--end nav bar logged layout-->
 
 <!--start question container layout-->
-	<definition name="containerDomande" template = "/viste/cntainerDomande.jsp" >
+	<definition name="containerDomande" template = "/viste/containerDomande.jsp" >
 		
+		<put-attribute name="searchQuestion" value="/viste/searchQuestion.jsp" />
 		<put-attribute name="newQuestionButton" value="/viste/newQuestionButton.jsp" />
 		<put-attribute name="popUpNewQuestion" value="/viste/popUpNewQuestion.jsp" />
 		

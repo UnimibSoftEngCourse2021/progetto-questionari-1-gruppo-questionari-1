@@ -1,11 +1,14 @@
 package webapp.model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
@@ -18,7 +21,7 @@ import javax.persistence.Table;
 public class Domanda{
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="ID")
 	private int id;
 	
@@ -26,7 +29,7 @@ public class Domanda{
 	private String testo;
 	
 	@Column(name="Immagine")
-	private String immagine;
+	private byte[] immagine;
 	
 	@Column(name="Categoria")
 	private String categoria;
@@ -39,8 +42,8 @@ public class Domanda{
 	private UtenteRegistrato creatore;
 	
 	//EAGER, carico tutte le opzioni della domanda, mappedBy domanda � il nome del campo nella classe Opzione
-	@OneToMany
-	@JoinColumn(name = "Domanda_ID")
+	@OneToMany(mappedBy = "domanda", cascade=CascadeType.ALL)
+	//@JoinColumn(name = "Domanda_ID")
 	private Set<Opzione> opzioni = new HashSet<>();
 	
 	@ManyToMany
@@ -49,9 +52,9 @@ public class Domanda{
 	@OneToMany(mappedBy = "domandaId")
 	private Set<CompilazioneDomanda> compilazioni = new HashSet<>();
 
-	public Domanda(String testo, String immagine, String categoria, boolean domandaChiusa, UtenteRegistrato creatore, Set<Opzione> listaOpzioni) {
+	public Domanda(String testo, /* byte[] immagine, */ String categoria, boolean domandaChiusa, UtenteRegistrato creatore, HashSet<Opzione> listaOpzioni) {
 		this.testo = testo;
-		this.immagine = immagine;
+		//this.immagine = immagine;
 		this.categoria = categoria;
 		this.domandaChiusa = domandaChiusa;
 		this.creatore = creatore;
@@ -66,7 +69,7 @@ public class Domanda{
 		return testo;
 	}
 
-	public String getImmagine() {
+	public byte[] getImmagine() {
 		return immagine;
 	}
 
@@ -93,7 +96,7 @@ public class Domanda{
 		this.testo = testo;
 	}
 
-	public void setImmagine(String immagine) {
+	public void setImmagine(byte[] immagine) {
 		this.immagine = immagine;
 	}
 

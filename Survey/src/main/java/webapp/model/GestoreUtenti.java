@@ -36,8 +36,8 @@ public class GestoreUtenti {
         
     }
     
-    public String getIdUtente() {
-    	return this.utenteLoggato.getMail();
+    public UtenteRegistrato getUtenteLoggato() {
+    	return utenteLoggato;
     }
 
 }

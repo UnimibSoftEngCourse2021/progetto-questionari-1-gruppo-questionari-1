@@ -25,7 +25,7 @@ public class DomandaDataMapper {
 		entityManager.getTransaction().begin();
 		System.out.println("Sto cercando le domande");
 		word = "%" + word + "%";
-		List<Domanda> domande = entityManager.createQuery("from domanda where Testo = :word", Domanda.class).setParameter("word", word).getResultList();
+		List<Domanda> domande = entityManager.createQuery("from domande where Testo = :word", Domanda.class).setParameter("word", word).getResultList();
 		System.out.println("Ho trovato le domande");
 		entityManager.getTransaction().commit();
 		entityManager.close();
@@ -36,7 +36,7 @@ public class DomandaDataMapper {
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
 		System.out.println("Sto cercando le domande");
-		List<Domanda> domanda = entityManager.createQuery("from domanda where Testo = :categoria", Domanda.class).setParameter("categoria", categoria).getResultList();
+		List<Domanda> domanda = entityManager.createQuery("from domande where Categoria = :categoria", Domanda.class).setParameter("categoria", categoria).getResultList();
 		System.out.println("Ho trovato le domande");
 		entityManager.getTransaction().commit();
 		entityManager.close();
