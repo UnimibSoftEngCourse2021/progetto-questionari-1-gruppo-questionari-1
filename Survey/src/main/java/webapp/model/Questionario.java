@@ -50,7 +50,8 @@ public class Questionario {
 
     //------------------> Costruttore
 
-    public Questionario(String nome, String categoria, UtenteRegistrato creatore){
+    public Questionario(String id, String nome, String categoria, UtenteRegistrato creatore){
+        this.setID(id);
         this.setNome(nome);
         this.setCategoria(categoria);
         this.setCreatore(creatore);

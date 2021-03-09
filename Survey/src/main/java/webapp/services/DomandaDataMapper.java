@@ -47,7 +47,7 @@ public class DomandaDataMapper {
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
 		System.out.println("Sto cercando la domanda");
-		List<Domanda> questionario = entityManager.createQuery("from domanda where ID = :id", Domanda.class).setParameter("id", id).getResultList();
+		List<Domanda> questionario = entityManager.createQuery("from domande where ID = :id", Domanda.class).setParameter("id", id).getResultList();
 		System.out.println("Ho trovato la domanda");
 		entityManager.getTransaction().commit();
 		entityManager.close();

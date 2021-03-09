@@ -55,8 +55,11 @@ public class GestoreQuestionario {
         return qdm.remove(id);
     }
 
-    public boolean modificaQuestionario(String id){
-        // TODO : modificaQuestionario
+    public boolean modificaQuestionario(String id, String nome,  String categoria, String email){
+        Questionario questionario = qdm.findByID(id);
+        Questionario questionarioModificato = new Questionario(id, nome, categoria, email);
+        qdm.remove(id);
+        qdm.insert(questionarioModificato);
         return true;
     }
 
