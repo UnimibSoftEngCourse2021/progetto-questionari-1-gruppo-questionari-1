@@ -148,7 +148,10 @@ public class UtenteLoggedController{
 		return questionariTrovati;
 	}
 
-	//TODO : visualizza dati sulle riposte metodo
+	private List<Compilazione> visualizzaDatiSulleRisposte(String id) {
+		List<Compilazione> listaCompilazioni = new ArrayList<>(gestoreQuestionario.getQuestionarioById(id).getCompilazioni());
+		return listaCompilazioni;
+	}
 
 	private boolean eliminaQuestionario(String ID){ // Questo metodo elimina un questionario con id ID dal database
 		System.out.println("Controller : eliminando un questionario dal database");
@@ -158,11 +161,15 @@ public class UtenteLoggedController{
 
 	//TODO : visualizza questionari compilati
 
-	//TODO : eliminaQuestionariCompilati
+	private List<Compilazione> visualizzaQuestionariCompilati(String email) {
+		
+	}
 
-	//TODO : modifica questionari compilati
+	private boolean eliminaQuestionarioCompilato(String id) {
+		System.out.println("eliminando una compilazione di un questionario");
+		return gestoreQuestionario.rimuoviCompilazione(id);
+	}
 
-	//TODO : pensare se fare un gestore delle compilazioni
 
 
 	//-----------------------> Fine funzioni Controller
