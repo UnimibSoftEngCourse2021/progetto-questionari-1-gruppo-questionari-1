@@ -38,7 +38,7 @@ public class UtenteLoggedController{
 	public String gestRegistraDomanda(  @RequestParam("testo") String testo,
 										//@RequestParam("immagine") String immagine,
 										@RequestParam("categoria") String categoria,
-										@RequestParam("opzioni") List<String> listaOpzioni,
+										@RequestParam("opzioni") String listaOpzioni,
 										Model model)
 	{
 		System.out.println("nuova domanda:"+testo);
@@ -80,15 +80,16 @@ public class UtenteLoggedController{
 	//---------------------> Funzioni Controller
 	
 
-	private Domanda creaDomanda(String testo, /*String immagine,*/ String categoria, List<String> opzioni) { //funzione che crea una domanda e la carica nel database
+	private Domanda creaDomanda(String testo, /*String immagine,*/ String categoria, String o) { //funzione che crea una domanda e la carica nel database
 		HashSet<Opzione> listaOpzioni = new HashSet<Opzione>(); 
-		System.out.println("Controller : creando la domanda"+ opzioni.toString());
+		System.out.println("Controller : creando la domanda");
 		boolean domandaChiusa = false;
-		if(!opzioni.isEmpty()) {
+		if(o.length()>0)
+		{ 	
+			String[] opzioni = o.split(";");
 			domandaChiusa = true;
-			for (String opzione : opzioni) { //creo una lista di opzioni e le aggiungo alla listaOpzioni
-				
-				listaOpzioni.add(gestoreDomande.creaOpzione(opzione));
+			for(int i = 0; i<opzioni.length; i++) {
+				listaOpzioni.add(gestoreDomande.creaOpzione(opzioni[i]));
 			}
 		}
 		//byte[] immagine = "Any String you want".getBytes();
@@ -116,7 +117,7 @@ public class UtenteLoggedController{
 		return true;
 	}
 
-	private boolean aggiungiDomanda(String IdQuestionario, String testo, String Immagine, String categoria, List<String> opzioni) {
+	private boolean aggiungiDomanda(String IdQuestionario, String testo, String Immagine, String categoria, String opzioni) {
 		// Aggiunge una domanda al qustionario IdQuestionario subito dopo averla creata 
 		System.out.println("Controller : creando la domanda e aggiungendola al questionario");
 		Domanda d = this.creaDomanda(testo, /* Immagine,*/categoria, opzioni); 
