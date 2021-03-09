@@ -8,7 +8,7 @@
     <div class="container">
       <a class="navbar-brand" href="#">Survey.io</a>
       
-      <a class="btn btn-light trigger" data-target="#menu" data-toggle="modal" href="accedi" >Menu</a>
+      <a class="btn btn-light trigger" data-target="#menu" data-toggle="modal"  >Menu</a>
 	    
     </div>
   </nav>

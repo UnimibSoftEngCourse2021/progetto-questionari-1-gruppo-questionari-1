@@ -16,11 +16,11 @@
  
 
     <tiles:insertAttribute name="navBarNotLogged"/>
-    <div style="margin-top: 12rem; margin-bottom: 12rem;">
-        <tiles:insertAttribute name="masthead"/>
+    
+    <tiles:insertAttribute name="masthead"/>
 
-    </div>
-   
+    
+    <tiles:insertAttribute name="containerSearchResultSurvey"/>
   
 
 	  

@@ -11,7 +11,7 @@
     <div class="modal-body">
       <button data-dismiss="modal" class="close">&times;</button>
       <h5>Sign up</h5>
-      <form action="registrazioneUtente" method="get">
+      <form>
         <input type="email" name="email" class="email form-control" placeholder="E-mail"/>
         <input type="text" name="nome" class="nome form-control" placeholder="Nome"/>
         <input type="text" name="cognome" class="cognome form-control" placeholder="Cognome"/>

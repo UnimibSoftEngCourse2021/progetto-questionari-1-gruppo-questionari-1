@@ -3,28 +3,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 
-<!DOCTYPE html>
-<html lang="en" style="height: 100%;">
-
-  
-    <tiles:insertAttribute name="head" />
-  
-  
-
-<body>
 
 
- 
 
-    <tiles:insertAttribute name="navBarLogged"/>
-    <tiles:insertAttribute name="survey"/>
+
+<div class="domande p-2 bg-light">
     
-    <tiles:insertAttribute name="scripts"/>
-  
-  
- 
+    <p>Titolo Survey</p>
+    <p>Autore</p>
+    <p>Categoria</p>
+    <a class="btn btn-light trigger">Compila</a>
 
-  
-</body>
-
-</html>
+</div>

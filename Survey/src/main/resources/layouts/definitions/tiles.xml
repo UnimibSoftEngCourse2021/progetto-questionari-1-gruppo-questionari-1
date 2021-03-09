@@ -47,6 +47,7 @@
 	<definition name="createSurvey" template = "/viste/createSurvey.jsp" >
 		<put-attribute name="head" value="/viste/head.jsp" />
 		<put-attribute name="navBarLogged" value="navBarLogged" /> 
+		<put-attribute name="survey" value="survey" />
 		
 		<put-attribute name="scripts" value="/viste/scripts.jsp" /> 
 
@@ -107,6 +108,8 @@
 	<definition name="containerDomande" template = "/viste/containerDomande.jsp" >
 		
 		<put-attribute name="searchQuestion" value="/viste/searchQuestion.jsp" />
+		<put-attribute name="noElement" value="/viste/noElement.jsp" />
+		<put-attribute name="domandaModificabile" value="/viste/domandaModificabile.jsp" />
 		<put-attribute name="newQuestionButton" value="/viste/newQuestionButton.jsp" />
 		<put-attribute name="popUpNewQuestion" value="/viste/popUpNewQuestion.jsp" />
 		
@@ -114,6 +117,46 @@
 	</definition>
 
 <!--end question container layout-->
+
+<!--start surveySearch result layout-->
+	<definition name="searchResult" template = "/viste/searchResult.jsp" >
+		
+	<put-attribute name="head" value="/viste/head.jsp" />
+	<put-attribute name="masthead" value="/viste/masthead.jsp" />
+		<put-attribute name="navBarNotLogged" value="navBarNotLogged" /> 
+		<put-attribute name="navBarLogged" value="navBarLogged" />
+		<put-attribute name="containerSearchResultSurvey" value="containerSearchResultSurvey" />
+		<put-attribute name="scripts" value="/viste/scripts.jsp" /> 
+		
+
+	</definition>
+
+<!--end surveySearch resultlayout-->
+<!--start surveySearch result layout-->
+	<definition name="containerSearchResultSurvey" template = "/viste/containerSearchResultSurvey.jsp" >
+		
+	
+		<put-attribute name="surveyCompilabile" value="/viste/surveyCompilabile.jsp" /> 
+		
+
+	</definition>
+
+<!--end surveySearch resultlayout-->
+
+<!--start survey layout-->
+	<definition name="survey" template = "/viste/survey.jsp" >
+		
+		<put-attribute name="surveyCompilabile" value="/viste/surveyCompilabile.jsp" />
+		<put-attribute name="newQuestionButton" value="/viste/newQuestionButton.jsp" />
+		<put-attribute name="popUpNewQuestion" value="/viste/popUpNewQuestion.jsp" />
+		<put-attribute name="popUpSearchQuestion" value="/viste/popUpSearchQuestion.jsp" />
+		
+		
+
+	</definition>
+
+<!--end surveylayout-->
+
 	
 </tiles-definitions>
 

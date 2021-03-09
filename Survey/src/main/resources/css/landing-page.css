@@ -9,6 +9,7 @@ body {
   background: url("../img/bg-ocean.jpg") no-repeat center center;
   background-size: cover;
   height: 100%;
+  background-repeat: repeat-y;
 }
 .btn{
   background-color: white;
@@ -43,8 +44,7 @@ header.masthead {
   
   
   background-size: cover;
-  padding-top: 8rem;
-  padding-bottom: 8rem;
+ 
 }
 
 header.masthead .overlay {
@@ -62,10 +62,7 @@ header.masthead h1 {
 }
 
 @media (min-width: 768px) {
-  header.masthead {
-    padding-top: 12rem;
-    padding-bottom: 12rem;
-  }
+  
   header.masthead h1 {
     font-size: 3rem;
   }

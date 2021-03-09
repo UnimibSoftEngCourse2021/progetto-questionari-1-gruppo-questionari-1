@@ -8,30 +8,15 @@
 
 
 
-<div class="containerdomande d-grid mx-auto">
+<div class="containeritem d-grid mx-auto">
+    
     <h1 class="display-4">Your Questions</h1>
     <tiles:insertAttribute name="searchQuestion"/>
 
-    <div class="domande p-2 bg-light">
+    <tiles:insertAttribute name="noElement"/>
+    <tiles:insertAttribute name="domandaModificabile"/>
 
-      <p>Il testo della domanda andra qua ? </p>
-      <p>Le risposte della domanda andranno qui</p>
-      <a class="btn btn-light trigger pulsanti-edit"><i class="fas fa-trash-alt"></i></a>
-      <a class="btn btn-light trigger pulsanti-edit" ><i class="fas fa-edit"></i></a>
-
-    </div>
-    <div class="domande p-2 bg-light">
-
-      <p>Il testo della domanda andra qua ? </p>
-      <p><ul>
-        <li>Oppure</li>
-        <li>Qui</li>
-      </ul></p>
-      <a class="btn btn-light trigger pulsanti-edit"><i class="fas fa-trash-alt"></i></a>
-      <a class="btn btn-light trigger pulsanti-edit"><i class="fas fa-edit"></i></a>
-
-    </div>
-    <div class="domande p-2 bg-light">Domanda 1</div>
+    
     
     <tiles:insertAttribute name="newQuestionButton"/>
     
