@@ -21,7 +21,6 @@ import java.util.HashSet;
 public class Questionario {
 
     @Id
-    @GeneratedValue
     @Column(name = "ID")
     private String id;
 
@@ -50,8 +49,7 @@ public class Questionario {
 
     //------------------> Costruttore
 
-    public Questionario(String id, String nome, String categoria, UtenteRegistrato creatore){
-        this.setID(id);
+    public Questionario(String nome, String categoria, UtenteRegistrato creatore){
         this.setNome(nome);
         this.setCategoria(categoria);
         this.setCreatore(creatore);
