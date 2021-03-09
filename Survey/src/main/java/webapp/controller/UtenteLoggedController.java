@@ -30,6 +30,10 @@ public class UtenteLoggedController{
 	@Autowired
 	GestoreQuestionario gestoreQuestionario;
 
+	@GetMapping(value = "/gestisciDomande")
+	public String VisualizzaCreaDomanda(){
+		return "questions";
+	}
 	@GetMapping(value="/creaDomanda")
 	public String gestRegistraDomanda(  @RequestParam("testo") String testo,
 										//@RequestParam("immagine") String immagine,
@@ -48,7 +52,7 @@ public class UtenteLoggedController{
 	{
 		System.out.println("cerca per:"+categoria);
 		List<Domanda> listaDomande = cercaDomanda(categoria);
-		//model.addAttribute("listaDomande",listaDomande);
+		model.addAttribute("listaDomande",listaDomande);
 		return "questions";
 	}
 	
@@ -60,7 +64,7 @@ public class UtenteLoggedController{
 		System.out.println("crea Questionario");
 		//Questionario c = creaQuestionario(nome, categoria);
 		//model.addAttribute("questionario",c);
-		return "questions";
+		return "createSurvey";
 	}
 	
 	@GetMapping(value="/cercaQuestionario")
