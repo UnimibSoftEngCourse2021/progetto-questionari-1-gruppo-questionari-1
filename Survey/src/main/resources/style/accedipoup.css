@@ -23,6 +23,10 @@
     font-weight: bold;
     background-color: white;
   }
+  .form-control{
+    margin-bottom: 10px;
+    border: 2px solid black;
+  }
   
   .form-control:hover, .form-control:focus {
     box-shadow: none;  
@@ -45,10 +49,7 @@
     font-weight: bold;
     color: #fff;
   }
-  .form-control{
-    margin-bottom: 10px;
-    border: 2px solid black;
-  }
+ 
   .login,.signup {
     padding: 6px 20px;
     background: none;

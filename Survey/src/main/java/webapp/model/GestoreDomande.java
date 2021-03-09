@@ -27,7 +27,6 @@ public class GestoreDomande {
 			Opzione o = i.next();
 			o.setDomanda(d);
 			System.out.println("Creazione di una opzione..."+ o.getDomanda().toString());
-			//opzioneDataMapper.insert(o);
 		}
 		domandaDataMapper.insert(d);
 		return d;

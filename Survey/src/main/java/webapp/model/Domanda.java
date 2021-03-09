@@ -51,7 +51,11 @@ public class Domanda{
 	@OneToMany(mappedBy = "domandaId")
 	private Set<CompilazioneDomanda> compilazioni = new HashSet<>();
 
-	public Domanda(String testo,  byte[] immagine,  String categoria, boolean domandaChiusa, UtenteRegistrato creatore, HashSet<Opzione> listaOpzioni) {
+	public Domanda() {
+		super();
+	}
+	
+	public Domanda(String testo, byte[] immagine, String categoria, boolean domandaChiusa, UtenteRegistrato creatore, Set<Opzione> listaOpzioni) {
 		this.testo = testo;
 		this.immagine = immagine;
 		this.categoria = categoria;
@@ -59,7 +63,8 @@ public class Domanda{
 		this.creatore = creatore;
 		this.opzioni = listaOpzioni;
 	}
-
+	
+	
 	public int getId() {
 		return id;
 	}

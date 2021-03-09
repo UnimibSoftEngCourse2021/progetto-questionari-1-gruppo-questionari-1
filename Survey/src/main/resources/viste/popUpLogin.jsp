@@ -10,7 +10,7 @@
     <div class="modal-body">
       <button data-dismiss="modal" class="close">&times;</button>
       <h4>Login</h4>
-      <form action="accedi" method="get">
+      <form action = "accedi" method ="get">
         <input type="email" name="email" class="email form-control" placeholder="E-mail"/>
         <input type="password" name="password" class="password form-control" placeholder="Password"/>
         <input class="btn login" type="submit" value="Login" />
