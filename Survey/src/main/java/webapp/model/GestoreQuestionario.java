@@ -66,20 +66,25 @@ public class GestoreQuestionario {
     public boolean modificaQuestionario(String id, String nome,  String categoria, String email){
         UtenteRegistrato creatore = udm.find(email);
         Questionario questionarioModificato = new Questionario(nome, categoria, creatore);
+        questionarioModificato.setID(id);
         qdm.remove(id);
         qdm.insert(questionarioModificato);
         return true;
     }
 
-
-
 /* la lista di risposte passate come parametro sono una liata di json che contengono rispettivamente sotto la voce "id" l'id della domanda a cui si 
 riferisce la risposta, e immegiatamente sotto la voce "risposta" che si riferisce alla risposta alla suddetta domanda. Questi due dati vengono utilizzati
 per creare vari oggetti di tipo CompilazioneDomanda. */
     
-    public Compilazione aggiungiCompilazione(String email, String ID, List<String> risposte) { //prende in input la mail dell'utente che ha compilato il questionario, lid del questionario compilato e una lista di risposte
-        JsonParser parser = new JsonParser();    
-        Questionario questionarioCompilato = qdm.findByID(ID);
+    public Compilazione aggiungiCompilazione(String email, String id, List<String> risposte) { //prende in input la mail dell'utente che ha compilato il questionario, lid del questionario compilato e una lista di risposte
+        Compilazione compilazione = creaCompilazione(email, id, risposte);
+        cdm.insert(compilazione);
+        return compilazione;
+    }
+
+    private Compilazione creaCompilazione(String email, String id, List<String> risposte){
+        JsonParser parser = new JsonParser();
+        Questionario questionarioCompilato = qdm.findByID(id);
         UtenteRegistrato utente = udm.find(email);
         Compilazione compilazione = new Compilazione(questionarioCompilato, utente);
         for (String e : risposte) {
@@ -87,7 +92,6 @@ per creare vari oggetti di tipo CompilazioneDomanda. */
             Domanda domanda = ddm.findByID(json.getInt("id"));
             compilazione.getDomande().add(new CompilazioneDomanda(domanda, compilazione, json.getString("risposta")));
         }
-        cdm.insert(compilazione);
         return compilazione;
     }
 
@@ -95,4 +99,15 @@ per creare vari oggetti di tipo CompilazioneDomanda. */
         return cdm.remove(idCompilazione);
     }
 
+    public Compilazione cercaCompilazione(String id){
+        return cdm.findByID(id);
+    }
+
+    public boolean modificaCompilaizone(String compilazioneId, List<String> risposte){
+        Compilazione compVecchia = cdm.findByID(compilazioneId);
+        Compilazione compModificata = creaCompilazione(compVecchia.getCompilatore().getMail(), compVecchia.getQuestionarioId().getID(), risposte);
+        cdm.remove(compilazioneId);
+        cdm.insert(compModificata);
+        return true;
+    }
 }

@@ -59,7 +59,7 @@ public class UtenteRegistrato{
         if(nome != null){
             this.nome = nome;
         }else{
-            System.out.println("valore nullo");
+            System.out.println("null");
         }
 	}
 
@@ -71,7 +71,7 @@ public class UtenteRegistrato{
         if(cognome != null){
             this.cognome = cognome;
         }else{
-            System.out.println("valore nullo");
+            System.out.println("null");
         }
 	}
 
@@ -83,7 +83,7 @@ public class UtenteRegistrato{
 		if(mail != null){
             this.mail = mail;
         }else{
-            System.out.println("valore nullo");
+            System.out.println("null");
         }
 	}
 
@@ -95,7 +95,7 @@ public class UtenteRegistrato{
 		if(password != null){
             this.password = password;
         }else{
-            System.out.println("~valore nullo");
+            System.out.println("null");
         }
 	}
 

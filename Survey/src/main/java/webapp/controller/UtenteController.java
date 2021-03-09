@@ -46,17 +46,16 @@ public class UtenteController {
         return gestoreQuestionario.rimuoviCompilazione(compilazioneId);
     }
     
-    public void modificaQuestionarioCompilato(String id, String email) {
-
+    public boolean modificaQuestionarioCompilato(String compId, List<String> risposte) {
+        return gestoreQuestionario.modificaCompilaizone(compId, risposte);
     }
 
     public Compilazione compilaQuestionario(String id, List<String> risposte, String email) {
         return gestoreQuestionario.aggiungiCompilazione(email, id, risposte);
     }
 
-    public void getQuestionarioCompilato(String id) {
-        
+    public Compilazione getQuestionarioCompilato(String id) {
+        return gestoreQuestionario.cercaCompilazione(id);
     }
-
 
 }
