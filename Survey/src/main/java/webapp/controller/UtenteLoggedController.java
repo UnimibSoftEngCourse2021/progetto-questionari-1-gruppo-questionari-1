@@ -132,9 +132,9 @@ public class UtenteLoggedController{
 		return newQuestionario;
 	}
 
-	private boolean modificaQuestionario(String ID){ // Qui si modifica un questionario : ancora da sistemare, o meglio, ancora da fare 
+	private boolean modificaQuestionario(String ID, String nome, String categoria, String mail){ // Qui si modifica un questionario : ancora da sistemare, o meglio, ancora da fare 
 		System.out.println("Controller : modificando un qustionario");
-		gestoreQuestionario.modificaQuestionario(ID);
+		gestoreQuestionario.modificaQuestionario(ID, nome ,categoria, mail);
 		return true;
 	}
 

@@ -65,7 +65,7 @@ public class GestoreQuestionario {
 
     public boolean modificaQuestionario(String id, String nome,  String categoria, String email){
         UtenteRegistrato creatore = udm.find(email);
-        Questionario questionarioModificato = new Questionario(id, nome, categoria, creatore);
+        Questionario questionarioModificato = new Questionario(nome, categoria, creatore);
         qdm.remove(id);
         qdm.insert(questionarioModificato);
         return true;

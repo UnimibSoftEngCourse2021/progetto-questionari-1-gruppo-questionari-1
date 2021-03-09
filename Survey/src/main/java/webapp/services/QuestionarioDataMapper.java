@@ -87,7 +87,7 @@ public class QuestionarioDataMapper {
 	public List<Questionario> questionariUtene(UtenteRegistrato utente){
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
-		List<Questionario> questionari = entityManager.createQuery("from questionari where creatore := email", Questionario.class).setParameter("email", utente.email).getResultList();
+		List<Questionario> questionari = entityManager.createQuery("from questionari where creatore := email", Questionario.class).setParameter("email", utente.getMail()).getResultList();
 		entityManager.getTransaction().commit();
 		entityManager.close();
 		return questionari;
