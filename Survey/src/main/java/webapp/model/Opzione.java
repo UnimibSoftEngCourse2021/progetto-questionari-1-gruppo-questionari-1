@@ -3,6 +3,7 @@ package webapp.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -13,15 +14,15 @@ import javax.persistence.Table;
 public class Opzione {
 	
 	@Id
-	@GeneratedValue
+	//@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name ="idOpzione")
-	private int idOpzione;
+	private int idOpzione = 5;
 	
 	@Column(name ="descrizioneOpzione")
 	private String descrizioneOpzione;
 	
 	@ManyToOne
-	@JoinColumn(name = "Domanda_ID", updatable = false, insertable = false)
+	@JoinColumn(name = "Domanda_ID")
 	private Domanda domanda;
 	
 	public Opzione(String descrizione) {
@@ -30,6 +31,10 @@ public class Opzione {
 
 	public String getDescrizioneOpzione() {
 		return descrizioneOpzione;
+	}
+	
+	public Domanda getDomanda() {
+		return domanda;
 	}
 
 	public void setDescrizioneOpzione(String descrizioneOpzione) {

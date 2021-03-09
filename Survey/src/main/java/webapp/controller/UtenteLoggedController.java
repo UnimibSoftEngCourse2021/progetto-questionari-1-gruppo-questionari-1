@@ -32,16 +32,15 @@ public class UtenteLoggedController{
 
 	@GetMapping(value="/creaDomanda")
 	public String gestRegistraDomanda(  @RequestParam("testo") String testo,
-										@RequestParam("immagine") String immagine,
+										//@RequestParam("immagine") String immagine,
 										@RequestParam("categoria") String categoria,
-										@RequestParam("domandaChiusa") boolean domandaChiusa,
-										@RequestParam(required = false, name="opzioni") List<String> listaOpzioni,
+										@RequestParam("opzioni") List<String> listaOpzioni,
 										Model model)
 	{
-		System.out.println("nuova domanda:"+domandaChiusa);
-		Domanda d = creaDomanda(testo, immagine, categoria, domandaChiusa, listaOpzioni);
+		System.out.println("nuova domanda:"+testo);
+		Domanda d = creaDomanda(testo, /*immagine,*/ categoria, listaOpzioni);
 		model.addAttribute("domanda", d);
-		return "?";
+		return "questions";
 	}
 	
 	@GetMapping(value="/cercaDomanda")
@@ -50,37 +49,50 @@ public class UtenteLoggedController{
 		System.out.println("cerca per:"+categoria);
 		List<Domanda> listaDomande = cercaDomanda(categoria);
 		model.addAttribute("listaDomande",listaDomande);
-		return "?";
+		return "questions";
 	}
 	
 	@GetMapping(value="/creaQuestionario")
-	public String gestRegistraQuestionario(@RequestParam("categoria") String categoria, 
+	public String gestRegistraQuestionario(/*@RequestParam("categoria") String categoria, 
 										   @RequestParam("nome") String nome,
-										   Model model)
+										   Model model */)
 	{
 		System.out.println("crea Questionario");
-		Questionario c = creaQuestionario(nome, categoria);
-		model.addAttribute("questionario",c);
-		return "?";
+		//Questionario c = creaQuestionario(nome, categoria);
+		//model.addAttribute("questionario",c);
+		return "questions";
 	}
 	
+	@GetMapping(value="/cercaQuestionario")
+	public String gestCercaQuestionario(@RequestParam("categoria") String categoria,  Model model)
+	{
+		System.out.println("cerca Questionario");
+		List<Questionario> listaQuestionario = cercaQuestionarioByWord(categoria);  
+		model.addAttribute("questionario",listaQuestionario);
+		return "compiledSurvey";
+	}
 	
 	
 	//---------------------> Funzioni Controller
 	
 
-	private Domanda creaDomanda(String testo, String immagine, String categoria, boolean domandaChiusa, List<String> opzioni) { //funzione che crea una domanda e la carica nel database
-		Set<Opzione> listaOpzioni = new HashSet<Opzione>(); 
-		System.out.println("Controller : creando la domanda");
-		if(domandaChiusa)
+	private Domanda creaDomanda(String testo, /*String immagine,*/ String categoria, List<String> opzioni) { //funzione che crea una domanda e la carica nel database
+		HashSet<Opzione> listaOpzioni = new HashSet<Opzione>(); 
+		System.out.println("Controller : creando la domanda"+ opzioni.toString());
+		boolean domandaChiusa = false;
+		if(!opzioni.isEmpty()) {
+			domandaChiusa = true;
 			for (String opzione : opzioni) { //creo una lista di opzioni e le aggiungo alla listaOpzioni
 				
 				listaOpzioni.add(gestoreDomande.creaOpzione(opzione));
 			}
-		return gestoreDomande.creaDomanda(testo, immagine, categoria, domandaChiusa, gestoreUtente.getUtenteLoggato(), listaOpzioni); //creo la domanda e gli passo come parametri tutte le informazioni e la lista delle opzioni 
+		}
+		//byte[] immagine = "Any String you want".getBytes();
+		Domanda d = gestoreDomande.creaDomanda(testo, /* immagine,*/ categoria, domandaChiusa, gestoreUtente.getUtenteLoggato(), listaOpzioni); //creo la domanda e gli passo come parametri tutte le informazioni e la lista delle opzioni 
+		return d;
 	}
 
-	private boolean modificaDomanda(String testo, String Immagine, String categoria, boolean domandaChiusa, String creatore, List<String> opzioni){
+	private boolean modificaDomanda(String testo, String Immagine, String categoria, String creatore, List<String> opzioni){
 		System.out.println("Controller : modificando la domanda");
 		//TODO
 		return true;
@@ -100,10 +112,10 @@ public class UtenteLoggedController{
 		return true;
 	}
 
-	private boolean aggiungiDomanda(String IdQuestionario, String testo, String Immagine, String categoria, boolean domandaChiusa, List<String> opzioni) {
+	private boolean aggiungiDomanda(String IdQuestionario, String testo, String Immagine, String categoria, List<String> opzioni) {
 		// Aggiunge una domanda al qustionario IdQuestionario subito dopo averla creata 
 		System.out.println("Controller : creando la domanda e aggiungendola al questionario");
-		Domanda d = this.creaDomanda(testo, Immagine, categoria, domandaChiusa, opzioni); 
+		Domanda d = this.creaDomanda(testo, /* Immagine,*/categoria, opzioni); 
 		gestoreQuestionario.addDomanda(d, IdQuestionario);
 		return true;
 	}
