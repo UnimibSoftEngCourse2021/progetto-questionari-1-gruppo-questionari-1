@@ -10,7 +10,7 @@ import webapp.services.*;
 
 @Service
 public class GestoreQuestionario {
-
+	
     private UserDataMapper udm = new UserDataMapper();
     private QuestionarioDataMapper qdm = new QuestionarioDataMapper();
     private DomandaDataMapper ddm = new DomandaDataMapper();
@@ -22,9 +22,15 @@ public class GestoreQuestionario {
         qdm.insert(newQuestionario);
         return newQuestionario;
     }
+    
+    //aggiunge alla lista di domande nel questionario una nuova domanda
+    public void addDomanda(Questionario q, Domanda domanda) {
+    	q.getDomande().add(domanda);
+    }
 
-    public boolean addDomanda(Domanda domanda, int id){
-        return qdm.addDomanda(id, domanda);
+    public boolean addDomanda(int id_quest, Domanda domanda){
+        
+    	return qdm.addDomanda(id_quest, domanda);
     }
 
     public boolean removeDomanda(Domanda domanda, int id){
@@ -110,4 +116,11 @@ per creare vari oggetti di tipo CompilazioneDomanda. */
         cdm.insert(compModificata);
         return true;
     }
+
+	public void salvaQuestionario(Questionario questionario) {
+		Iterator<Domanda> i = questionario.getDomande().iterator();
+		while(i.hasNext()) {
+			addDomanda(questionario.getID(), i.next());
+		}
+	}
 }

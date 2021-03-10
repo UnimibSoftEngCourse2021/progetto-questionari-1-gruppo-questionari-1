@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import webapp.model.*;
@@ -26,7 +27,9 @@ public class UtenteLoggedController{
 
 	@Autowired
 	GestoreQuestionario gestoreQuestionario;
-
+	
+	//---------------------> inizio creazione e ricerca domande
+	
 	@GetMapping(value = "/gestisciDomande")
 	public String VisualizzaCreaDomanda(Model model){
 		model.addAttribute("testo", " ");
@@ -56,6 +59,10 @@ public class UtenteLoggedController{
 		return "questions";
 	}
 	
+	//---------------------> fine creazione e ricerca domande
+	
+	//---------------------> inizio creazione questionari
+	
 	@GetMapping(value="/compilaQuestionario")
 	public String VisualizzaGestQuestionario() {
 		return "searchResult";
@@ -74,7 +81,33 @@ public class UtenteLoggedController{
 		System.out.println("crea Questionario vuoto");
 		Questionario c = creaQuestionario(nome, categoria);
 		model.addAttribute("questionario",c);
-		return "manageSurvey";
+		return "aggiungiDomande";
+	}
+	
+	@GetMapping(value="/aggiungiDomanda")
+	public String gestAggiungiDomanda(@ModelAttribute("questionario") Questionario questionario, @RequestParam("idDomanda") int idDomanda, Model model) {
+		aggiungiDomanda(questionario, idDomanda);
+		model.addAttribute("questionario", questionario);
+		return "aggiungiDomande";
+	}
+	
+	@GetMapping(value="/aggiungiDomandaNuova")
+	public String gestAggiungiDomanda(  @ModelAttribute("questionario") Questionario questionario, Model model,
+										@RequestParam("testo") String testo,
+										//@RequestParam(name="immagine") byte[] immagine,
+										@RequestParam("categoria") String categoria,
+										@RequestParam("opzioni") String listaOpzioni) {
+		System.out.println("nuova domanda da aggiungere:"+testo);
+		Domanda d = creaDomanda(testo, /*immagine,*/ categoria, listaOpzioni);
+		aggiungiDomanda(questionario, d.getId());
+		model.addAttribute("questionario",questionario);
+		return "aggiungiDomande";
+	}
+	
+	@GetMapping(value="/salvaQuestionario")
+	public String gestSalvaQuestionario(@ModelAttribute("questionario") Questionario questionario, Model model) {
+		registraQuestionarioConDomande(questionario);
+		return "/";
 	}
 	
 	@GetMapping(value="/cercaQuestionario")
@@ -86,6 +119,7 @@ public class UtenteLoggedController{
 		return "searchResult";
 	}
 	
+	//---------------------> fine creazione questionari
 	
 	//---------------------> Funzioni Controller
 	
@@ -118,14 +152,14 @@ public class UtenteLoggedController{
 		return listaDomandeCercate;
 	} 
 
-	private boolean aggiungiDomanda(int IdQuestionario, int IdDomanda) { 
+	private void aggiungiDomanda(Questionario questionario, int idDomanda) { 
 		// Aggiunge una domanda esistente ad un questionario
 		System.out.println("Controller : aggiungendo la domanda esistente al questionario");
-		Domanda d = gestoreDomande.getDomandaByID(IdDomanda);
-		gestoreQuestionario.addDomanda(d, IdQuestionario);
-		return true;
+		Domanda d = gestoreDomande.getDomandaByID(idDomanda);
+		gestoreQuestionario.addDomanda(questionario, d);
 	}
-
+	
+	/*
 	private boolean aggiungiDomanda(String IdQuestionario, String testo, byte[] Immagine, String categoria, String opzioni) {
 		// Aggiunge una domanda al qustionario IdQuestionario subito dopo averla creata 
 		System.out.println("Controller : creando la domanda e aggiungendola al questionario");
@@ -133,7 +167,8 @@ public class UtenteLoggedController{
 		//gestoreQuestionario.addDomanda(d, IdQuestionario);
 		return true;
 	}
-
+	*/
+	
 	private boolean eliminaDomanda(int IdDomanda){ // Questa funzione elimina una domanda con id IdDomanda dal database
 		System.out.println("Controller : eliminando la domanda");
 		gestoreDomande.rimuoviDomanda(IdDomanda);
@@ -187,6 +222,10 @@ public class UtenteLoggedController{
 	private boolean eliminaQuestionarioCompilato(String id) {
 		System.out.println("eliminando una compilazione di un questionario");
 		return gestoreQuestionario.rimuoviCompilazione(id);
+	}
+	
+	private void registraQuestionarioConDomande(Questionario questionario) {
+		gestoreQuestionario.salvaQuestionario(questionario);
 	}
 
 

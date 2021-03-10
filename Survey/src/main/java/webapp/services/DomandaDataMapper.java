@@ -53,8 +53,6 @@ public class DomandaDataMapper {
 		TypedQuery<Domanda> typed = entityManager.createQuery(criteria);
 		    try {
 		        	List<Domanda> listaDomande = typed.getResultList();
-		        	Domanda d = listaDomande.get(0);
-		        	System.out.println("Ho trovato le domande"+d.getOpzioni().toString());
 		        	return listaDomande;
 		    } catch (final NoResultException nre) {
 		        return null;
@@ -65,15 +63,13 @@ public class DomandaDataMapper {
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
 		System.out.println("Sto cercando la domanda");
-		List<Domanda> questionario = entityManager.createQuery("from domande where ID = :id", Domanda.class).setParameter("id", id).getResultList();
+		Domanda domanda = entityManager.find(Domanda.class, id);
 		System.out.println("Ho trovato la domanda");
 		entityManager.getTransaction().commit();
 		entityManager.close();
-		return questionario.get(0);
+		return domanda;
 	}
 	
-	
-
 	public boolean remove(int id){
 		Domanda toDeleteDomanda = this.findByID(id);
 		EntityManager entityManager = entityManagerFactory.createEntityManager();

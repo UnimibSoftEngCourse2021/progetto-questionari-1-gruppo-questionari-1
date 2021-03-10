@@ -32,7 +32,6 @@
 		<put-attribute name="containerDomande" value="containerDomande" />
 		<put-attribute name="scripts" value="/viste/scripts.jsp" /> 
 
-
 	</definition>
 	
 <!--end questions layout-->
@@ -48,6 +47,14 @@
 		
 		<put-attribute name="scripts" value="/viste/scripts.jsp" /> 
 
+
+	</definition>
+	
+	<definition name="aggiungiDomande" template = "/viste/questions.jsp" >
+		<put-attribute name="head" value="/viste/head.jsp" />
+		<put-attribute name="navBarLogged" value="navBarLogged" /> 
+		<put-attribute name="containerDomande" value="containerDomandeQuestionario" />
+		<put-attribute name="scripts" value="/viste/scripts.jsp" /> 
 
 	</definition>
 
@@ -106,9 +113,18 @@
 		
 		<put-attribute name="searchQuestion" value="/viste/searchQuestion.jsp" />
 		<put-attribute name="noElement" value="/viste/noElement.jsp" />
-		<put-attribute name="domandaModificabile" value="/viste/domandaModificabile.jsp" />
 		<put-attribute name="newQuestionButton" value="/viste/newQuestionButton.jsp" />
 		<put-attribute name="popUpNewQuestion" value="/viste/popUpNewQuestion.jsp" />
+		
+
+	</definition>
+	
+	<definition name="containerDomandeQuestionario" template = "/viste/containerDomande.jsp" >
+		
+		<put-attribute name="searchQuestion" value="/viste/searchQuestion.jsp" />
+		<put-attribute name="noElement" value="/viste/noElement.jsp" />
+		<put-attribute name="newQuestionButton" value="/viste/aggiungiDomandaButton.jsp" />
+		<put-attribute name="popUpNewQuestion" value="/viste/popUpNewQuestionQuestionario.jsp" />
 		
 
 	</definition>
