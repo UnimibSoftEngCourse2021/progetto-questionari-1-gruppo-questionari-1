@@ -55,9 +55,9 @@ public class Domanda{
 		super();
 	}
 	
-	public Domanda(String testo, byte[] immagine, String categoria, boolean domandaChiusa, UtenteRegistrato creatore, Set<Opzione> listaOpzioni) {
+	public Domanda(String testo, /*byte[] immagine,*/ String categoria, boolean domandaChiusa, UtenteRegistrato creatore, Set<Opzione> listaOpzioni) {
 		this.testo = testo;
-		this.immagine = immagine;
+		//this.immagine = immagine;
 		this.categoria = categoria;
 		this.domandaChiusa = domandaChiusa;
 		this.creatore = creatore;
@@ -68,11 +68,11 @@ public class Domanda{
 	public int getId() {
 		return id;
 	}
-
+	
 	public void setId(int id) {
 		this.id = id;
 	}
-
+	
 	public String getTesto() {
 		return testo;
 	}
