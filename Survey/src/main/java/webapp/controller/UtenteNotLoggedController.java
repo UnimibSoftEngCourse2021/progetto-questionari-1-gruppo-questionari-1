@@ -1,5 +1,7 @@
 package webapp.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,15 +18,20 @@ public class UtenteNotLoggedController{
 	
 //-------------------> start controller LoginView
     @GetMapping("/accedi") // Esegue il login 
-    public String makeLogin(@RequestParam("email") String email, @RequestParam("password") String password) {
+    public String makeLogin(@RequestParam("email") String email, @RequestParam("password") String password, HttpSession utente) {
         if(email != null && password != null){ // Se Username e Password hanno dei valori validi allora richiamo il metodo Login
             boolean res = login(email, password);
-            System.out.println("Eseguito il login : " + res);
+            if (res) {
+                System.out.println("Eseguito il login : " + res);
+                utente.setAttribute("email", email);
+                return "redirect:/";
+            } else {
+                return "errore";
+            }
         }else{ // Se i valori di login non sono validi restituisco un Errore
             System.out.println("Errore nel login Username o Password NULL");
         }
-
-        return "redirect:/";
+        return "errore";
     }
     
 //-------------------> end controller LoginView
