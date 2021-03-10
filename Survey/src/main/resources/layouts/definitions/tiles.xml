@@ -34,11 +34,8 @@
 
 
 	</definition>
-
+	
 <!--end questions layout-->
-
-
-
 
 
 
@@ -148,6 +145,7 @@
 		
 		<put-attribute name="surveyCompilabile" value="/viste/surveyCompilabile.jsp" />
 		<put-attribute name="newQuestionButton" value="/viste/newQuestionButton.jsp" />
+		<put-attribute name ="containerDomande" value="containerDomande"/>
 		<put-attribute name="popUpNewQuestion" value="/viste/popUpNewQuestion.jsp" />
 		<put-attribute name="popUpSearchQuestion" value="/viste/popUpSearchQuestion.jsp" />
 		

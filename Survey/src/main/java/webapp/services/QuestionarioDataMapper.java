@@ -24,7 +24,7 @@ public class QuestionarioDataMapper {
 		return true;
 	}
 
-	public Questionario findByID(String id){
+	public Questionario findByID(int id){
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
 		System.out.println("Sto cercando il questionario");
@@ -47,7 +47,7 @@ public class QuestionarioDataMapper {
 		return questionario;
 	}
 
-	public boolean remove(String id){
+	public boolean remove(int id){
 		System.out.println("Recuperando il Questionario dal database..");
 		Questionario toDeleteQuestionario = this.findByID(id);
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -60,7 +60,7 @@ public class QuestionarioDataMapper {
 		return true;
 	}
 
-	public boolean addDomanda(String idQuestionario, Domanda domanda){
+	public boolean addDomanda(int idQuestionario, Domanda domanda){
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		Questionario toUpdateQuestionario = this.findByID(idQuestionario);
 		entityManager.getTransaction().begin();
@@ -72,7 +72,7 @@ public class QuestionarioDataMapper {
 		return true;
 	}
 
-	public boolean removeDomanda(String idQuestionario, Domanda domanda){
+	public boolean removeDomanda(int idQuestionario, Domanda domanda){
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		Questionario toUpdateQuestionario = this.findByID(idQuestionario);
 		entityManager.getTransaction().begin();

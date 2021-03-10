@@ -33,7 +33,7 @@ public class UtenteController {
     //---------------------> funzioni 
 
 
-    public Questionario ricercaQuestionari(String id){ //cerca un questionario nel database 
+    public Questionario ricercaQuestionari(int id){ //cerca un questionario nel database 
         System.out.println("Controller : cercando un questionario in base all'id");
 		Questionario questionario = gestoreQuestionario.getQuestionarioById(id);
 		return questionario;
@@ -47,7 +47,7 @@ public class UtenteController {
         return gestoreQuestionario.modificaCompilaizone(compId, risposte);
     }
 
-    public Compilazione compilaQuestionario(String id, List<String> risposte, String email) {
+    public Compilazione compilaQuestionario(int id, List<String> risposte, String email) {
         return gestoreQuestionario.aggiungiCompilazione(email, id, risposte);
     }
 

@@ -23,7 +23,7 @@
     	<p>${domanda.testo}</p>
     	<c:forEach items="${domanda.opzioni}" var="opzione">
     		<div>
-    			<input type="radio" id="opt1" name=${domanda.id}/><label>${opzione.descrizioneOpzione}</label><br/>
+    			<input type="radio" id=${domanda.id} name=${domanda.id}/><label>${opzione.descrizioneOpzione}</label><br/>
     		</div>
     	</c:forEach>
     	<a class="btn btn-light trigger pulsanti-edit" ><i class="fas fa-trash-alt"></i></a>

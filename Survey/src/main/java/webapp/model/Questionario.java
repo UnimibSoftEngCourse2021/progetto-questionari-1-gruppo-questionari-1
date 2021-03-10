@@ -1,6 +1,8 @@
 package webapp.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Column;
@@ -20,8 +22,9 @@ import java.util.HashSet;
 public class Questionario {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private String id;
+    private int id;
 
     @Column(name = "Nome")
     private String nome;
@@ -55,11 +58,11 @@ public class Questionario {
     }
 
     //------------------> Getters & Setters
-    public String getID() {
+    public int getID() {
         return id;
     }
 
-    public void setID(String id) {
+    public void setID(int id) {
         this.id = id;
     }
 

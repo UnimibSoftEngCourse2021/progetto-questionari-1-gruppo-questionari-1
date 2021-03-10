@@ -56,15 +56,25 @@ public class UtenteLoggedController{
 		return "questions";
 	}
 	
-	@GetMapping(value="/creaQuestionario")
-	public String gestRegistraQuestionario(/*@RequestParam("categoria") String categoria, 
-										   @RequestParam("nome") String nome,
-										   Model model */)
-	{
-		System.out.println("crea Questionario");
-		//Questionario c = creaQuestionario(nome, categoria);
-		//model.addAttribute("questionario",c);
+	@GetMapping(value="/compilaQuestionario")
+	public String VisualizzaGestQuestionario() {
+		return "searchResult";
+	}
+	
+	@GetMapping(value="/nuovoQuestionario")
+	public String visualizzaCreaQuestionario() {
 		return "createSurvey";
+	}
+	
+	@GetMapping(value="/creaQuestionario")
+	public String gestRegistraQuestionario(@RequestParam("categoria") String categoria, 
+										   @RequestParam("nome") String nome,
+										   Model model)
+	{
+		System.out.println("crea Questionario vuoto");
+		Questionario c = creaQuestionario(nome, categoria);
+		model.addAttribute("questionario",c);
+		return "manageSurvey";
 	}
 	
 	@GetMapping(value="/cercaQuestionario")
@@ -73,7 +83,7 @@ public class UtenteLoggedController{
 		System.out.println("cerca Questionario");
 		List<Questionario> listaQuestionario = cercaQuestionarioByWord(categoria);  
 		model.addAttribute("questionario",listaQuestionario);
-		return "compiledSurvey";
+		return "searchResult";
 	}
 	
 	
@@ -108,7 +118,7 @@ public class UtenteLoggedController{
 		return listaDomandeCercate;
 	} 
 
-	private boolean aggiungiDomanda(String IdQuestionario, int IdDomanda) { 
+	private boolean aggiungiDomanda(int IdQuestionario, int IdDomanda) { 
 		// Aggiunge una domanda esistente ad un questionario
 		System.out.println("Controller : aggiungendo la domanda esistente al questionario");
 		Domanda d = gestoreDomande.getDomandaByID(IdDomanda);
@@ -136,7 +146,7 @@ public class UtenteLoggedController{
 		return newQuestionario;
 	}
 
-	private boolean modificaQuestionario(String ID, String nome, String categoria, String mail){ // Qui si modifica un questionario : ancora da sistemare, o meglio, ancora da fare 
+	private boolean modificaQuestionario(int ID, String nome, String categoria, String mail){ // Qui si modifica un questionario : ancora da sistemare, o meglio, ancora da fare 
 		System.out.println("Controller : modificando un qustionario");
 		gestoreQuestionario.modificaQuestionario(ID, nome ,categoria, mail);
 		return true;
@@ -152,12 +162,12 @@ public class UtenteLoggedController{
 		return questionariTrovati;
 	}
 
-	private List<Compilazione> visualizzaDatiSulleRisposte(String id) {
+	private List<Compilazione> visualizzaDatiSulleRisposte(int id) {
 		List<Compilazione> listaCompilazioni = new ArrayList<>(gestoreQuestionario.getQuestionarioById(id).getCompilazioni());
 		return listaCompilazioni;
 	}
 
-	private boolean eliminaQuestionario(String ID){ // Questo metodo elimina un questionario con id ID dal database
+	private boolean eliminaQuestionario(int ID){ // Questo metodo elimina un questionario con id ID dal database
 		System.out.println("Controller : eliminando un questionario dal database");
 		gestoreQuestionario.eliminaQuestionario(ID);
 		return true;
