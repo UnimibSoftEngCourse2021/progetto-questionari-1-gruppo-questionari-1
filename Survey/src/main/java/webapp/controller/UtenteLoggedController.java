@@ -2,6 +2,7 @@ package webapp.controller;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,19 +28,22 @@ public class UtenteLoggedController{
 	GestoreQuestionario gestoreQuestionario;
 
 	@GetMapping(value = "/gestisciDomande")
-	public String VisualizzaCreaDomanda(){
+	public String VisualizzaCreaDomanda(Model model){
+		model.addAttribute("testo", " ");
 		return "questions";
 	}
 	@GetMapping(value="/creaDomanda")
 	public String gestRegistraDomanda(  @RequestParam("testo") String testo,
-										//@RequestParam("immagine") String immagine,
+										//@RequestParam(name="immagine") byte[] immagine,
 										@RequestParam("categoria") String categoria,
 										@RequestParam("opzioni") String listaOpzioni,
 										Model model)
 	{
 		System.out.println("nuova domanda:"+testo);
-		// mDomanda d = creaDomanda(testo, /*immagine,*/ categoria, listaOpzioni);
-		//model.addAttribute("domanda", d);
+		Domanda d = creaDomanda(testo, /*immagine,*/ categoria, listaOpzioni);
+		List<Domanda> listaDomande = new ArrayList<Domanda>();
+		listaDomande.add(d);
+		model.addAttribute("listaDomande", listaDomande);
 		return "questions";
 	}
 	
@@ -76,7 +80,7 @@ public class UtenteLoggedController{
 	//---------------------> Funzioni Controller
 	
 
-	private Domanda creaDomanda(String testo, byte[] immagine, String categoria, String o) { //funzione che crea una domanda e la carica nel database
+	private Domanda creaDomanda(String testo, /* byte[] immagine,*/ String categoria, String o) { //funzione che crea una domanda e la carica nel database
 		HashSet<Opzione> listaOpzioni = new HashSet<Opzione>(); 
 		System.out.println("Controller : creando la domanda");
 		boolean domandaChiusa = false;
@@ -88,13 +92,13 @@ public class UtenteLoggedController{
 				listaOpzioni.add(gestoreDomande.creaOpzione(opzioni[i]));
 			}
 		}
-		Domanda d = gestoreDomande.creaDomanda(testo, immagine, categoria, domandaChiusa, gestoreUtente.getUtenteLoggato(), listaOpzioni); //creo la domanda e gli passo come parametri tutte le informazioni e la lista delle opzioni 
+		Domanda d = gestoreDomande.creaDomanda(testo, /*immagine,*/ categoria, domandaChiusa, gestoreUtente.getUtenteLoggato(), listaOpzioni); //creo la domanda e gli passo come parametri tutte le informazioni e la lista delle opzioni 
 		return d;
 	}
 
 	private boolean modificaDomanda(int idDomanda, String testo, byte[] Immagine, List<String> opzioni){
 		System.out.println("Controller : modificando la domanda");
-		gestoreDomande.modificaDomanda(idDomanda, testo, Immagine, opzioni);
+		gestoreDomande.modificaDomanda(idDomanda, testo, /*Immagine, */ opzioni);
 		return true;
 	}
 
@@ -115,8 +119,8 @@ public class UtenteLoggedController{
 	private boolean aggiungiDomanda(String IdQuestionario, String testo, byte[] Immagine, String categoria, String opzioni) {
 		// Aggiunge una domanda al qustionario IdQuestionario subito dopo averla creata 
 		System.out.println("Controller : creando la domanda e aggiungendola al questionario");
-		Domanda d = this.creaDomanda(testo,  Immagine, categoria, opzioni); 
-		gestoreQuestionario.addDomanda(d, IdQuestionario);
+		//Domanda d = this.creaDomanda(testo,  Immagine, categoria, opzioni); 
+		//gestoreQuestionario.addDomanda(d, IdQuestionario);
 		return true;
 	}
 
