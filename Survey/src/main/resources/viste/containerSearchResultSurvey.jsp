@@ -12,17 +12,11 @@
     
     <h1 class="display-4">Surveys</h1>
 
-
     
     <tiles:insertAttribute name="surveyCompilabile"/>
 
     
 
-    
-    
-    
-    
-    
 
 </div>
 

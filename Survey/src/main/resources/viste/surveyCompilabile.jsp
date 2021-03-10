@@ -9,9 +9,14 @@
 
 <div class="domande p-2 bg-light">
     
-    <p>Titolo Survey</p>
-    <p>Autore</p>
-    <p>Categoria</p>
-    <a class="btn btn-light trigger">Compila</a>
+    
+    <form action = "surveyToCompile", method= "GET">
+        <p>${idQuestionario}</p>
+        <p>${questionarioTrovato.nome}</p>
+        <p>${questionarioTrovato.creatore.nome}</p>
+        <p>${questionarioTrovato.categoria}</p>
+        <input type="hidden" name = "id" value = "${idQuestionario}" />
+        <input type="submit" class="btn btn-light trigger" value="Compila">
+    </form> 
 
 </div>

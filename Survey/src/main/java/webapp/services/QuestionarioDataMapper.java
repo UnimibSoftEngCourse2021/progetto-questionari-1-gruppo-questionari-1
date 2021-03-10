@@ -28,8 +28,8 @@ public class QuestionarioDataMapper {
 	public Questionario findByID(int id){
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
-		System.out.println("Sto cercando il questionario");
-		List<Questionario> questionario = entityManager.createQuery("from questionario where ID = :id", Questionario.class).setParameter("id", id).getResultList();
+		System.out.println("Sto cercando il questionario con id : " + id);
+		List<Questionario> questionario = entityManager.createQuery("from questionari where ID = :id", Questionario.class).setParameter("id", id).getResultList();
 		System.out.println("Ho trovato il questionario");
 		entityManager.getTransaction().commit();
 		entityManager.close();

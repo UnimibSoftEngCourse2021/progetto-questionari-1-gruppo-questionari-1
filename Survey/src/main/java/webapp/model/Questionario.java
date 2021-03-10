@@ -1,6 +1,7 @@
 package webapp.model;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,7 +18,7 @@ import java.util.Set;
 import java.util.HashSet;
 
 
-@Entity
+@Entity(name = "questionari")
 @Table(name = "questionari")
 public class Questionario {
 
@@ -40,9 +41,9 @@ public class Questionario {
     private Set<Compilazione> compilazioni = new HashSet<>();
 
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-        name = "domandaquestionario",
+        name = "domandequestionari",
         joinColumns = @JoinColumn(name = "Questionario_ID"),
         inverseJoinColumns = @JoinColumn(name = "Domanda_ID")
     )
@@ -55,6 +56,10 @@ public class Questionario {
         this.setNome(nome);
         this.setCategoria(categoria);
         this.setCreatore(creatore);
+    }
+
+    public Questionario(){
+
     }
 
     //------------------> Getters & Setters
