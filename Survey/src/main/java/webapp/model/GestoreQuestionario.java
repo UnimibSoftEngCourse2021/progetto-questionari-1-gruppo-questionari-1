@@ -54,8 +54,8 @@ public class GestoreQuestionario {
         return new ArrayList<>(questionariCercati);
     }
 
-    public List<Questionario> getQuestionarioByUtente(UtenteRegistrato creatore) {
-        return qdm.questionariUtene(creatore);
+    public List<Questionario> getQuestionarioByUtente(String email) {
+        return qdm.questionariUtente(email);
     }
 
     public boolean eliminaQuestionario(int id){

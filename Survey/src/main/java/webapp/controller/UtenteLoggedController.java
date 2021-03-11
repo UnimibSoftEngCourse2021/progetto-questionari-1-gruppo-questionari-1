@@ -115,6 +115,14 @@ public class UtenteLoggedController{
 		model.addAttribute("questionario",listaQuestionario);
 		return "searchResult";
 	}
+
+	@GetMapping(value="/questionari")
+	public String visualizzaQuestionari(Model model, HttpSession utente){
+		System.out.println("Sto recuperando i questionari dell'utente");
+		List<Questionario> questionariCreati = getQuestionariCreati(utente);
+		model.addAttribute("questionariCreati", questionariCreati);
+		return "questionari";
+	}
 	
 	//---------------------> fine creazione questionari
 	
@@ -211,10 +219,10 @@ public class UtenteLoggedController{
 
 	//TODO : visualizza questionari compilati
 
-	private List<Questionario> visualizzaQuestionariCreati(HttpSession utente) {
+	private List<Questionario> getQuestionariCreati(HttpSession utente) {
+		String email = (String) utente.getAttribute("email");
 		System.out.println("Controller : cercando tutti i questiornari creati da un utente con mail 'email'");
-		UtenteRegistrato u = getUtenteSession(utente);
-		return gestoreQuestionario.getQuestionarioByUtente(u);
+		return gestoreQuestionario.getQuestionarioByUtente(email);
 	}
 
 	private List<Compilazione> visualizzaQuestionariCompilati(String email) {

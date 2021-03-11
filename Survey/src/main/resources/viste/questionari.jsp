@@ -19,6 +19,9 @@
 
     <tiles:insertAttribute name="scripts"/>
 
+    <c:forEach items="${questionariCreati}" var="quest">
+    		<p>${quest.nome}</p>
+    </c:forEach>
 
   
 </body>
