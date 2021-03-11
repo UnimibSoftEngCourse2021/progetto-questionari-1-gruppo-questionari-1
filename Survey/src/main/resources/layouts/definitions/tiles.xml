@@ -50,10 +50,11 @@
 
 	</definition>
 	
-	<definition name="aggiungiDomande" template = "/viste/questions.jsp" >
+	<definition name="aggiungiDomande" template = "/viste/questionsSurvey.jsp" >
 		<put-attribute name="head" value="/viste/head.jsp" />
 		<put-attribute name="navBar" value="navBar" /> 
 		<put-attribute name="containerDomande" value="containerDomandeQuestionario" />
+		<put-attribute name= "saveButton" value="/viste/saveSurveyButton.jsp"/>
 		<put-attribute name="scripts" value="/viste/scripts.jsp" /> 
 
 	</definition>
