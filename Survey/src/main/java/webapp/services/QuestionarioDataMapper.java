@@ -41,7 +41,7 @@ public class QuestionarioDataMapper {
 		entityManager.getTransaction().begin();
 		System.out.println("Sto cercando il questionario");
 		name = "%" + name + "%";
-		List<Questionario> questionario = entityManager.createQuery("from questionario where Nome = :name", Questionario.class).setParameter("name", name).getResultList();
+		List<Questionario> questionario = entityManager.createQuery("from questionari where Nome = :name", Questionario.class).setParameter("name", name).getResultList();
 		System.out.println("Ho trovato il questionario");
 		entityManager.getTransaction().commit();
 		entityManager.close();
@@ -85,10 +85,10 @@ public class QuestionarioDataMapper {
 		return true;
 	}
 
-	public List<Questionario> questionariUtene(UtenteRegistrato utente){
+	public List<Questionario> questionariUtente(String email){
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
-		List<Questionario> questionari = entityManager.createQuery("from questionari where creatore := email", Questionario.class).setParameter("email", utente.getMail()).getResultList();
+		List<Questionario> questionari = entityManager.createQuery("from questionari where Creatore = :email", Questionario.class).setParameter("email", email).getResultList();
 		entityManager.getTransaction().commit();
 		entityManager.close();
 		return questionari;

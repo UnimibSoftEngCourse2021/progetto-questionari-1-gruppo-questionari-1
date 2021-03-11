@@ -50,10 +50,11 @@
 
 	</definition>
 	
-	<definition name="aggiungiDomande" template = "/viste/questions.jsp" >
+	<definition name="aggiungiDomande" template = "/viste/questionsSurvey.jsp" >
 		<put-attribute name="head" value="/viste/head.jsp" />
 		<put-attribute name="navBar" value="navBar" /> 
 		<put-attribute name="containerDomande" value="containerDomandeQuestionario" />
+		<put-attribute name= "saveButton" value="/viste/saveSurveyButton.jsp"/>
 		<put-attribute name="scripts" value="/viste/scripts.jsp" /> 
 
 	</definition>
@@ -113,7 +114,7 @@
 	
 	<definition name="containerDomandeQuestionario" template = "/viste/containerDomande.jsp" >
 		
-		<put-attribute name="searchQuestion" value="/viste/searchQuestion.jsp" />
+		<put-attribute name="searchQuestion" value="/viste/searchQuestionSurvey.jsp" />
 		<put-attribute name="noElement" value="/viste/noElement.jsp" />
 		<put-attribute name="newQuestionButton" value="/viste/aggiungiDomandaButton.jsp" />
 		<put-attribute name="popUpNewQuestion" value="/viste/popUpNewQuestionQuestionario.jsp" />
@@ -128,8 +129,7 @@
 		
 	<put-attribute name="head" value="/viste/head.jsp" />
 	<put-attribute name="masthead" value="/viste/masthead.jsp" />
-		<put-attribute name="navBarNotLogged" value="navBarNotLogged" /> 
-		<put-attribute name="navBarLogged" value="navBarLogged" />
+		<put-attribute name="navBar" value="navBar" />
 		<put-attribute name="containerSearchResultSurvey" value="containerSearchResultSurvey" />
 		<put-attribute name="scripts" value="/viste/scripts.jsp" /> 
 		
@@ -175,7 +175,7 @@
 	</definition>
 
 <!--end compilazione questionario layout-->
-<definition name="errore" template = "/viste/errore.jsp" >
+	<definition name="errore" template = "/viste/errore.jsp" >
 		
 		<put-attribute name="head" value="/viste/head.jsp" />
 		<put-attribute name="scripts" value="/viste/scripts.jsp" />
@@ -184,4 +184,11 @@
 		
 	</definition>
 	
+	<definition name="questionari" template = "/viste/questionari.jsp">
+		<put-attribute name="head" value="/viste/head.jsp" />
+		<put-attribute name="navBar" value="navBar" /> 
+		<put-attribute name="popUpStats" value="/viste/popUpStats.jsp" />
+		<put-attribute name="scripts" value="/viste/scripts.jsp" />
+	</definition>
+
 </tiles-definitions>

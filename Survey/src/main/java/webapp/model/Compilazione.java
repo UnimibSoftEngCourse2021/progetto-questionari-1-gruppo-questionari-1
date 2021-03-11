@@ -20,7 +20,7 @@ public class Compilazione {
 
     @Id
     @Column(name = "ID")
-    private String id;
+    private int id;
     
     @ManyToOne
     @JoinColumn(name = "Questionario_ID")
@@ -43,11 +43,11 @@ public class Compilazione {
         this.setCompilatore(compilatore);
     }
 
-    public String getID() {
+    public int getID() {
         return this.id;
     }
 
-    public void setID(String id) {
+    public void setID(int id) {
         this.id = id;
     }
 

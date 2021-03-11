@@ -82,8 +82,11 @@ public class UtenteLoggedController{
 	}
 	
 	@GetMapping(value="/aggiungiDomanda")
-	public String gestAggiungiDomanda(@RequestParam("idDomanda") int idDomanda, HttpSession utente) {
-		aggiungiDomanda((Questionario) utente.getAttribute("questionario"), idDomanda);
+	public String gestAggiungiDomanda(@RequestParam("domandaScelta") int idDomanda, HttpSession utente, Model model) {
+		Questionario q = (Questionario) utente.getAttribute("questionario");
+		System.out.println(idDomanda);
+		aggiungiDomanda(q, idDomanda);
+		model.addAttribute("listaDomande", q.getDomande());
 		return "aggiungiDomande";
 	}
 	
@@ -92,19 +95,32 @@ public class UtenteLoggedController{
 										@RequestParam("testo") String testo,
 										//@RequestParam(name="immagine") byte[] immagine,
 										@RequestParam("categoria") String categoria,
-										@RequestParam("opzioni") String listaOpzioni) {
+										@RequestParam("opzioni") String listaOpzioni,
+										Model model) {
 		System.out.println("nuova domanda da aggiungere:"+testo);
 		Questionario q = (Questionario) utente.getAttribute("questionario");
 		System.out.println(q.getID()+" ");
 		Domanda d = creaDomanda(testo, /*immagine,*/ categoria, listaOpzioni, utente);
 		aggiungiDomanda(q, d.getId());
+		model.addAttribute("listaDomande", q.getDomande());
 		return "aggiungiDomande";
+	}
+	
+	@GetMapping(value="/cercaDomandaQuestionario")
+	public String gestCercaDomandaQuestionario(@RequestParam("categoria") String categoria, Model model)
+	{
+		System.out.println("cerca per:"+categoria);
+		List<Domanda> listaDomande = cercaDomanda(categoria);
+		model.addAttribute("listaDomande",listaDomande);
+		return "popUpViewQuestion";
 	}
 	
 	@GetMapping(value="/salvaQuestionario")
 	public String gestSalvaQuestionario(HttpSession utente) {
-		salvaQuestionario((Questionario) utente.getAttribute("questionario"));
-		return "searchResult";
+		Questionario q = (Questionario) utente.getAttribute("questionario");
+		salvaQuestionario(q);
+		utente.setAttribute("questionario", null);
+		return "redirect:/ricercaQuestionario?categoria="+q.getID();
 	}
 	
 	@GetMapping(value="/cercaQuestionario")
@@ -115,7 +131,22 @@ public class UtenteLoggedController{
 		model.addAttribute("questionario",listaQuestionario);
 		return "searchResult";
 	}
+
+	@GetMapping(value="/questionari")
+	public String visualizzaQuestionari(Model model, HttpSession utente){
+		System.out.println("Sto recuperando i questionari dell'utente");
+		List<Questionario> questionariCreati = getQuestionariCreati(utente);
+		model.addAttribute("questionariCreati", questionariCreati);
+		return "questionari";
+	}
 	
+	//crea il pdf della compilazione con id fornito dal form
+	@GetMapping(value="/pdfCompilazione")
+	public String downloadCompilazioniPDF(@RequestParam("idCompilazione") int idCompilazione, Model model) {
+		Compilazione c = gestoreQuestionario.cercaCompilazione(idCompilazione);
+		model.addAttribute("compilazione", c);
+		return "";
+	}
 	//---------------------> fine creazione questionari
 	
 	//---------------------> Funzioni Controller
@@ -148,6 +179,12 @@ public class UtenteLoggedController{
 		System.out.println("Controller : cercando la domanda");
 		List<Domanda> listaDomandeCercate = gestoreDomande.getDomandaByCategoria(categoria);
 		return listaDomandeCercate;
+	} 
+	
+	private Domanda cercaDomandaById(int id) { // Cerca una lista di domande in base ad una categoria
+		System.out.println("Controller : cercando la domanda");
+		Domanda d = gestoreDomande.getDomandaByID(id);
+		return d;
 	} 
 
 	private void aggiungiDomanda(Questionario questionario, int idDomanda) { 
@@ -211,17 +248,17 @@ public class UtenteLoggedController{
 
 	//TODO : visualizza questionari compilati
 
-	private List<Questionario> visualizzaQuestionariCreati(HttpSession utente) {
+	private List<Questionario> getQuestionariCreati(HttpSession utente) {
+		String email = (String) utente.getAttribute("email");
 		System.out.println("Controller : cercando tutti i questiornari creati da un utente con mail 'email'");
-		UtenteRegistrato u = getUtenteSession(utente);
-		return gestoreQuestionario.getQuestionarioByUtente(u);
+		return gestoreQuestionario.getQuestionarioByUtente(email);
 	}
 
 	private List<Compilazione> visualizzaQuestionariCompilati(String email) {
 		return gestoreUtente.getUtenteByMail(email).getQuestionariCompilati();
 	}
 
-	private boolean eliminaQuestionarioCompilato(String id) {
+	private boolean eliminaQuestionarioCompilato(int id) {
 		System.out.println("eliminando una compilazione di un questionario");
 		return gestoreQuestionario.rimuoviCompilazione(id);
 	}
