@@ -15,8 +15,6 @@ import webapp.services.UserDataMapper;
 public class GestoreDomande {
 	
 	DomandaDataMapper domandaDataMapper = new DomandaDataMapper();
-	OpzioneDataMapper opzioneDataMapper = new OpzioneDataMapper();
-	UserDataMapper userDataMapper = new UserDataMapper();
 	
 	public Domanda creaDomanda(String testo, /*byte[] Immagine, */String categoria, boolean domandaChiusa, UtenteRegistrato creatore, HashSet<Opzione> listaOpzioni) {
 		System.out.println("Creazione di una domanda...");

@@ -32,6 +32,10 @@ public class Compilazione {
     @OneToMany(mappedBy = "compilazioneId")
     private Set<CompilazioneDomanda> domande = new HashSet<>();
 
+    public Compilazione() {
+    	super();
+    }
+    
     public Compilazione(Questionario questionario, UtenteRegistrato compilatore) {
         this.setQuestionarioId(questionario);
         this.setCompilatore(compilatore);

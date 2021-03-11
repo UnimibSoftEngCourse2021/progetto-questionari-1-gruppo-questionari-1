@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,10 +42,10 @@ public class UtenteLoggedController{
 										//@RequestParam(name="immagine") byte[] immagine,
 										@RequestParam("categoria") String categoria,
 										@RequestParam("opzioni") String listaOpzioni,
-										Model model)
+										Model model, HttpSession utente)
 	{
 		System.out.println("nuova domanda:"+testo);
-		Domanda d = creaDomanda(testo, /*immagine,*/ categoria, listaOpzioni);
+		Domanda d = creaDomanda(testo, /*immagine,*/ categoria, listaOpzioni, utente);
 		List<Domanda> listaDomande = new ArrayList<Domanda>();
 		listaDomande.add(d);
 		model.addAttribute("listaDomande", listaDomande);
@@ -63,11 +65,6 @@ public class UtenteLoggedController{
 	
 	//---------------------> inizio creazione questionari
 	
-	@GetMapping(value="/compilaQuestionario")
-	public String VisualizzaGestQuestionario() {
-		return "searchResult";
-	}
-	
 	@GetMapping(value="/nuovoQuestionario")
 	public String visualizzaCreaQuestionario() {
 		return "createSurvey";
@@ -76,31 +73,34 @@ public class UtenteLoggedController{
 	@GetMapping(value="/creaQuestionario")
 	public String gestRegistraQuestionario(@RequestParam("categoria") String categoria, 
 										   @RequestParam("nome") String nome,
-										   Model model)
+										   Model model, HttpSession utente)
 	{
 		System.out.println("crea Questionario vuoto");
-		Questionario c = creaQuestionario(nome, categoria);
-		model.addAttribute("questionario",c);
+		Questionario q = creaQuestionario(nome, categoria, utente);
+		System.out.println(q.getID()+" "+q.getCategoria());
 		return "aggiungiDomande";
 	}
 	
 	@GetMapping(value="/aggiungiDomanda")
-	public String gestAggiungiDomanda(@ModelAttribute("questionario") Questionario questionario, @RequestParam("idDomanda") int idDomanda, Model model) {
+	public String gestAggiungiDomanda(@ModelAttribute("questionario") Questionario questionario,
+									  @RequestParam("idDomanda") int idDomanda, Model model) {
 		aggiungiDomanda(questionario, idDomanda);
 		model.addAttribute("questionario", questionario);
 		return "aggiungiDomande";
 	}
 	
 	@GetMapping(value="/aggiungiDomandaNuova")
-	public String gestAggiungiDomanda(  @ModelAttribute("questionario") Questionario questionario, Model model,
+	public String gestAggiungiDomanda(   Model model, HttpSession utente,
+										@ModelAttribute("questionarioId") String questionarioId,
 										@RequestParam("testo") String testo,
 										//@RequestParam(name="immagine") byte[] immagine,
 										@RequestParam("categoria") String categoria,
 										@RequestParam("opzioni") String listaOpzioni) {
 		System.out.println("nuova domanda da aggiungere:"+testo);
-		Domanda d = creaDomanda(testo, /*immagine,*/ categoria, listaOpzioni);
-		aggiungiDomanda(questionario, d.getId());
-		model.addAttribute("questionario",questionario);
+		System.out.println(questionarioId+" ");
+		Domanda d = creaDomanda(testo, /*immagine,*/ categoria, listaOpzioni, utente);
+		//aggiungiDomanda(q, d.getId());
+		model.addAttribute("questionario",questionarioId);
 		return "aggiungiDomande";
 	}
 	
@@ -124,7 +124,7 @@ public class UtenteLoggedController{
 	//---------------------> Funzioni Controller
 	
 
-	private Domanda creaDomanda(String testo, /* byte[] immagine,*/ String categoria, String o) { //funzione che crea una domanda e la carica nel database
+	private Domanda creaDomanda(String testo, /* byte[] immagine,*/ String categoria, String o, HttpSession utente) { //funzione che crea una domanda e la carica nel database
 		HashSet<Opzione> listaOpzioni = new HashSet<Opzione>(); 
 		System.out.println("Controller : creando la domanda");
 		boolean domandaChiusa = false;
@@ -136,7 +136,8 @@ public class UtenteLoggedController{
 				listaOpzioni.add(gestoreDomande.creaOpzione(opzioni[i]));
 			}
 		}
-		Domanda d = gestoreDomande.creaDomanda(testo, /*immagine,*/ categoria, domandaChiusa, gestoreUtente.getUtenteLoggato(), listaOpzioni); //creo la domanda e gli passo come parametri tutte le informazioni e la lista delle opzioni 
+		UtenteRegistrato creatore = getUtenteSession(utente);
+		Domanda d = gestoreDomande.creaDomanda(testo, /*immagine,*/ categoria, domandaChiusa, creatore, listaOpzioni); //creo la domanda e gli passo come parametri tutte le informazioni e la lista delle opzioni 
 		return d;
 	}
 
@@ -175,9 +176,10 @@ public class UtenteLoggedController{
 		return true;
 	}
 
-	private Questionario creaQuestionario(String nome, String categoria){ // Qui si crea un nuovo questionario e lo si restituisce al chiamante
+	private Questionario creaQuestionario(String nome, String categoria, HttpSession utente){ // Qui si crea un nuovo questionario e lo si restituisce al chiamante
 		System.out.println("Controller : creando un questionario");
-		Questionario newQuestionario = gestoreQuestionario.creaQuestionario(gestoreUtente.getUtenteLoggato(), nome, categoria);
+		UtenteRegistrato u = getUtenteSession(utente);
+		Questionario newQuestionario = gestoreQuestionario.creaQuestionario(u, nome, categoria);
 		return newQuestionario;
 	}
 
@@ -227,7 +229,10 @@ public class UtenteLoggedController{
 	private void registraQuestionarioConDomande(Questionario questionario) {
 		gestoreQuestionario.salvaQuestionario(questionario);
 	}
-
+	
+	private UtenteRegistrato getUtenteSession(HttpSession utente) {
+		return gestoreUtente.getUtenteByMail((String) utente.getAttribute("email"));
+	}
 
 
 	//-----------------------> Fine funzioni Controller
