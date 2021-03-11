@@ -129,8 +129,7 @@
 		
 	<put-attribute name="head" value="/viste/head.jsp" />
 	<put-attribute name="masthead" value="/viste/masthead.jsp" />
-		<put-attribute name="navBarNotLogged" value="navBarNotLogged" /> 
-		<put-attribute name="navBarLogged" value="navBarLogged" />
+		<put-attribute name="navBar" value="navBar" />
 		<put-attribute name="containerSearchResultSurvey" value="containerSearchResultSurvey" />
 		<put-attribute name="scripts" value="/viste/scripts.jsp" /> 
 		

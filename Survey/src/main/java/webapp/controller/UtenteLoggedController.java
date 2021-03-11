@@ -119,7 +119,8 @@ public class UtenteLoggedController{
 	public String gestSalvaQuestionario(HttpSession utente) {
 		Questionario q = (Questionario) utente.getAttribute("questionario");
 		salvaQuestionario(q);
-		return "redirect:/surveyToCompile?id="+q.getID();
+		utente.setAttribute("questionario", null);
+		return "redirect:/ricercaQuestionario?categoria="+q.getID();
 	}
 	
 	@GetMapping(value="/cercaQuestionario")
