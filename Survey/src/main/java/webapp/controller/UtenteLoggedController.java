@@ -10,10 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import webapp.model.*;
 
+
+//public static final String questionario = "questionari";
 
 @Controller
 public class UtenteLoggedController{
@@ -134,19 +137,21 @@ public class UtenteLoggedController{
 	public String visualizzaQuestionari(Model model, HttpSession utente){
 		System.out.println("Sto recuperando i questionari dell'utente");
 		List<Questionario> questionariCreati = getQuestionariCreati(utente);
-		model.addAttribute("questionariCreati", questionariCreati);
+		if(!(questionariCreati.isEmpty()))
+			model.addAttribute("questionariCreati", questionariCreati);
 		return "questionari";
 	}
 	
-	@GetMapping(value="/eliminaQuestionario")
-	public String eliminaQuest(Model model){
-		boolean check = eliminaQuestionario((int) model.getAttribute("id"));
+	@GetMapping(value="/eliminaQuestionario/{id}")
+	public String eliminaQuest(Model model, @PathVariable int id){
+		boolean check = eliminaQuestionario(id);
 		System.out.println("Eliminato il questionario: " + check);
-		return "questionari";
+		return "redirect:/questionari";
 	}
 
 	@GetMapping(value="/modificaQuestionario")
 	public String modQuestionario(Model model, HttpSession utente){
+
 	boolean check = modificaQuestionario((int) model.getAttribute("id"), 
 										 (String) model.getAttribute("nome"),
 										 (String) model.getAttribute("categoria"), 
@@ -265,7 +270,7 @@ public class UtenteLoggedController{
 
 	private List<Questionario> getQuestionariCreati(HttpSession utente) {
 		String email = (String) utente.getAttribute("email");
-		System.out.println("Controller : cercando tutti i questiornari creati da un utente con mail 'email'");
+		System.out.println("Controller : cercando tutti i questiornari creati da un utente con mail " + email);
 		return gestoreQuestionario.getQuestionarioByUtente(email);
 	}
 

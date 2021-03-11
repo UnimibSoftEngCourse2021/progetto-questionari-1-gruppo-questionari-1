@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ManyToOne;
 import javax.persistence.ManyToMany;
@@ -37,7 +38,7 @@ public class Questionario {
     @JoinColumn(name = "Creatore")
     private UtenteRegistrato creatore;
 
-    @OneToMany(mappedBy="questionarioId")
+    @OneToMany(mappedBy="questionarioId", orphanRemoval = true)
     private Set<Compilazione> compilazioni = new HashSet<>();
 
 
