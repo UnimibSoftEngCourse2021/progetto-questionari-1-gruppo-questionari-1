@@ -82,8 +82,11 @@ public class UtenteLoggedController{
 	}
 	
 	@GetMapping(value="/aggiungiDomanda")
-	public String gestAggiungiDomanda(@RequestParam("idDomanda") int idDomanda, HttpSession utente) {
-		aggiungiDomanda((Questionario) utente.getAttribute("questionario"), idDomanda);
+	public String gestAggiungiDomanda(@RequestParam("domandaScelta") int idDomanda, HttpSession utente, Model model) {
+		Questionario q = (Questionario) utente.getAttribute("questionario");
+		System.out.println(idDomanda);
+		aggiungiDomanda(q, idDomanda);
+		model.addAttribute("listaDomande", q.getDomande());
 		return "aggiungiDomande";
 	}
 	
@@ -101,6 +104,15 @@ public class UtenteLoggedController{
 		aggiungiDomanda(q, d.getId());
 		model.addAttribute("listaDomande", q.getDomande());
 		return "aggiungiDomande";
+	}
+	
+	@GetMapping(value="/cercaDomandaQuestionario")
+	public String gestCercaDomandaQuestionario(@RequestParam("categoria") String categoria, Model model)
+	{
+		System.out.println("cerca per:"+categoria);
+		List<Domanda> listaDomande = cercaDomanda(categoria);
+		model.addAttribute("listaDomande",listaDomande);
+		return "popUpViewQuestion";
 	}
 	
 	@GetMapping(value="/salvaQuestionario")
@@ -159,6 +171,12 @@ public class UtenteLoggedController{
 		System.out.println("Controller : cercando la domanda");
 		List<Domanda> listaDomandeCercate = gestoreDomande.getDomandaByCategoria(categoria);
 		return listaDomandeCercate;
+	} 
+	
+	private Domanda cercaDomandaById(int id) { // Cerca una lista di domande in base ad una categoria
+		System.out.println("Controller : cercando la domanda");
+		Domanda d = gestoreDomande.getDomandaByID(id);
+		return d;
 	} 
 
 	private void aggiungiDomanda(Questionario questionario, int idDomanda) { 

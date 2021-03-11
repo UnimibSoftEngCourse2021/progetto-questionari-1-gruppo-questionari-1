@@ -114,7 +114,7 @@
 	
 	<definition name="containerDomandeQuestionario" template = "/viste/containerDomande.jsp" >
 		
-		<put-attribute name="searchQuestion" value="/viste/searchQuestion.jsp" />
+		<put-attribute name="searchQuestion" value="/viste/searchQuestionSurvey.jsp" />
 		<put-attribute name="noElement" value="/viste/noElement.jsp" />
 		<put-attribute name="newQuestionButton" value="/viste/aggiungiDomandaButton.jsp" />
 		<put-attribute name="popUpNewQuestion" value="/viste/popUpNewQuestionQuestionario.jsp" />
