@@ -17,13 +17,40 @@
 
     <tiles:insertAttribute name="navBar"/>
 
-    <tiles:insertAttribute name="scripts"/>
 
-    <c:forEach items="${questionariCreati}" var="quest">
-    		<p>${quest.nome}</p>
-    </c:forEach>
+    <div class="containeritem d-grid mx-auto">
+    
+        <h4 class="display-4">Your Surveys</h4>
+    
+	     <c:forEach items="${questionariCreati}" var="quest">
 
-  
+        <div class="domande p-2 bg-light">
+             <p>Title: ${quest.nome}</p>
+             <p>Author: ${quest.nome}</p>  
+             <p>Categories: ${quest.nome}</p> 
+
+
+             <a class="btn btn-light trigger pulsanti-edit" ><i class="fas fa-trash-alt"></i></a>
+             <a class="btn btn-light trigger pulsanti-edit"><i class="fas fa-edit"></i></a>
+             <a class="btn btn-light trigger pulsanti-edit" ><i class="fas fa-chart-line"></i></a>
+
+        </div>
+
+    		
+
+
+    </c:forEach>  
+        
+           
+             
+    </div>
+
+    
+
+ 
+
+  <tiles:insertAttribute name="scripts"/>
+
 </body>
 
 </html>
