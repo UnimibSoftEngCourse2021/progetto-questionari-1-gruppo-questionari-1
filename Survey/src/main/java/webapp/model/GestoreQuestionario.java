@@ -129,11 +129,11 @@ per creare vari oggetti di tipo CompilazioneDomanda. */
         return cdm.remove(idCompilazione);
     }
 
-    public Compilazione cercaCompilazione(int id){
+    public Compilazione cercaCompilazione(String id){
         return cdm.findByID(id);
     }
 
-    public boolean modificaCompilaizone(int compilazioneId, List<String> risposte){
+    public boolean modificaCompilaizone(String compilazioneId, List<String> risposte){
         Compilazione compVecchia = cdm.findByID(compilazioneId);
         Compilazione compModificata = creaCompilazione(compVecchia.getCompilatore(), compVecchia.getQuestionarioId().getID());
         List<CompilazioneDomanda> listaRisposteModificate = creaRisposteCompilazione(compModificata, risposte);

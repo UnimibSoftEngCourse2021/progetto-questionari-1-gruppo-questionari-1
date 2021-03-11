@@ -24,7 +24,7 @@ public class CompilazioneDataMapper {
 		return true;
 	}
 
-    public Compilazione findByID(int Id) {
+    public Compilazione findByID(String Id) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
 		System.out.println("Sto cercando la domanda");
@@ -35,7 +35,7 @@ public class CompilazioneDataMapper {
 		return questionario.get(0);
     }
 
-    public boolean remove(int Id) {
+    public boolean remove(String Id) {
         Compilazione toDeleteCompilazione = this.findByID(Id);
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
