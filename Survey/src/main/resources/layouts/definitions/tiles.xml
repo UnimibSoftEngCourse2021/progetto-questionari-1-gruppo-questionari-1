@@ -190,5 +190,9 @@
 		<put-attribute name="popUpStats" value="/viste/popUpStats.jsp" />
 		<put-attribute name="scripts" value="/viste/scripts.jsp" />
 	</definition>
+	
+	<definition name="compilazione" template = "/viste/compilazione.jsp">
+		
+	</definition>
 
 </tiles-definitions>

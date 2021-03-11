@@ -3,8 +3,12 @@ package webapp.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -28,7 +32,7 @@ public class Compilazione {
     @JoinColumn(name = "Compilatore")
     private UtenteRegistrato compilatore;
 
-    @OneToMany(mappedBy = "compilazioneId", orphanRemoval = true)
+    @OneToMany(mappedBy = "compilazioneId", fetch = FetchType.EAGER, orphanRemoval = true)
     private Set<CompilazioneDomanda> domande = new HashSet<>();
 
     public Compilazione() {

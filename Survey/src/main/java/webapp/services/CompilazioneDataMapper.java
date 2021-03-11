@@ -28,11 +28,11 @@ public class CompilazioneDataMapper {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
 		System.out.println("Sto cercando la domanda");
-		List<Compilazione> questionario = entityManager.createQuery("from compilazioni where ID = :id", Compilazione.class).setParameter("id", Id).getResultList();
+		Compilazione questionario = entityManager.find(Compilazione.class,Id);
 		System.out.println("Ho trovato la domanda");
 		entityManager.getTransaction().commit();
 		entityManager.close();
-		return questionario.get(0);
+		return questionario;
     }
 
     public boolean remove(String Id) {

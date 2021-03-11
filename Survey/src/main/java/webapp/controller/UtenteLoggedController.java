@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+
 import org.springframework.web.bind.annotation.RequestParam;
 
 import webapp.model.*;
@@ -161,11 +163,13 @@ public class UtenteLoggedController{
 	}
 
 	//crea il pdf della compilazione con id fornito dal form
-	@GetMapping(value="/pdfCompilazione")
-	public String downloadCompilazioniPDF(@RequestParam("idCompilazione") String idCompilazione, Model model) {
+
+	@GetMapping(value="/pdfCompilazione/{idCompilazione}")
+	public String downloadCompilazioniPDF(@PathVariable("idCompilazione") String idCompilazione, Model model) {
 		Compilazione c = gestoreQuestionario.cercaCompilazione(idCompilazione);
+		System.out.println(c.getDomande().toArray());
 		model.addAttribute("compilazione", c);
-		return "";
+		return "compilazione";
 	}
 	//---------------------> fine creazione questionari
 	
