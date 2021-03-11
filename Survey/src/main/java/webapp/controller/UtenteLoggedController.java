@@ -92,19 +92,22 @@ public class UtenteLoggedController{
 										@RequestParam("testo") String testo,
 										//@RequestParam(name="immagine") byte[] immagine,
 										@RequestParam("categoria") String categoria,
-										@RequestParam("opzioni") String listaOpzioni) {
+										@RequestParam("opzioni") String listaOpzioni,
+										Model model) {
 		System.out.println("nuova domanda da aggiungere:"+testo);
 		Questionario q = (Questionario) utente.getAttribute("questionario");
 		System.out.println(q.getID()+" ");
 		Domanda d = creaDomanda(testo, /*immagine,*/ categoria, listaOpzioni, utente);
 		aggiungiDomanda(q, d.getId());
+		model.addAttribute("listaDomande", q.getDomande());
 		return "aggiungiDomande";
 	}
 	
 	@GetMapping(value="/salvaQuestionario")
 	public String gestSalvaQuestionario(HttpSession utente) {
-		salvaQuestionario((Questionario) utente.getAttribute("questionario"));
-		return "searchResult";
+		Questionario q = (Questionario) utente.getAttribute("questionario");
+		salvaQuestionario(q);
+		return "redirect:/surveyToCompile?id="+q.getID();
 	}
 	
 	@GetMapping(value="/cercaQuestionario")

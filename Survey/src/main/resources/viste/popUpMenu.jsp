@@ -14,7 +14,7 @@
       
       <div class="btn-group-vertical"style="display: inline-block">
 		    <a class="btn btn-light trigger bottone-menu" href="/Survey"  >Home</a>
-        <a class="btn btn-light trigger bottone-menu" href="creaQuestionario">Create new survey</a>
+        <a class="btn btn-light trigger bottone-menu" href="nuovoQuestionario">Create new survey</a>
         <a class="btn btn-light trigger bottone-menu" href="gestisciDomande">Manage your questions</a>
         <a class="btn btn-light trigger bottone-menu" href="/">Manage your surveys</a>
         <a class="btn btn-light trigger bottone-menu" href="/">Compiled surveys</a>
