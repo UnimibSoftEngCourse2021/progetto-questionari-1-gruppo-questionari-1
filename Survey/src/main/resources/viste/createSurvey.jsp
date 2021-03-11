@@ -16,7 +16,7 @@
 
  
 
-    <tiles:insertAttribute name="navBarLogged"/>
+    <tiles:insertAttribute name="navBar"/>
     <tiles:insertAttribute name="survey"/>
     
     <tiles:insertAttribute name="scripts"/>

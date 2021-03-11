@@ -17,7 +17,7 @@
 
 	<definition name="index" template = "/viste/index.jsp" >
 		<put-attribute name="head" value="/viste/head.jsp" />
-		<put-attribute name="navBarNotLogged" value="navBarNotLogged" /> 
+		<put-attribute name="navBar" value="navBar" /> 
 		<put-attribute name="masthead" value="/viste/masthead.jsp" />
 		<put-attribute name="scripts" value="/viste/scripts.jsp" /> 
 
@@ -28,7 +28,7 @@
 	<!--start question layout-->
 	<definition name="questions" template = "/viste/questions.jsp" >
 		<put-attribute name="head" value="/viste/head.jsp" />
-		<put-attribute name="navBarLogged" value="navBarLogged" /> 
+		<put-attribute name="navBar" value="navBar" /> 
 		<put-attribute name="containerDomande" value="containerDomande" />
 		<put-attribute name="scripts" value="/viste/scripts.jsp" /> 
 
@@ -42,7 +42,7 @@
 	
 	<definition name="createSurvey" template = "/viste/createSurvey.jsp" >
 		<put-attribute name="head" value="/viste/head.jsp" />
-		<put-attribute name="navBarLogged" value="navBarLogged" /> 
+		<put-attribute name="navBar" value="navBar" /> 
 		<put-attribute name="survey" value="survey" />
 		
 		<put-attribute name="scripts" value="/viste/scripts.jsp" /> 
@@ -52,7 +52,7 @@
 	
 	<definition name="aggiungiDomande" template = "/viste/questions.jsp" >
 		<put-attribute name="head" value="/viste/head.jsp" />
-		<put-attribute name="navBarLogged" value="navBarLogged" /> 
+		<put-attribute name="navBar" value="navBar" /> 
 		<put-attribute name="containerDomande" value="containerDomandeQuestionario" />
 		<put-attribute name="scripts" value="/viste/scripts.jsp" /> 
 
@@ -64,7 +64,7 @@
 	
 	<definition name="manageSurvey" template = "/viste/manageSurvey.jsp" >
 		<put-attribute name="head" value="/viste/head.jsp" />
-		<put-attribute name="navBarLogged" value="navBarLogged" /> 
+		<put-attribute name="navBar" value="navBar" /> 
 		
 		<put-attribute name="scripts" value="/viste/scripts.jsp" /> 
 
@@ -77,7 +77,7 @@
 	
 	<definition name="compiledSurvey" template = "/viste/compiledSurvey.jsp" >
 		<put-attribute name="head" value="/viste/head.jsp" />
-		<put-attribute name="navBarLogged" value="/viste/navBarLogged.jsp" /> 
+		<put-attribute name="navBar" value="/viste/navBar" /> 
 		
 		<put-attribute name="scripts" value="/viste/scripts.jsp" /> 
 
@@ -87,26 +87,18 @@
 <!--end compiled Survey layout-->
 
 
-<!--start nav bar non logged layout-->
-	<definition name="navBarNotLogged" template = "/viste/navBarNotLogged.jsp" >
+<!--start nav bar  layout-->
+	<definition name="navBar" template = "/viste/navBar.jsp" >
 		
 		<put-attribute name="popuplogin" value="/viste/popUpLogin.jsp" />
 		<put-attribute name="popupsignin" value="/viste/popUpSignin.jsp" /> 
-
-
-	</definition>
-
-<!--end nav bar non logged layout-->
-
-<!--start nav bar logged layout-->
-	<definition name="navBarLogged" template = "/viste/navBarLogged.jsp" >
-		
 		<put-attribute name="popUpMenu" value="/viste/popUpMenu.jsp" />
-		
 
 	</definition>
 
-<!--end nav bar logged layout-->
+<!--end nav bar layout-->
+
+
 
 <!--start question container layout-->
 	<definition name="containerDomande" template = "/viste/containerDomande.jsp" >
@@ -169,8 +161,27 @@
 
 	</definition>
 
-<!--end surveylayout-->
+<!--end survey layout-->
 
+<!--start compilazione questionario layout-->
+	<definition name="compilazioneQuestionario" template = "/viste/compilazioneQuestionario.jsp" >
+		
+	
+		<put-attribute name="head" value="/viste/head.jsp" /> 
+		<put-attribute name="navBar" value="navBar" /> 
+		
+
+	</definition>
+
+<!--end compilazione questionario layout-->
+<definition name="errore" template = "/viste/errore.jsp" >
+		
+		<put-attribute name="head" value="/viste/head.jsp" />
+		<put-attribute name="scripts" value="/viste/scripts.jsp" />
+
+		
+		
+	</definition>
 	
 </tiles-definitions>
 
