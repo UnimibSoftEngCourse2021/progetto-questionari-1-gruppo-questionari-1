@@ -140,6 +140,13 @@ public class UtenteLoggedController{
 		return "questionari";
 	}
 	
+	//crea il pdf della compilazione con id fornito dal form
+	@GetMapping(value="/pdfCompilazione")
+	public String downloadCompilazioniPDF(@RequestParam("idCompilazione") int idCompilazione, Model model) {
+		Compilazione c = gestoreQuestionario.cercaCompilazione(idCompilazione);
+		model.addAttribute("compilazione", c);
+		return "";
+	}
 	//---------------------> fine creazione questionari
 	
 	//---------------------> Funzioni Controller
@@ -251,7 +258,7 @@ public class UtenteLoggedController{
 		return gestoreUtente.getUtenteByMail(email).getQuestionariCompilati();
 	}
 
-	private boolean eliminaQuestionarioCompilato(String id) {
+	private boolean eliminaQuestionarioCompilato(int id) {
 		System.out.println("eliminando una compilazione di un questionario");
 		return gestoreQuestionario.rimuoviCompilazione(id);
 	}

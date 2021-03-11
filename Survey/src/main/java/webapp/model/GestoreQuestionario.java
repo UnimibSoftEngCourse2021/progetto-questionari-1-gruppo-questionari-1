@@ -93,15 +93,15 @@ per creare vari oggetti di tipo CompilazioneDomanda. */
         return compilazione;
     }
 
-    public boolean rimuoviCompilazione(String idCompilazione) {
+    public boolean rimuoviCompilazione(int idCompilazione) {
         return cdm.remove(idCompilazione);
     }
 
-    public Compilazione cercaCompilazione(String id){
+    public Compilazione cercaCompilazione(int id){
         return cdm.findByID(id);
     }
 
-    public boolean modificaCompilaizone(String compilazioneId, List<String> risposte){
+    public boolean modificaCompilaizone(int compilazioneId, List<String> risposte){
         Compilazione compVecchia = cdm.findByID(compilazioneId);
         Compilazione compModificata = creaCompilazione(compVecchia.getCompilatore(), compVecchia.getQuestionarioId().getID(), risposte);
         cdm.remove(compilazioneId);

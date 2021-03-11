@@ -46,4 +46,8 @@ public class CompilazioneDomanda{
     public void setRisposta(String risposta) {
         this.risposta = risposta;
     }
+    
+    public Domanda getDomanda() {
+    	return this.domandaId;
+    }
 }
