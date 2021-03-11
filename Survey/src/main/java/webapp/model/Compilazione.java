@@ -32,7 +32,7 @@ public class Compilazione {
     @JoinColumn(name = "Compilatore")
     private UtenteRegistrato compilatore;
 
-    @OneToMany(mappedBy = "compilazioneId", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "compilazioneId", fetch = FetchType.EAGER, orphanRemoval = true)
     private Set<CompilazioneDomanda> domande = new HashSet<>();
 
     public Compilazione() {

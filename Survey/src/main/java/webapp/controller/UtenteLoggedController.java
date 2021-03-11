@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import webapp.model.*;
 
 
+//public static final String questionario = "questionari";
+
 @Controller
 public class UtenteLoggedController{
 	
@@ -137,10 +139,29 @@ public class UtenteLoggedController{
 	public String visualizzaQuestionari(Model model, HttpSession utente){
 		System.out.println("Sto recuperando i questionari dell'utente");
 		List<Questionario> questionariCreati = getQuestionariCreati(utente);
-		model.addAttribute("questionariCreati", questionariCreati);
+		if(!(questionariCreati.isEmpty()))
+			model.addAttribute("questionariCreati", questionariCreati);
 		return "questionari";
 	}
 	
+	@GetMapping(value="/eliminaQuestionario/{id}")
+	public String eliminaQuest(Model model, @PathVariable int id){
+		boolean check = eliminaQuestionario(id);
+		System.out.println("Eliminato il questionario: " + check);
+		return "redirect:/questionari";
+	}
+
+	@GetMapping(value="/modificaQuestionario")
+	public String modQuestionario(Model model, HttpSession utente){
+
+	boolean check = modificaQuestionario((int) model.getAttribute("id"), 
+										 (String) model.getAttribute("nome"),
+										 (String) model.getAttribute("categoria"), 
+										 utente);
+	System.out.println("Modificato il questionario: "+ check);
+	return "questionari";
+	}
+
 	//crea il pdf della compilazione con id fornito dal form
 
 	@GetMapping(value="/pdfCompilazione/{idCompilazione}")
@@ -220,10 +241,10 @@ public class UtenteLoggedController{
 		return newQuestionario;
 	}
 
-	private boolean modificaQuestionario(int ID, String nome, String categoria, HttpSession utente){ // Qui si modifica un questionario : ancora da sistemare, o meglio, ancora da fare 
+	private boolean modificaQuestionario(int id, String nome, String categoria, HttpSession utente){ // Qui si modifica un questionario : ancora da sistemare, o meglio, ancora da fare 
 		System.out.println("Controller : modificando un qustionario");
 		UtenteRegistrato u = getUtenteSession(utente);
-		gestoreQuestionario.modificaQuestionario(ID, nome ,categoria, u);
+		gestoreQuestionario.modificaQuestionario(id, nome ,categoria, u);
 		return true;
 	}
 
@@ -243,9 +264,9 @@ public class UtenteLoggedController{
 		return listaCompilazioni;
 	}
 
-	private boolean eliminaQuestionario(int ID){ // Questo metodo elimina un questionario con id ID dal database
+	private boolean eliminaQuestionario(int id){ // Questo metodo elimina un questionario con id ID dal database
 		System.out.println("Controller : eliminando un questionario dal database");
-		gestoreQuestionario.eliminaQuestionario(ID);
+		gestoreQuestionario.eliminaQuestionario(id);
 		return true;
 	}
 
@@ -253,7 +274,7 @@ public class UtenteLoggedController{
 
 	private List<Questionario> getQuestionariCreati(HttpSession utente) {
 		String email = (String) utente.getAttribute("email");
-		System.out.println("Controller : cercando tutti i questiornari creati da un utente con mail 'email'");
+		System.out.println("Controller : cercando tutti i questiornari creati da un utente con mail " + email);
 		return gestoreQuestionario.getQuestionarioByUtente(email);
 	}
 

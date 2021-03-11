@@ -25,13 +25,14 @@
 	     <c:forEach items="${questionariCreati}" var="quest">
 
         <div class="domande p-2 bg-light">
+             <p>id: ${quest.getID()}</p>
              <p>Title: ${quest.nome}</p>
-             <p>Author: ${quest.nome}</p>  
-             <p>Categories: ${quest.nome}</p> 
+             <p>Author: ${quest.creatore.mail}</p>  
+             <p>Categories: ${quest.categoria}</p> 
 
 
-             <a class="btn btn-light trigger pulsanti-edit" ><i class="fas fa-trash-alt"></i></a>
-             <a class="btn btn-light trigger pulsanti-edit"><i class="fas fa-edit"></i></a>
+             <a class="btn btn-light trigger pulsanti-edit" href="eliminaQuestionario/${quest.getID()}" ><i class="fas fa-trash-alt"></i></a>
+             <a class="btn btn-light trigger pulsanti-edit" data-target="#modQuest" data-toggle="modal"><i class="fas fa-edit"></i></a>
              <a class="btn btn-light trigger pulsanti-edit" data-target="#stats" data-toggle="modal" ><i class="fas fa-chart-line"></i></a>
 
         </div>

@@ -32,7 +32,10 @@ public class QuestionarioDataMapper {
 		System.out.println("Ho trovato il questionario");
 		entityManager.getTransaction().commit();
 		entityManager.close();
-		return questionario.get(0);
+		if(questionario.isEmpty())
+			return null;
+		else
+			return questionario.get(0);
 	}
 	
 	public List<Questionario> findByName(String name) {
@@ -53,7 +56,7 @@ public class QuestionarioDataMapper {
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
 		System.out.println("Rimuovendo un questionario");
-		entityManager.remove(toDeleteQuestionario);
+		entityManager.remove(entityManager.contains(toDeleteQuestionario) ? toDeleteQuestionario : entityManager.merge(toDeleteQuestionario));
 		entityManager.getTransaction().commit();
 		entityManager.close();
 		System.out.println("Eliminato il questionario appena recuperato..");
