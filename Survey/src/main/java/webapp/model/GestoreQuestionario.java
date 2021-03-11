@@ -11,10 +11,9 @@ import webapp.services.*;
 @Service
 public class GestoreQuestionario {
 	
-	private UserDataMapper udm = new UserDataMapper();
     private QuestionarioDataMapper qdm = new QuestionarioDataMapper();
-    private DomandaDataMapper ddm = new DomandaDataMapper();
     private CompilazioneDataMapper cdm = new CompilazioneDataMapper();
+    private DomandaDataMapper ddm = new DomandaDataMapper();
 
     public Questionario creaQuestionario(UtenteRegistrato creatore, String nome, String categoria){
     	Questionario newQuestionario = new Questionario(nome, categoria, creatore);
@@ -45,9 +44,7 @@ public class GestoreQuestionario {
         return qdm.findByName(name);
     }
 
-    public List<Questionario> getQuestionarioByWord(String word){
-        //Cerco nel db tutte le domande che hanno al suo interno la stringa word
-        List<Domanda> domande = ddm.findByWord(word);
+    public List<Questionario> getQuestionarioByWord(List<Domanda> domande){
         //HashSet per salvare i qeustionari evitando rindondanze
         HashSet<Questionario> questionariCercati = new HashSet<>();
         for(Domanda domandaIter : domande ){
@@ -59,8 +56,7 @@ public class GestoreQuestionario {
         return new ArrayList<>(questionariCercati);
     }
 
-    public List<Questionario> getQuestionarioByUtente(String email) {
-        UtenteRegistrato creatore = udm.find(email);
+    public List<Questionario> getQuestionarioByUtente(UtenteRegistrato creatore) {
         return qdm.questionariUtene(creatore);
     }
 
@@ -69,8 +65,7 @@ public class GestoreQuestionario {
         return qdm.remove(id);
     }
 
-    public boolean modificaQuestionario(int id, String nome,  String categoria, String email){
-        UtenteRegistrato creatore = udm.find(email);
+    public boolean modificaQuestionario(int id, String nome,  String categoria, UtenteRegistrato creatore){
         Questionario questionarioModificato = new Questionario(nome, categoria, creatore);
         questionarioModificato.setID(id);
         qdm.remove(id);
@@ -82,16 +77,15 @@ public class GestoreQuestionario {
 riferisce la risposta, e immegiatamente sotto la voce "risposta" che si riferisce alla risposta alla suddetta domanda. Questi due dati vengono utilizzati
 per creare vari oggetti di tipo CompilazioneDomanda. */
     
-    public Compilazione aggiungiCompilazione(String email, int id, List<String> risposte) { //prende in input la mail dell'utente che ha compilato il questionario, lid del questionario compilato e una lista di risposte
-        Compilazione compilazione = creaCompilazione(email, id, risposte);
+    public Compilazione aggiungiCompilazione(UtenteRegistrato utente, int id, List<String> risposte) { //prende in input la mail dell'utente che ha compilato il questionario, lid del questionario compilato e una lista di risposte
+        Compilazione compilazione = creaCompilazione(utente, id, risposte);
         cdm.insert(compilazione);
         return compilazione;
     }
 
-    private Compilazione creaCompilazione(String email, int id, List<String> risposte){
+    private Compilazione creaCompilazione(UtenteRegistrato utente, int id, List<String> risposte){
         JsonParser parser = new JsonParser();
         Questionario questionarioCompilato = qdm.findByID(id);
-        UtenteRegistrato utente = udm.find(email);
         Compilazione compilazione = new Compilazione(questionarioCompilato, utente);
         for (String e : risposte) {
             JSONObject json = (JSONObject) parser.parseDoc(e);
@@ -111,7 +105,7 @@ per creare vari oggetti di tipo CompilazioneDomanda. */
 
     public boolean modificaCompilaizone(String compilazioneId, List<String> risposte){
         Compilazione compVecchia = cdm.findByID(compilazioneId);
-        Compilazione compModificata = creaCompilazione(compVecchia.getCompilatore().getMail(), compVecchia.getQuestionarioId().getID(), risposte);
+        Compilazione compModificata = creaCompilazione(compVecchia.getCompilatore(), compVecchia.getQuestionarioId().getID(), risposte);
         cdm.remove(compilazioneId);
         cdm.insert(compModificata);
         return true;

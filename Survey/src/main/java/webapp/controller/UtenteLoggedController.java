@@ -180,9 +180,10 @@ public class UtenteLoggedController{
 		return newQuestionario;
 	}
 
-	private boolean modificaQuestionario(int ID, String nome, String categoria, String mail){ // Qui si modifica un questionario : ancora da sistemare, o meglio, ancora da fare 
+	private boolean modificaQuestionario(int ID, String nome, String categoria, HttpSession utente){ // Qui si modifica un questionario : ancora da sistemare, o meglio, ancora da fare 
 		System.out.println("Controller : modificando un qustionario");
-		gestoreQuestionario.modificaQuestionario(ID, nome ,categoria, mail);
+		UtenteRegistrato u = getUtenteSession(utente);
+		gestoreQuestionario.modificaQuestionario(ID, nome ,categoria, u);
 		return true;
 	}
 
@@ -192,7 +193,8 @@ public class UtenteLoggedController{
 
 	private List<Questionario> cercaQuestionarioByWord (String word) { // Questo metodo cerca all'interno del databse tutti i questionari con all'interno la parola word
 		System.out.println("Controller : cercando un questionario in base ad una parola");
-		List<Questionario> questionariTrovati = gestoreQuestionario.getQuestionarioByWord(word);
+		List<Domanda> listaDomande = gestoreDomande.getDomandaByWord(word);
+		List<Questionario> questionariTrovati = gestoreQuestionario.getQuestionarioByWord(listaDomande);
 		return questionariTrovati;
 	}
 
@@ -209,9 +211,10 @@ public class UtenteLoggedController{
 
 	//TODO : visualizza questionari compilati
 
-	private List<Questionario> visualizzaQuestionariCreati(String email) {
+	private List<Questionario> visualizzaQuestionariCreati(HttpSession utente) {
 		System.out.println("Controller : cercando tutti i questiornari creati da un utente con mail 'email'");
-		return gestoreQuestionario.getQuestionarioByUtente(email);
+		UtenteRegistrato u = getUtenteSession(utente);
+		return gestoreQuestionario.getQuestionarioByUtente(u);
 	}
 
 	private List<Compilazione> visualizzaQuestionariCompilati(String email) {

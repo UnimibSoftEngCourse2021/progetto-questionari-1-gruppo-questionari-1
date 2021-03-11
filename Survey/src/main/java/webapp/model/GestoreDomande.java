@@ -42,7 +42,11 @@ public class GestoreDomande {
 	public List<Domanda> getDomandaByCategoria(String categoria) {
 		return domandaDataMapper.findByCategory(categoria);
 	}
-
+	
+	public List<Domanda> getDomandaByWord(String word) {
+		return domandaDataMapper.findByCategory(word);
+	}
+	
 	public Domanda getDomandaByID(int id) {
 		return domandaDataMapper.findByID(id);
 	}
