@@ -2,7 +2,6 @@ package webapp.controller;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -11,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import webapp.model.*;
@@ -127,6 +125,23 @@ public class UtenteLoggedController{
 		return "questionari";
 	}
 	
+	@GetMapping(value="/eliminaQuestionario")
+	public String eliminaQuest(Model model){
+		boolean check = eliminaQuestionario((int) model.getAttribute("id"));
+		System.out.println("Eliminato il questionario: " + check);
+		return "questionari";
+	}
+
+	@GetMapping(value="/modificaQuestionario")
+	public String modQuestionario(Model model, HttpSession utente){
+	boolean check = modificaQuestionario((int) model.getAttribute("id"), 
+										 (String) model.getAttribute("nome"),
+										 (String) model.getAttribute("categoria"), 
+										 utente);
+	System.out.println("Modificato il questionario: "+ check);
+	return "questionari";
+	}
+
 	//---------------------> fine creazione questionari
 	
 	//---------------------> Funzioni Controller
@@ -191,10 +206,10 @@ public class UtenteLoggedController{
 		return newQuestionario;
 	}
 
-	private boolean modificaQuestionario(int ID, String nome, String categoria, HttpSession utente){ // Qui si modifica un questionario : ancora da sistemare, o meglio, ancora da fare 
+	private boolean modificaQuestionario(int id, String nome, String categoria, HttpSession utente){ // Qui si modifica un questionario : ancora da sistemare, o meglio, ancora da fare 
 		System.out.println("Controller : modificando un qustionario");
 		UtenteRegistrato u = getUtenteSession(utente);
-		gestoreQuestionario.modificaQuestionario(ID, nome ,categoria, u);
+		gestoreQuestionario.modificaQuestionario(id, nome ,categoria, u);
 		return true;
 	}
 
@@ -214,9 +229,9 @@ public class UtenteLoggedController{
 		return listaCompilazioni;
 	}
 
-	private boolean eliminaQuestionario(int ID){ // Questo metodo elimina un questionario con id ID dal database
+	private boolean eliminaQuestionario(int id){ // Questo metodo elimina un questionario con id ID dal database
 		System.out.println("Controller : eliminando un questionario dal database");
-		gestoreQuestionario.eliminaQuestionario(ID);
+		gestoreQuestionario.eliminaQuestionario(id);
 		return true;
 	}
 
