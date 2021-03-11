@@ -8,6 +8,7 @@ import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.lowagie.text.Chunk;
 import com.lowagie.text.Document;
 import com.lowagie.text.Font;
 import com.lowagie.text.FontFactory;
@@ -43,14 +44,15 @@ private String fileName;
 			HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		Compilazione q = (Compilazione) model.get("compilazione");
-		final String Titolo = "Compilazione questionario, titolo: "/*+q.getQuestionarioId().getNome()*/;
-		 
+		final String Titolo = "Compilazione questionario, titolo: "+q.getQuestionarioId().getNome();
+		
+		
 		//Impostazione del nome del file
         response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
            
         Set<CompilazioneDomanda> risposte = (Set<CompilazioneDomanda>) q.getDomande();
       
-        PdfPTable table = new PdfPTable(5);
+        PdfPTable table = new PdfPTable(2);
         table.setWidthPercentage(100.0f);
         table.setSpacingBefore(10);
       
