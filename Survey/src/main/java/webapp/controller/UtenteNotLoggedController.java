@@ -40,10 +40,12 @@ public class UtenteNotLoggedController{
 	public String GestRegistraUtente(@RequestParam("email") String email, 
 									 @RequestParam("nome") String nome, 
 									 @RequestParam("cognome") String cognome, 
-									 @RequestParam("password") String password)
+									 @RequestParam("password") String password,
+									 HttpSession utente)
 	{
 		System.out.println("utente registrato, email:"+ email);
 		registrazioneUtente(email, nome, cognome, password);
+		utente.setAttribute("email", email);
 		
 		return "redirect:/";
 	}
