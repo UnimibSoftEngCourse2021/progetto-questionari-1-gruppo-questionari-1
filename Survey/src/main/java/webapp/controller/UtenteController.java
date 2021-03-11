@@ -70,7 +70,8 @@ public class UtenteController {
     }
 
     public Compilazione compilaQuestionario(int id, List<String> risposte, String email) {
-        return gestoreQuestionario.aggiungiCompilazione(email, id, risposte);
+        UtenteRegistrato u = gestoreUtente.getUtenteByMail(email);
+    	return gestoreQuestionario.aggiungiCompilazione(u, id, risposte);
     }
 
     public Compilazione getQuestionarioCompilato(String id) {
