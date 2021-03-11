@@ -38,7 +38,7 @@ public class UtenteController {
     }
 
     @GetMapping(value = "ricercaQuestionario")
-    public String getSurvey(Model model, @RequestParam("id") String idRicerca) {
+    public String getSurvey(Model model, @RequestParam("categoria") String idRicerca) {
         System.out.println("Show Survey by id" + idRicerca);
         int id = Integer.parseInt(idRicerca);
         Questionario questionario = gestoreQuestionario.getQuestionarioById(id);

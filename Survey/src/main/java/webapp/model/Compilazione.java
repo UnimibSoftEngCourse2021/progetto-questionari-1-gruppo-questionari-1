@@ -3,8 +3,10 @@ package webapp.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -20,7 +22,7 @@ public class Compilazione {
 
     @Id
     @Column(name = "ID")
-    private int id;
+    private String id;
     
     @ManyToOne
     @JoinColumn(name = "Questionario_ID")
@@ -30,7 +32,7 @@ public class Compilazione {
     @JoinColumn(name = "Compilatore")
     private UtenteRegistrato compilatore;
 
-    @OneToMany(mappedBy = "compilazioneId")
+    @OneToMany(mappedBy = "compilazioneId", fetch = FetchType.EAGER)
     private Set<CompilazioneDomanda> domande = new HashSet<>();
 
     public Compilazione() {
@@ -43,11 +45,11 @@ public class Compilazione {
         this.setCompilatore(compilatore);
     }
 
-    public int getID() {
+    public String getID() {
         return this.id;
     }
 
-    public void setID(int id) {
+    public void setID(String id) {
         this.id = id;
     }
 

@@ -44,7 +44,7 @@ private String fileName;
 			HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		Compilazione q = (Compilazione) model.get("compilazione");
-		final String Titolo = "Compilazione questionario, titolo: "+q.getQuestionarioId().getNome();
+		final String Titolo = "Compilazione questionario, titolo: "/*+q.getQuestionarioId().getNome()*/;
 		 
 		//Impostazione del nome del file
         response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
@@ -87,9 +87,11 @@ private String fileName;
         } 
  
         document.addTitle(Titolo);
-        document.setPageCount(0);
+        //document.setPageCount(0);
      
         document.add(table);
+        document.addCreator("chiara");
+       
     } 
 }
 

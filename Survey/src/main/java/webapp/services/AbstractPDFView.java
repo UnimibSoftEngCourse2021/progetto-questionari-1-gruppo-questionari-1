@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.view.AbstractView;
 
+import com.lowagie.text.Chunk;
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.PageSize;
@@ -54,6 +55,7 @@ public abstract class AbstractPDFView extends AbstractView {
 
 		// Creazione del file PDF
 		document.open();
+		document.add(new Chunk(""));
 		buildPdfDocument(model, document, writer, request, response);
 		document.close();
 
