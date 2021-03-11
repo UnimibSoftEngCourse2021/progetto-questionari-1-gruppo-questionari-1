@@ -49,7 +49,7 @@ DEFAULT CHARACTER SET = utf8;
 -- Table `survey`.`compilazioni`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `survey`.`compilazioni` (
-  `ID` INT NOT NULL AUTO_INCREMENT,
+  `ID` VARCHAR(255) NOT NULL,
   `Questionario_ID` INT NOT NULL,
   `Compilatore` VARCHAR(255) NULL DEFAULT NULL,
   PRIMARY KEY (`ID`),
@@ -88,10 +88,10 @@ DEFAULT CHARACTER SET = utf8;
 -- Table `survey`.`compilazionidomande`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Survey`.`CompilazioniDomande` (
-  `ID` VARCHAR(45) NOT NULL,
+  `ID` INT NOT NULL  AUTO_INCREMENT,
   `Risposta` VARCHAR(255) NOT NULL,
   `Domanda` INT NOT NULL,
-  `Compilazione_ID` INT NOT NULL,
+  `Compilazione_ID` VARCHAR(255) NOT NULL,
   INDEX `fk_CompilazioneDomanda_Domanda1_idx` (`Domanda` ASC) VISIBLE,
   INDEX `fk_CompilazioneDomanda_Compilazione1_idx` (`Compilazione_ID` ASC) VISIBLE,
   PRIMARY KEY (`ID`),

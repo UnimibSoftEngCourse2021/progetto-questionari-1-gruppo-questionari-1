@@ -19,7 +19,7 @@
           <form action="ricercaQuestionario" method="get">
             <div class="form-row">
               <div class="col-12 col-md-9 mb-2 mb-md-0">
-                <input type="text" name ="categoria" class="form-control form-control-lg" placeholder="Inserisci parola chiave o codice...">
+                <input type="text" name ="id" class="form-control form-control-lg" placeholder="Inserisci codice del questionario da cercare ..">
               </div>
               <div class="col-12 col-md-3">
                 <button type="submit" class="btn btn-block btn-lg btn-light">Search</button>

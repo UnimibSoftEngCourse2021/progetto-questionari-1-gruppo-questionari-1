@@ -77,7 +77,7 @@
 	
 	<definition name="compiledSurvey" template = "/viste/compiledSurvey.jsp" >
 		<put-attribute name="head" value="/viste/head.jsp" />
-		<put-attribute name="navBar" value="/viste/navBar" /> 
+		<put-attribute name="navBar" value="/viste/navBar.jsp" /> 
 		
 		<put-attribute name="scripts" value="/viste/scripts.jsp" /> 
 
@@ -169,6 +169,7 @@
 	
 		<put-attribute name="head" value="/viste/head.jsp" /> 
 		<put-attribute name="navBar" value="navBar" /> 
+		<put-attribute name="scripts" value="/viste/scripts.jsp" />
 		
 
 	</definition>
@@ -184,5 +185,3 @@
 	</definition>
 	
 </tiles-definitions>
-
-

@@ -12,12 +12,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+
 @Entity
 @Table(name = "compilazioni")
 public class Compilazione {
 
     @Id
-    @GeneratedValue
     @Column(name = "ID")
     private String id;
     
@@ -36,7 +37,8 @@ public class Compilazione {
     	super();
     }
     
-    public Compilazione(Questionario questionario, UtenteRegistrato compilatore) {
+    public Compilazione(String ID, Questionario questionario, UtenteRegistrato compilatore) {
+        this.setID(ID);
         this.setQuestionarioId(questionario);
         this.setCompilatore(compilatore);
     }

@@ -15,7 +15,7 @@
 
  
 
-    <tiles:insertAttribute name="navBar"/>
+    <tiles:insertAttribute name="navBarNotLogged"/>
     
     <tiles:insertAttribute name="masthead"/>
 
