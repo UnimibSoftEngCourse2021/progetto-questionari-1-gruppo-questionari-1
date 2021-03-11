@@ -48,7 +48,7 @@ public class UtenteController {
         Questionario questionarioDaCompilare = gestoreQuestionario.getQuestionarioById(idQuestionario);
         System.out.println("dimensione : " + questionarioDaCompilare.getDomande().size());
         model.addAttribute("listaDomande", questionarioDaCompilare.getDomande());
-        return "containerDomande";
+        return "containerSearchResultSurvey";
     }
     
 
