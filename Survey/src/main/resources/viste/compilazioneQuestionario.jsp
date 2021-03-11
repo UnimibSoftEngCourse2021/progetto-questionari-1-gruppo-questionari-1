@@ -23,11 +23,32 @@
 	    
         <h1 class="display-4">Nome del questionario</h1>
            
-        <form action="compilaQuestionario" method="get">
+        <form action="compilaQuestionario" method="POST">
             <div class="domande p-2 bg-light">
-                
-                </div>
-             <input style="margin-left: 40%;" class="btn trigger " type="submit" value="Conferma" />
+                <c:forEach items="${questionario.domande}" var="domanda">
+                    <div class="domande p-2 bg-light">
+            
+                    <div style="max-width: 200px; max-height: 200px; margin: 10px;">
+                    <img style="max-width: 100%; max-height: 100%;" src="../img/bg-ocean.jpg" alt="">
+                    </div>
+                        <p>${domanda.testo}</p>
+                        <c:if test = "${domanda.domandaChiusa == true}">
+                            <div>
+                                <c:forEach items="${domanda.opzioni}" var="opzione">
+                                    <div>
+                                        <input type="radio" name = "${domanda.id}" value="${opzione.descrizioneOpzione}"/><label>${opzione.descrizioneOpzione}</label><br/>
+                                    </div>
+                                </c:forEach>
+                            </div>
+                        </c:if>
+                        <c:if test = "${domanda.domandaChiusa == false}">
+                            <textarea rows="4" cols="50" name = "${domanda.id}">Inserisci risposta qui ..</textarea>
+                        </c:if>
+                    </div>				
+                </c:forEach>
+            </div>
+            <input type="hidden" name = "id" value = "${idQuestionario}" />
+            <input style="margin-left: 40%;" class="btn trigger " type="submit" value="Conferma" />
         </form>
     </div>
    

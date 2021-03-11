@@ -8,8 +8,6 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import webapp.services.DomandaDataMapper;
-import webapp.services.OpzioneDataMapper;
-import webapp.services.UserDataMapper;
 
 @Service
 public class GestoreDomande {

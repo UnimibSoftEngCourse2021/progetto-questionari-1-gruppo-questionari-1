@@ -80,8 +80,11 @@ public class UtenteLoggedController{
 	}
 	
 	@GetMapping(value="/aggiungiDomanda")
-	public String gestAggiungiDomanda(@RequestParam("idDomanda") int idDomanda, HttpSession utente) {
-		aggiungiDomanda((Questionario) utente.getAttribute("questionario"), idDomanda);
+	public String gestAggiungiDomanda(@RequestParam("domandaScelta") int idDomanda, HttpSession utente, Model model) {
+		Questionario q = (Questionario) utente.getAttribute("questionario");
+		System.out.println(idDomanda);
+		aggiungiDomanda(q, idDomanda);
+		model.addAttribute("listaDomande", q.getDomande());
 		return "aggiungiDomande";
 	}
 	
@@ -101,11 +104,21 @@ public class UtenteLoggedController{
 		return "aggiungiDomande";
 	}
 	
+	@GetMapping(value="/cercaDomandaQuestionario")
+	public String gestCercaDomandaQuestionario(@RequestParam("categoria") String categoria, Model model)
+	{
+		System.out.println("cerca per:"+categoria);
+		List<Domanda> listaDomande = cercaDomanda(categoria);
+		model.addAttribute("listaDomande",listaDomande);
+		return "popUpViewQuestion";
+	}
+	
 	@GetMapping(value="/salvaQuestionario")
 	public String gestSalvaQuestionario(HttpSession utente) {
 		Questionario q = (Questionario) utente.getAttribute("questionario");
 		salvaQuestionario(q);
-		return "redirect:/surveyToCompile?id="+q.getID();
+		utente.setAttribute("questionario", null);
+		return "redirect:/ricercaQuestionario?categoria="+q.getID();
 	}
 	
 	@GetMapping(value="/cercaQuestionario")
@@ -142,6 +155,13 @@ public class UtenteLoggedController{
 	return "questionari";
 	}
 
+	//crea il pdf della compilazione con id fornito dal form
+	@GetMapping(value="/pdfCompilazione")
+	public String downloadCompilazioniPDF(@RequestParam("idCompilazione") String idCompilazione, Model model) {
+		Compilazione c = gestoreQuestionario.cercaCompilazione(idCompilazione);
+		model.addAttribute("compilazione", c);
+		return "";
+	}
 	//---------------------> fine creazione questionari
 	
 	//---------------------> Funzioni Controller
@@ -174,6 +194,12 @@ public class UtenteLoggedController{
 		System.out.println("Controller : cercando la domanda");
 		List<Domanda> listaDomandeCercate = gestoreDomande.getDomandaByCategoria(categoria);
 		return listaDomandeCercate;
+	} 
+	
+	private Domanda cercaDomandaById(int id) { // Cerca una lista di domande in base ad una categoria
+		System.out.println("Controller : cercando la domanda");
+		Domanda d = gestoreDomande.getDomandaByID(id);
+		return d;
 	} 
 
 	private void aggiungiDomanda(Questionario questionario, int idDomanda) { 

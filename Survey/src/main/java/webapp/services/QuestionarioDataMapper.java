@@ -8,7 +8,6 @@ import javax.persistence.Persistence;
 
 import webapp.model.Domanda;
 import webapp.model.Questionario;
-import webapp.model.UtenteRegistrato;
 
 public class QuestionarioDataMapper {
 	

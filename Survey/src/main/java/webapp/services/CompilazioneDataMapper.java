@@ -12,10 +12,13 @@ public class CompilazioneDataMapper {
     
     private EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("org.hibernate.survey.jpa");
 
-    public boolean insert(Compilazione compilazione){
+    public boolean insert(Compilazione compilazione, List<CompilazioneDomanda> listaRisposte){
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
 		entityManager.persist(compilazione);
+		for (CompilazioneDomanda lr : listaRisposte) {
+			entityManager.persist(lr);
+		}
 		entityManager.getTransaction().commit();
 		entityManager.close();
 		return true;

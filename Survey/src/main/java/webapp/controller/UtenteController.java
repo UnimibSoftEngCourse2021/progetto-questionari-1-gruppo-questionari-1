@@ -1,11 +1,17 @@
 package webapp.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import webapp.model.*;
@@ -32,14 +38,13 @@ public class UtenteController {
     }
 
     @GetMapping(value = "ricercaQuestionario")
-    public String getSurvey(Model model, @RequestParam("categoria") String idRicerca) {
+    public String getSurvey(Model model, @RequestParam("id") String idRicerca) {
         System.out.println("Show Survey by id" + idRicerca);
         int id = Integer.parseInt(idRicerca);
         Questionario questionario = gestoreQuestionario.getQuestionarioById(id);
         model.addAttribute("questionarioTrovato", questionario);
         model.addAttribute("idQuestionario", questionario.getID());
         System.out.println("nome : " + questionario.getNome());
-
         return "searchResult";
     }
 
@@ -47,8 +52,25 @@ public class UtenteController {
     public String getSurveyToCompile(Model model, @RequestParam("id") int idQuestionario) {
         Questionario questionarioDaCompilare = gestoreQuestionario.getQuestionarioById(idQuestionario);
         System.out.println("dimensione : " + questionarioDaCompilare.getDomande().size());
-        model.addAttribute("listaDomande", questionarioDaCompilare.getDomande());
-        return "containerDomande";
+        model.addAttribute("questionario", questionarioDaCompilare);
+        model.addAttribute("idQuestionario", questionarioDaCompilare.getID());
+        return "compilazioneQuestionario";
+    }
+
+    @PostMapping(value = "compilaQuestionario")
+    public String compilaQuestionario(HttpSession sessione, @RequestParam("id") int idQuestionarioCompilato, HttpServletRequest request) {
+        Questionario questionarioCompilato = gestoreQuestionario.getQuestionarioById(idQuestionarioCompilato);
+        List<String> listaRisposte = new ArrayList<>();
+        for (Domanda domanda : questionarioCompilato.getDomande()) {
+            String risposta = request.getParameter(domanda.getId()+"");
+            listaRisposte.add("{\"id\":\"" + domanda.getId() + "\",\"risposta\":\"" + risposta + "\"}");
+        }
+        System.out.println(listaRisposte + "and user : " + (String)sessione.getAttribute("email") + " and questionario : " + idQuestionarioCompilato);
+        if(sessione.getAttribute("email") == null)
+            return "errore";
+        
+        this.compilaQuestionario(idQuestionarioCompilato, listaRisposte, (String)sessione.getAttribute("email"));
+        return "redirect:/";
     }
     
 

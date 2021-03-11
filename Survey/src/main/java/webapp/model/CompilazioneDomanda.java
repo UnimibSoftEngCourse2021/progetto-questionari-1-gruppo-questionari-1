@@ -3,6 +3,8 @@ package webapp.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Id;
@@ -16,7 +18,8 @@ public class CompilazioneDomanda{
 
 
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     
     @ManyToOne
     @JoinColumn(name = "Domanda")
@@ -45,5 +48,9 @@ public class CompilazioneDomanda{
 
     public void setRisposta(String risposta) {
         this.risposta = risposta;
+    }
+    
+    public Domanda getDomanda() {
+    	return this.domandaId;
     }
 }

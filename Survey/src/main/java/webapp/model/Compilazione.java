@@ -5,19 +5,18 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name = "compilazioni")
 public class Compilazione {
 
     @Id
-    @GeneratedValue
     @Column(name = "ID")
     private String id;
     
@@ -36,7 +35,8 @@ public class Compilazione {
     	super();
     }
     
-    public Compilazione(Questionario questionario, UtenteRegistrato compilatore) {
+    public Compilazione(String ID, Questionario questionario, UtenteRegistrato compilatore) {
+        this.setID(ID);
         this.setQuestionarioId(questionario);
         this.setCompilatore(compilatore);
     }
