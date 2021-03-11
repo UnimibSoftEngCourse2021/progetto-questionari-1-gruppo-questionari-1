@@ -5,8 +5,6 @@ import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 import java.util.*;
 
-import com.mysql.cj.xdevapi.JsonParser;
-
 import webapp.services.*;
 
 @Service
