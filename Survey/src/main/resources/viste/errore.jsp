@@ -3,16 +3,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 
+<body style="background-color: lightcoral;">
+
+    <div style="margin: 0 auto;">
+      <h1 class="display-1">Error</h1>
+    </div>
+    
 
 
-<link rel="stylesheet" type="text/css" href="style/barButtons.css" >
-<a href="accedi">
-    
-        <p><b>Accedi</b></p>
-    
-</a>
-<a href="registrazioneUtente">
-    
-    <p><b>Registrati</b></p>
 
-</a>
+</body>

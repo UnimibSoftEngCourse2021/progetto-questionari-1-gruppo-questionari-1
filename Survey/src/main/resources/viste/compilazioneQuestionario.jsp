@@ -16,11 +16,21 @@
  
 
     <tiles:insertAttribute name="navBar"/>
+    <div class="containeritem d-grid mx-auto">
     
-    <tiles:insertAttribute name="masthead"/>
 
     
-    <tiles:insertAttribute name="containerSearchResultSurvey"/>
+	    
+        <h1 class="display-4">Nome del questionario</h1>
+           
+        <form action="compilaQuestionario" method="get">
+            <div class="domande p-2 bg-light">
+                
+                </div>
+             <input style="margin-left: 40%;" class="btn trigger " type="submit" value="Conferma" />
+        </form>
+    </div>
+   
   
 
 	  

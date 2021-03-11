@@ -15,7 +15,7 @@
 
  
 
-    <tiles:insertAttribute name="navBarNotLogged"/>
+    <tiles:insertAttribute name="navBar"/>
     <div style="margin-top: 12rem; margin-bottom: 12rem;">
         <tiles:insertAttribute name="masthead"/>
 
