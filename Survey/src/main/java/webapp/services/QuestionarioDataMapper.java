@@ -18,7 +18,7 @@ public class QuestionarioDataMapper {
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
 		entityManager.persist(questionario);
-		entityManager.flush();
+		entityManager.getTransaction().commit();
 		entityManager.close();
 		System.out.println("Aggiunto il questionario appena recuperato..");
 		

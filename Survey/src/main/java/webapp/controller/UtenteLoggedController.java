@@ -77,37 +77,34 @@ public class UtenteLoggedController{
 	{
 		System.out.println("crea Questionario vuoto");
 		Questionario q = creaQuestionario(nome, categoria, utente);
-		System.out.println(q.getID()+" "+q.getCategoria());
+		utente.setAttribute("questionario", q);
 		return "aggiungiDomande";
 	}
 	
 	@GetMapping(value="/aggiungiDomanda")
-	public String gestAggiungiDomanda(@ModelAttribute("questionario") Questionario questionario,
-									  @RequestParam("idDomanda") int idDomanda, Model model) {
-		aggiungiDomanda(questionario, idDomanda);
-		model.addAttribute("questionario", questionario);
+	public String gestAggiungiDomanda(@RequestParam("idDomanda") int idDomanda, HttpSession utente) {
+		aggiungiDomanda((Questionario) utente.getAttribute("questionario"), idDomanda);
 		return "aggiungiDomande";
 	}
 	
 	@GetMapping(value="/aggiungiDomandaNuova")
-	public String gestAggiungiDomanda(   Model model, HttpSession utente,
-										@ModelAttribute("questionarioId") String questionarioId,
+	public String gestAggiungiDomanda(  HttpSession utente,
 										@RequestParam("testo") String testo,
 										//@RequestParam(name="immagine") byte[] immagine,
 										@RequestParam("categoria") String categoria,
 										@RequestParam("opzioni") String listaOpzioni) {
 		System.out.println("nuova domanda da aggiungere:"+testo);
-		System.out.println(questionarioId+" ");
+		Questionario q = (Questionario) utente.getAttribute("questionario");
+		System.out.println(q.getID()+" ");
 		Domanda d = creaDomanda(testo, /*immagine,*/ categoria, listaOpzioni, utente);
-		//aggiungiDomanda(q, d.getId());
-		model.addAttribute("questionario",questionarioId);
+		aggiungiDomanda(q, d.getId());
 		return "aggiungiDomande";
 	}
 	
 	@GetMapping(value="/salvaQuestionario")
-	public String gestSalvaQuestionario(@ModelAttribute("questionario") Questionario questionario, Model model) {
-		registraQuestionarioConDomande(questionario);
-		return "/";
+	public String gestSalvaQuestionario(HttpSession utente) {
+		registraQuestionarioConDomande((Questionario) utente.getAttribute("questionario"));
+		return "searchResult";
 	}
 	
 	@GetMapping(value="/cercaQuestionario")
@@ -233,7 +230,6 @@ public class UtenteLoggedController{
 	private UtenteRegistrato getUtenteSession(HttpSession utente) {
 		return gestoreUtente.getUtenteByMail((String) utente.getAttribute("email"));
 	}
-
 
 	//-----------------------> Fine funzioni Controller
 
