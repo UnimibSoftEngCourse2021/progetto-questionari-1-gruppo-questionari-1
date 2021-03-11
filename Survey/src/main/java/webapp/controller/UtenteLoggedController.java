@@ -103,7 +103,7 @@ public class UtenteLoggedController{
 	
 	@GetMapping(value="/salvaQuestionario")
 	public String gestSalvaQuestionario(HttpSession utente) {
-		registraQuestionarioConDomande((Questionario) utente.getAttribute("questionario"));
+		salvaQuestionario((Questionario) utente.getAttribute("questionario"));
 		return "searchResult";
 	}
 	
@@ -226,7 +226,7 @@ public class UtenteLoggedController{
 		return gestoreQuestionario.rimuoviCompilazione(id);
 	}
 	
-	private void registraQuestionarioConDomande(Questionario questionario) {
+	private void salvaQuestionario(Questionario questionario) {
 		gestoreQuestionario.salvaQuestionario(questionario);
 	}
 	

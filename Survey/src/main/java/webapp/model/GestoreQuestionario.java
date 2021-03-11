@@ -17,8 +17,6 @@ public class GestoreQuestionario {
 
     public Questionario creaQuestionario(UtenteRegistrato creatore, String nome, String categoria){
     	Questionario newQuestionario = new Questionario(nome, categoria, creatore);
-        System.out.println("Aggiungendo al database il questionario appena generato..");
-        qdm.insert(newQuestionario);
         return newQuestionario;
     }
     
@@ -112,9 +110,7 @@ per creare vari oggetti di tipo CompilazioneDomanda. */
     }
 
 	public void salvaQuestionario(Questionario questionario) {
-		Iterator<Domanda> i = questionario.getDomande().iterator();
-		while(i.hasNext()) {
-			addDomanda(questionario.getID(), i.next());
-		}
+		System.out.println("Aggiungendo al database il questionario appena generato..");
+		qdm.insert(questionario);
 	}
 }
