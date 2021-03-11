@@ -32,7 +32,7 @@
 
              <a class="btn btn-light trigger pulsanti-edit" ><i class="fas fa-trash-alt"></i></a>
              <a class="btn btn-light trigger pulsanti-edit"><i class="fas fa-edit"></i></a>
-             <a class="btn btn-light trigger pulsanti-edit" ><i class="fas fa-chart-line"></i></a>
+             <a class="btn btn-light trigger pulsanti-edit" data-target="#stats" data-toggle="modal" ><i class="fas fa-chart-line"></i></a>
 
         </div>
 
@@ -44,6 +44,8 @@
            
              
     </div>
+
+    <tiles:insertAttribute name="popUpStats"/>
 
     
 
