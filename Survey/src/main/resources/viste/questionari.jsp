@@ -20,6 +20,7 @@
 
                  <a class="btn btn-light trigger pulsanti-edit" href="eliminaQuestionario/${quest.getID()}" ><i class="fas fa-trash-alt"></i></a>
                  <a class="btn btn-light trigger pulsanti-edit" data-target="#modQuest" data-toggle="modal"><i class="fas fa-edit"></i></a>
+                 <a class="btn btn-light trigger pulsanti-edit" href="visualizzaCompilazioni/${quest.getID()}" >PDF Compilazioni</a>
                  <a class="btn btn-light trigger pulsanti-edit" data-target="#stats" data-toggle="modal" ><i class="fas fa-chart-line"></i></a>
             </div>
         </c:forEach>          

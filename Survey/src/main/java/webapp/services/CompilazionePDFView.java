@@ -19,6 +19,7 @@ import com.lowagie.text.pdf.PdfWriter;
 
 import webapp.model.Compilazione;
 import webapp.model.CompilazioneDomanda;
+import webapp.model.Questionario;
 
 public class CompilazionePDFView extends AbstractPDFView {
 private String fileName;
@@ -43,56 +44,64 @@ private String fileName;
 	protected void buildPdfDocument(Map<String, Object> model, Document document, PdfWriter writer,
 			HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
-		Compilazione q = (Compilazione) model.get("compilazione");
-		final String Titolo = "Compilazione questionario, titolo: "+q.getQuestionarioId().getNome();
+		Questionario q = (Questionario) model.get("questionario");
+		final String Titolo = "Compilazioni questionario, titolo: "+q.getNome();
 		
 		
 		//Impostazione del nome del file
         response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
-           
-        Set<CompilazioneDomanda> risposte = (Set<CompilazioneDomanda>) q.getDomande();
-      
-        PdfPTable table = new PdfPTable(2);
-        table.setWidthPercentage(100.0f);
-        table.setSpacingBefore(10);
-      
- 
-        //impostazione  del colore e tipo di font
-        Font font = FontFactory.getFont(FontFactory.TIMES);
-        font.setColor(Color.WHITE);
- 
-        // impostazioni dell'intestazione
-        PdfPCell cell = new PdfPCell();
-        cell.setBackgroundColor(Color.BLUE);
-        cell.setPadding(5);
- 
-        // Intestazione del documento
-        cell.setPhrase(new Phrase("TestoDomanda", font));
-        table.addCell(cell);
         
-        /*
-        cell.setPhrase(new Phrase("Immagine", font));
-        table.addCell(cell);
-        */
- 
-        cell.setPhrase(new Phrase("Risposta", font));
-        table.addCell(cell);
-        
-        Iterator<CompilazioneDomanda> i = risposte.iterator();
-        while(i.hasNext())
+        Set<Compilazione> qCompilati = q.getCompilazioni();
+        Iterator a = qCompilati.iterator();
+        Compilazione c = new Compilazione();
+        Set<CompilazioneDomanda> risposte = null;
+        while(a.hasNext())
         {
-            CompilazioneDomanda risposta = i.next();
-        	table.addCell(risposta.getDomanda().getTesto());
-            //table.addCell(risposta.getDomanda().getImmagine().toString());
-            table.addCell(risposta.getRisposta());
+        	c = (Compilazione) a.next();
+        
+	        risposte = c.getDomande();
+	      
+	        PdfPTable table = new PdfPTable(2);
+	        table.setWidthPercentage(100.0f);
+	        table.setSpacingBefore(10);
+	      
+	 
+	        //impostazione  del colore e tipo di font
+	        Font font = FontFactory.getFont(FontFactory.TIMES);
+	        font.setColor(Color.WHITE);
+	 
+	        // impostazioni dell'intestazione
+	        PdfPCell cell = new PdfPCell();
+	        cell.setBackgroundColor(Color.BLUE);
+	        cell.setPadding(5);
+	 
+	        // Intestazione del documento
+	        cell.setPhrase(new Phrase("TestoDomanda", font));
+	        table.addCell(cell);
+	        
+	        /*
+	        cell.setPhrase(new Phrase("Immagine", font));
+	        table.addCell(cell);
+	        */
+	 
+	        cell.setPhrase(new Phrase("Risposta", font));
+	        table.addCell(cell);
+	        
+	        Iterator<CompilazioneDomanda> i = risposte.iterator();
+	        while(i.hasNext())
+	        {
+	            CompilazioneDomanda risposta = i.next();
+	        	table.addCell(risposta.getDomanda().getTesto());
+	            //table.addCell(risposta.getDomanda().getImmagine().toString());
+	            table.addCell(risposta.getRisposta());
+	        } 
+	 
+	        document.add(table);
+       
         } 
- 
         document.addTitle(Titolo);
         //document.setPageCount(0);
-     
-        document.add(table);
         document.addCreator("chiara");
-       
-    } 
+	}
 }
 

@@ -3,6 +3,7 @@ package webapp.controller;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -162,6 +163,7 @@ public class UtenteLoggedController{
 	return "questionari";
 	}
 
+	/*
 	//crea il pdf della compilazione con id fornito dal form
 
 	@GetMapping(value="/pdfCompilazione/{idCompilazione}")
@@ -172,10 +174,19 @@ public class UtenteLoggedController{
 		return "compilazione";
 	}
 
-
+	*/
+	
 	@GetMapping(value="/questionariCompilati")
 	public String questionariCompilati(Model model){
 		return "surveyCompilati";
+	}
+	
+	//visualizza le compilazioni dei questionari creati dall'utente
+	@GetMapping(value="/visualizzaCompilazioni/{idQuestionario}")
+	public String visualizzaCompilazioni(@PathVariable("idQuestionario") int idQuestionario, Model model) {
+		Questionario q = cercaQuestionarioByID(idQuestionario);
+		model.addAttribute("questionario", q);
+		return "compilazione";
 	}
 
 
@@ -256,8 +267,8 @@ public class UtenteLoggedController{
 		return true;
 	}
 
-	private void cercaQuestionarioByID(String ID) { // Questo metodo cerca all'interno del databse un questionario in base al sui ID
-		// TODO : ricerca Questionario in base all'id e all'utente
+	private Questionario cercaQuestionarioByID(int ID) { // Questo metodo cerca all'interno del databse un questionario in base al sui ID
+		return  gestoreQuestionario.getQuestionarioById(ID);
 	}
 
 	private List<Questionario> cercaQuestionarioByWord (String word) { // Questo metodo cerca all'interno del databse tutti i questionari con all'interno la parola word
@@ -267,8 +278,8 @@ public class UtenteLoggedController{
 		return questionariTrovati;
 	}
 
-	private List<Compilazione> visualizzaDatiSulleRisposte(int id) {
-		List<Compilazione> listaCompilazioni = new ArrayList<>(gestoreQuestionario.getQuestionarioById(id).getCompilazioni());
+	private Set<Compilazione> visualizzaDatiSulleRisposte(int id) {
+		Set<Compilazione> listaCompilazioni = gestoreQuestionario.cercaCompilazioni(id);
 		return listaCompilazioni;
 	}
 

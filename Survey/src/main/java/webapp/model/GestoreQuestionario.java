@@ -130,6 +130,10 @@ per creare vari oggetti di tipo CompilazioneDomanda. */
     public Compilazione cercaCompilazione(String id){
         return cdm.findByID(id);
     }
+    
+    public Set<Compilazione> cercaCompilazioni(int questId){
+        return getQuestionarioById(questId).getCompilazioni() ;
+    }
 
     public boolean modificaCompilaizone(String compilazioneId, List<String> risposte){
         Compilazione compVecchia = cdm.findByID(compilazioneId);
