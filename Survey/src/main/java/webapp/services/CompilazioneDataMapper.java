@@ -62,7 +62,7 @@ public class CompilazioneDataMapper {
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
 		System.out.println("Rimuovendo una compilazione");
-		entityManager.remove(c);
+		entityManager.remove(entityManager.contains(c) ? c : entityManager.merge(c));
 		entityManager.getTransaction().commit();
 		entityManager.close();
 		System.out.println("Eliminata la compilazione");

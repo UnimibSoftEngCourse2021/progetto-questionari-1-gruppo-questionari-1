@@ -12,8 +12,8 @@
         <h5>Modficia Questionario</h5>
 
        
-          <input type="text" name="nome" placeholder="Nome"/>
-          <input type="text" name="categoria" placeholder="Categoria"/>
+          <input type="text" name="nome" placeholder="Nome" required/>
+          <input type="text" name="categoria" placeholder="Categoria" required/>
           <input class="btn signup" type="submit" value="Modifica" />
        
         
