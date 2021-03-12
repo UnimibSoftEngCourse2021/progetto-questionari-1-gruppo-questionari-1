@@ -38,7 +38,7 @@ public class UtenteController {
     }
 
     @GetMapping(value = "ricercaQuestionario")
-    public String getSurvey(Model model, @RequestParam("categoria") String idRicerca) {
+    public String getSurvey(Model model, @RequestParam("id") String idRicerca) {
         System.out.println("Show Survey by id" + idRicerca);
         int id = Integer.parseInt(idRicerca);
         Questionario questionario = gestoreQuestionario.getQuestionarioById(id);
@@ -65,11 +65,11 @@ public class UtenteController {
             String risposta = request.getParameter(domanda.getId()+"");
             listaRisposte.add("{\"id\":\"" + domanda.getId() + "\",\"risposta\":\"" + risposta + "\"}");
         }
-        System.out.println(listaRisposte + "and user : " + (String)sessione.getAttribute("email") + " and questionario : " + idQuestionarioCompilato);
-        if(sessione.getAttribute("email") == null)
-            return "errore";
         
-        this.compilaQuestionario(idQuestionarioCompilato, listaRisposte, (String)sessione.getAttribute("email"));
+        if(sessione.getAttribute("email") == null)
+            this.compilaQuestionario(idQuestionarioCompilato, listaRisposte, "unknown");
+        else
+            this.compilaQuestionario(idQuestionarioCompilato, listaRisposte, (String)sessione.getAttribute("email"));
         return "redirect:/";
     }
     

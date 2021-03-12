@@ -10,7 +10,7 @@
         <p>${idQuestionario}</p>
         <p>${questionarioTrovato.nome}</p>
         <p>${questionarioTrovato.creatore.nome}</p>
-        <p>${questionarioTrovato.categoria}</p>
+        <p>${questionarioTrovato.getCategoria()}</p>
         <input type="hidden" name = "id" value = "${idQuestionario}" />
         <input type="submit" class="btn btn-light trigger" value="Compila">
     </form> 
