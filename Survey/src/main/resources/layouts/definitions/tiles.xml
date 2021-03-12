@@ -119,6 +119,7 @@
 		<put-attribute name="newQuestionButton" value="/viste/aggiungiDomandaButton.jsp" />
 		<put-attribute name="popUpNewQuestion" value="/viste/popUpNewQuestionQuestionario.jsp" />
 		<put-attribute name="popUpViewQuestion" value="/viste/popUpViewQuestion.jsp" />
+		<put-attribute name="popUpViewQuestion" value="/viste/popUpViewQuestion.jsp" />
 		
 	</definition>
 
