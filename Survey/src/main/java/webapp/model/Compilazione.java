@@ -32,7 +32,7 @@ public class Compilazione {
 
     @OneToMany(mappedBy = "compilazioneId", fetch = FetchType.EAGER, orphanRemoval = true)
     private Set<CompilazioneDomanda> domande = new HashSet<>();
-
+    
     public Compilazione() {
     	super();
     }

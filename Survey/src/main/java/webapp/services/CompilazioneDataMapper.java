@@ -29,15 +29,14 @@ public class CompilazioneDataMapper {
 		return true;
 	}
 
-    public Compilazione findByID(String Id) {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
+    public Compilazione findByID(String id) {
+    	EntityManager entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
-		System.out.println("Sto cercando la domanda");
-		Compilazione questionario = entityManager.find(Compilazione.class,Id);
-		System.out.println("Ho trovato la domanda");
+		Compilazione compilazione = entityManager.find(Compilazione.class, id);
 		entityManager.getTransaction().commit();
 		entityManager.close();
-		return questionario;
+		System.out.println(compilazione);
+		return compilazione;
     }
     
     public List<Compilazione> findByCompilatore(UtenteRegistrato compilatore){
@@ -58,12 +57,12 @@ public class CompilazioneDataMapper {
 		    }
     }
 
-    public boolean remove(String Id) {
-        Compilazione toDeleteCompilazione = this.findByID(Id);
+    public boolean remove(Compilazione c) {
+        
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
 		System.out.println("Rimuovendo una compilazione");
-		entityManager.remove(toDeleteCompilazione);
+		entityManager.remove(c);
 		entityManager.getTransaction().commit();
 		entityManager.close();
 		System.out.println("Eliminata la compilazione");

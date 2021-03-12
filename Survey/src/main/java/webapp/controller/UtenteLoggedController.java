@@ -164,15 +164,14 @@ public class UtenteLoggedController{
 	@GetMapping(value="/questionariCompilati")
 	public String questionariCompilati(Model model, HttpSession utente){
 		List<Compilazione> listaCompilazioni = visualizzaQuestionariCompilati(utente);
-		
-		/*List<Questionario> listaQuestionari = new ArrayList<Questionario>();
-		for(Compilazione c : listaCompilazioni) {
-			listaQuestionari.add(c.getQuestionarioId());
-			System.out.println(c.getQuestionarioId());
-		}
-		*/
 		model.addAttribute("listaCompilazioni",listaCompilazioni);
 		return "surveyCompilati";
+	}
+	
+	@GetMapping(value="/elimina")
+	public String eliminaCompilazione(@RequestParam("id") String idCompilazione) {
+		eliminaQuestionarioCompilato(idCompilazione);
+		return "redirect:/questionariCompilati";
 	}
 	
 	//visualizza le compilazioni dei questionari creati dall'utente
@@ -291,7 +290,8 @@ public class UtenteLoggedController{
 
 	private boolean eliminaQuestionarioCompilato(String id) {
 		System.out.println("eliminando una compilazione di un questionario");
-		return gestoreQuestionario.rimuoviCompilazione(id);
+		Compilazione c = gestoreQuestionario.cercaCompilazione(id);
+		return gestoreQuestionario.rimuoviCompilazione(c);
 	}
 	
 	private void salvaQuestionario(Questionario questionario) {

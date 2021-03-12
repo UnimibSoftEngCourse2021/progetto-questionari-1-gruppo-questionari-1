@@ -19,7 +19,7 @@
              <p>Title: ${comp.getQuestionarioId().nome}</p>
              <p>Author: ${comp.getQuestionarioId().creatore.mail}</p>  
              <p>Categories: ${comp.getQuestionarioId().categoria}</p> 
-             <a class="btn btn-light trigger pulsanti-edit" href="" ><i class="fas fa-trash-alt"></i></a>
+             <a class="btn btn-light trigger pulsanti-edit" href="elimina?id=${comp.getID()}" ><i class="fas fa-trash-alt"></i></a>
              <a class="btn btn-light trigger pulsanti-edit" data-target="#modQuest" data-toggle="modal"><i class="fas fa-edit"></i></a>
         </div>
     </c:forEach>    

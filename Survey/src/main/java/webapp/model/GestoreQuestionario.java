@@ -115,8 +115,8 @@ per creare vari oggetti di tipo CompilazioneDomanda. */
         return Math.floor(Math.random() * Math.floor(100000)) + "";
     }
 
-    public boolean rimuoviCompilazione(String idCompilazione) {
-        return cdm.remove(idCompilazione);
+    public boolean rimuoviCompilazione(Compilazione c) {
+        return cdm.remove(c);
     }
 
     public Compilazione cercaCompilazione(String id){
@@ -135,7 +135,7 @@ per creare vari oggetti di tipo CompilazioneDomanda. */
         Compilazione compVecchia = cdm.findByID(compilazioneId);
         Compilazione compModificata = creaCompilazione(compVecchia.getCompilatore(), compVecchia.getQuestionarioId().getID());
         List<CompilazioneDomanda> listaRisposteModificate = creaRisposteCompilazione(compModificata, risposte);
-        cdm.remove(compilazioneId);
+        cdm.remove(compVecchia);
         cdm.insert(compModificata, listaRisposteModificate);
         return true;
     }
