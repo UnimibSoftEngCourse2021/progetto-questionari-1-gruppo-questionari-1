@@ -107,4 +107,17 @@ public class QuestionarioDataMapper {
 		return questionari;
 	}
 
+	public void modificaQuestionario(int id, String nome, String categoria){
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		entityManager.getTransaction().begin();
+		System.out.println("modificando il questionario " + id + " con nome " + nome + "e categoria " + categoria);
+		int ris = entityManager.createQuery("UPDATE questionari SET Nome = :nome, Categoria = :categoria WHERE id = :id").setParameter("nome", nome)
+																											   .setParameter("categoria", categoria)
+																											   .setParameter("id", id).executeUpdate();
+		entityManager.getTransaction().commit();
+		entityManager.close();
+		if(ris != 0)
+			System.out.println(ris + " file aggiornati");
+	}
+
 }

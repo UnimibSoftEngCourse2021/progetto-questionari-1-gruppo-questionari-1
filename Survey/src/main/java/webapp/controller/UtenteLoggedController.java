@@ -163,11 +163,12 @@ public class UtenteLoggedController{
 		return "redirect:/questionari";
 	}
 
-	@GetMapping(value="/modificaQuestionario")
-	public String modQuestionario(@RequestParam int id, @RequestParam("nome") String nome, @RequestParam("categoria") String categoria,Model model, HttpSession utente){
-	boolean check = modificaQuestionario(id, nome,categoria, utente);
-	System.out.println("Modificato il questionario: "+ check);
-	return "redirect:/questionari";
+	@GetMapping(value="/modificaQuestionario/{id}")
+	public String modQuestionario(@PathVariable int id, @RequestParam("nome") String nome, @RequestParam("categoria") String categoria,Model model, HttpSession utente){
+		System.out.println("sto per modificare il questionario " + id);
+		boolean check = modificaQuestionario(id, nome, categoria, utente);
+		System.out.println("Modificato il questionario: "+ check);
+		return "redirect:/questionari";
 	}
 	
 	@GetMapping(value="/questionariCompilati")
@@ -272,6 +273,7 @@ public class UtenteLoggedController{
 		gestoreQuestionario.modificaQuestionario(id, nome ,categoria, u);
 		return true;
 	}
+
 
 	private Questionario cercaQuestionarioByID(int ID) { // Questo metodo cerca all'interno del databse un questionario in base al sui ID
 		return  gestoreQuestionario.getQuestionarioById(ID);

@@ -55,10 +55,7 @@ public class GestoreQuestionario {
     }
 
     public boolean modificaQuestionario(int id, String nome,  String categoria, UtenteRegistrato creatore){
-        Questionario questionarioModificato = new Questionario(nome, categoria, creatore);
-        questionarioModificato.setID(id);
-        qdm.remove(id);
-        qdm.insert(questionarioModificato);
+        qdm.modificaQuestionario(id, nome, categoria);
         return true;
     }
 
