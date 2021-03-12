@@ -21,6 +21,7 @@
                  <a class="btn btn-light trigger pulsanti-edit" href="eliminaQuestionario/${quest.getID()}" ><i class="fas fa-trash-alt"></i></a>
                  <a class="btn btn-light trigger pulsanti-edit" data-target="#modQuest" data-toggle="modal" ><i class="fas fa-edit"></i></a>
                  <a class="btn btn-light trigger pulsanti-edit" href="visualizzaCompilazioni/${quest.getID()}" ><i class="fas fa-file-pdf"></i></a>
+                 <a class="btn btn-light trigger pulsanti-edit" href="visualizzaCompilazioniUtenti/${quest.getID()}" ><i class="bi bi-clipboard-check"></i></a>
             </div>
             <form action="/modificaQuestionario/${quest.getID()}">
                 <tiles:insertAttribute name="popUpModificaQuestionario"/>

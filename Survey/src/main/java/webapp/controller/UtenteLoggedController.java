@@ -192,6 +192,15 @@ public class UtenteLoggedController{
 		return "compilazione";
 	}
 
+	@GetMapping(value = "visualizzaCompilazioniUtenti/{id}")
+	public String getCompilazioniUtentiByQuestionario(@PathVariable("id") int idQuestionario, Model model) {
+		Questionario questionario = gestoreQuestionario.getQuestionarioById(idQuestionario);
+		List<Compilazione> listaCompilazioni = new ArrayList<>(questionario.getCompilazioni());
+		model.addAttribute("compilazioni", listaCompilazioni);
+
+		return "";
+	}
+
 
 	//---------------------> fine creazione questionari
 	

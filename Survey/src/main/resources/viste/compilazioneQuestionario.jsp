@@ -37,8 +37,9 @@
             <input type="hidden" name = "id" value = "${idQuestionario}" />
             <input style="margin-left: 40%;" class="btn trigger " type="submit" onClick={sendMail(questionario.creatore.email)} value="Conferma" />
         </form>
-
+		
     </div>
+   
     <tiles:insertAttribute name="scripts"/>
 </body>
 </html>
