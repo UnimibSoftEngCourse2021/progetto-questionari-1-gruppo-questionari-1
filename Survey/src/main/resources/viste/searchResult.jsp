@@ -8,6 +8,8 @@
 
 <tiles:insertAttribute name="head" />
 <body>
+    <tiles:insertAttribute name="navBar"/>
+
     <tiles:insertAttribute name="masthead"/>
 
     <tiles:insertAttribute name="containerSearchResultSurvey"/>
