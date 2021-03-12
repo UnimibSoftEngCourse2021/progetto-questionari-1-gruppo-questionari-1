@@ -3,6 +3,7 @@ package webapp.controller;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -10,15 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import org.springframework.web.bind.annotation.RequestParam;
 
 import webapp.model.*;
 
-
-//public static final String questionario = "questionari";
 
 @Controller
 public class UtenteLoggedController{
@@ -36,7 +34,7 @@ public class UtenteLoggedController{
 	//---------------------> inizio creazione e ricerca domande
 	
 	@GetMapping(value = "/gestisciDomande")
-	public String VisualizzaCreaDomanda(Model model){
+	public String visualizzaCreaDomanda(Model model){
 		model.addAttribute("testo", " ");
 		return "questions";
 	}
@@ -49,7 +47,7 @@ public class UtenteLoggedController{
 	{
 		System.out.println("nuova domanda:"+testo);
 		Domanda d = creaDomanda(testo, /*immagine,*/ categoria, listaOpzioni, utente);
-		List<Domanda> listaDomande = new ArrayList<Domanda>();
+		List<Domanda> listaDomande = new ArrayList<>();
 		listaDomande.add(d);
 		model.addAttribute("listaDomande", listaDomande);
 		return "questions";
@@ -302,7 +300,6 @@ public class UtenteLoggedController{
 	private UtenteRegistrato getUtenteSession(HttpSession utente) {
 		return gestoreUtente.getUtenteByMail((String) utente.getAttribute("email"));
 	}
-
 	//-----------------------> Fine funzioni Controller
 
 
