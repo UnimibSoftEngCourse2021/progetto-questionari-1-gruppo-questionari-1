@@ -112,7 +112,7 @@
 
 	</definition>
 	
-	<definition name="containerDomandeQuestionario" template = "/viste/containerDomande.jsp" >
+	<definition name="containerDomandeQuestionario" template = "/viste/containerDomandeSurvey.jsp" >
 		
 		<put-attribute name="searchQuestion" value="/viste/searchQuestionSurvey.jsp" />
 		<put-attribute name="noElement" value="/viste/noElement.jsp" />
