@@ -10,7 +10,7 @@
 <body>
     <tiles:insertAttribute name="navBar"/>
     <div class="containeritem d-grid mx-auto">
-        <h1 class="display-4">Nome del questionario</h1>
+        <h1 class="display-4">${questionario.nome}</h1>
         <form action="compilaQuestionario" method="POST">
             <div class="domande p-2 bg-light">
                 <c:forEach items="${questionario.domande}" var="domanda">
