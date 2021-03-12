@@ -36,18 +36,25 @@ public class UtenteController {
         System.out.println("Show Home Page");
         return "index";
     }
-
+    /*
     @GetMapping(value = "ricercaQuestionario")
-    public String getSurvey(Model model, @RequestParam("id") String idRicerca) {
-        System.out.println("Show Survey by id" + idRicerca);
-        int id = Integer.parseInt(idRicerca);
+    public String getSurvey(Model model, @RequestParam("id") int id) {
+        System.out.println("Show Survey by id" + id);
         Questionario questionario = gestoreQuestionario.getQuestionarioById(id);
         model.addAttribute("questionarioTrovato", questionario);
         model.addAttribute("idQuestionario", questionario.getID());
         System.out.println("nome : " + questionario.getNome());
         return "searchResult";
     }
-
+    */
+    @GetMapping(value = "ricercaQuestionario")
+    public String getSurvey(Model model, @RequestParam("id") String categoria) {
+        System.out.println("Show Survey by id" + categoria);
+        List<Questionario> listaQuestionari = gestoreQuestionario.getQuestionarioByCategory(categoria);
+        model.addAttribute("listaQuestionari", listaQuestionari);
+        return "searchResult";
+    }
+    
     @GetMapping(value = "surveyToCompile")
     public String getSurveyToCompile(Model model, @RequestParam("id") int idQuestionario) {
         Questionario questionarioDaCompilare = gestoreQuestionario.getQuestionarioById(idQuestionario);

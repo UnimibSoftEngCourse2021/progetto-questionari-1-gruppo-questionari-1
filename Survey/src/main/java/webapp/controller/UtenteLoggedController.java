@@ -123,7 +123,7 @@ public class UtenteLoggedController{
 		Questionario q = (Questionario) utente.getAttribute("questionario");
 		salvaQuestionario(q);
 		utente.setAttribute("questionario", null);
-		return "redirect:/ricercaQuestionario?categoria="+q.getID();
+		return "redirect:/ricercaQuestionario?id="+q.getCategoria();
 	}
 	
 	@GetMapping(value="/cercaQuestionario")
