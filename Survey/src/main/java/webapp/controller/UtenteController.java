@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import webapp.model.*;
+import webapp.services.emailSender;
 
 
 
@@ -75,12 +76,17 @@ public class UtenteController {
 
     @PostMapping(value = "compilaQuestionario")
     public String compilaQuestionario(HttpSession sessione, @RequestParam("id") int idQuestionarioCompilato, HttpServletRequest request, Model model) {
-        Questionario questionarioCompilato = gestoreQuestionario.getQuestionarioById(idQuestionarioCompilato);
+    	Questionario questionarioCompilato = gestoreQuestionario.getQuestionarioById(idQuestionarioCompilato);
         List<String> listaRisposte = new ArrayList<>();
         for (Domanda domanda : questionarioCompilato.getDomande()) {
             String risposta = request.getParameter(domanda.getId()+"");
             listaRisposte.add("{\"id\":\"" + domanda.getId() + "\",\"risposta\":\"" + risposta + "\"}");
         }
+        //send email
+        System.out.println(questionarioCompilato.getCreatore().getMail());
+        emailSender sender = new emailSender();
+        sender.sendEmail(questionarioCompilato.getCreatore().getMail());
+        //visualizza codice compilazione
         Compilazione c;
         if(sessione.getAttribute("email") == null)
             c = this.compilaQuestionario(idQuestionarioCompilato, listaRisposte, "unknown");
