@@ -82,10 +82,6 @@ public class UtenteController {
             String risposta = request.getParameter(domanda.getId()+"");
             listaRisposte.add("{\"id\":\"" + domanda.getId() + "\",\"risposta\":\"" + risposta + "\"}");
         }
-        //send email
-        System.out.println(questionarioCompilato.getCreatore().getMail());
-        emailSender sender = new emailSender();
-        sender.sendEmail(questionarioCompilato.getCreatore().getMail());
         //visualizza codice compilazione
         Compilazione c;
         if(sessione.getAttribute("email") == null)
@@ -93,6 +89,10 @@ public class UtenteController {
         else
         	c = this.compilaQuestionario(idQuestionarioCompilato, listaRisposte, (String)sessione.getAttribute("email"));
         model.addAttribute("idCompilazione", c.getID());
+        //send email
+        System.out.println(questionarioCompilato.getCreatore().getMail());
+        emailSender sender = new emailSender();
+        sender.sendEmail(questionarioCompilato.getCreatore().getMail(), questionarioCompilato.getNome(), c.getID());
         return "codiceCompilazione";
     }
     

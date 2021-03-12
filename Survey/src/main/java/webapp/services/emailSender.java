@@ -27,7 +27,7 @@ public class emailSender{
    
 
 
-    public void sendEmail(String to){
+    public void sendEmail(String to, String titolo, String codiceCompilazione){
    // Get the default Session object.
    Properties properties = System.getProperties();
     // Setup mail server
@@ -53,7 +53,7 @@ public class emailSender{
       message.setSubject("Your survey has been completed by one person!");
       
       // Now set the actual message
-      message.setText("This is actual message");
+      message.setText("il tuo questionario' "+titolo+" ' è stato compilato da una persona! il codice della compilazione è: "+codiceCompilazione);
       
       // Send message
       Transport.send(message,mittente,password);
