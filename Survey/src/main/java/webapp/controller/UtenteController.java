@@ -36,18 +36,34 @@ public class UtenteController {
         System.out.println("Show Home Page");
         return "index";
     }
-
+    /*
     @GetMapping(value = "ricercaQuestionario")
-    public String getSurvey(Model model, @RequestParam("categoria") String idRicerca) {
-        System.out.println("Show Survey by id" + idRicerca);
-        int id = Integer.parseInt(idRicerca);
+    public String getSurvey(Model model, @RequestParam("id") int id) {
+        System.out.println("Show Survey by id" + id);
         Questionario questionario = gestoreQuestionario.getQuestionarioById(id);
         model.addAttribute("questionarioTrovato", questionario);
         model.addAttribute("idQuestionario", questionario.getID());
         System.out.println("nome : " + questionario.getNome());
         return "searchResult";
     }
-
+    */
+    @GetMapping(value = "ricercaQuestionario")
+    public String getSurvey(Model model, @RequestParam("id") String id) {
+        boolean isIdANum = true;
+        System.out.println("Show Survey by id or category : " + id);
+        Questionario questionario = null;
+        try{
+            questionario = gestoreQuestionario.getQuestionarioById(Integer.parseInt(id));
+        }catch(NumberFormatException e){
+            isIdANum = false;
+        }
+        List<Questionario> listaQuestionari = gestoreQuestionario.getQuestionarioByCategory(id);
+        if(isIdANum)
+            listaQuestionari.add(questionario);
+        model.addAttribute("listaQuestionari", listaQuestionari);
+        return "searchResult";
+    }
+    
     @GetMapping(value = "surveyToCompile")
     public String getSurveyToCompile(Model model, @RequestParam("id") int idQuestionario) {
         Questionario questionarioDaCompilare = gestoreQuestionario.getQuestionarioById(idQuestionario);
@@ -65,11 +81,11 @@ public class UtenteController {
             String risposta = request.getParameter(domanda.getId()+"");
             listaRisposte.add("{\"id\":\"" + domanda.getId() + "\",\"risposta\":\"" + risposta + "\"}");
         }
-        System.out.println(listaRisposte + "and user : " + (String)sessione.getAttribute("email") + " and questionario : " + idQuestionarioCompilato);
-        if(sessione.getAttribute("email") == null)
-            return "errore";
         
-        this.compilaQuestionario(idQuestionarioCompilato, listaRisposte, (String)sessione.getAttribute("email"));
+        if(sessione.getAttribute("email") == null)
+            this.compilaQuestionario(idQuestionarioCompilato, listaRisposte, "unknown");
+        else
+            this.compilaQuestionario(idQuestionarioCompilato, listaRisposte, (String)sessione.getAttribute("email"));
         return "redirect:/";
     }
     

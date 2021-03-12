@@ -49,6 +49,17 @@ public class QuestionarioDataMapper {
 		entityManager.close();
 		return questionario;
 	}
+	
+	public List<Questionario> findByCategory(String categoria) {
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		entityManager.getTransaction().begin();
+		System.out.println("Sto cercando il questionario");
+		List<Questionario> questionario = entityManager.createQuery("from questionari where Categoria = :categoria", Questionario.class).setParameter("categoria", categoria).getResultList();
+		System.out.println("Ho trovato il questionario");
+		entityManager.getTransaction().commit();
+		entityManager.close();
+		return questionario;
+	}
 
 	public boolean remove(int id){
 		System.out.println("Recuperando il Questionario dal database..");

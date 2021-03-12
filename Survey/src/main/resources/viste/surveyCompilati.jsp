@@ -13,12 +13,12 @@
 
     <h4 class="display-4">Your Compiled Surveys</h4>
 
-	<c:forEach items="" var="quest">
+	<c:forEach items="${listaCompilazioni}" var="comp">
         <div class="domande p-2 bg-light">
-             <p>id: ${quest.getID()}</p>
-             <p>Title: ${quest.nome}</p>
-             <p>Author: ${quest.creatore.mail}</p>  
-             <p>Categories: ${quest.categoria}</p> 
+        	 <p>id: ${comp.getQuestionarioId().getID()}</p>
+             <p>Title: ${comp.getQuestionarioId().nome}</p>
+             <p>Author: ${comp.getQuestionarioId().creatore.mail}</p>  
+             <p>Categories: ${comp.getQuestionarioId().categoria}</p> 
              <a class="btn btn-light trigger pulsanti-edit" href="" ><i class="fas fa-trash-alt"></i></a>
              <a class="btn btn-light trigger pulsanti-edit" data-target="#modQuest" data-toggle="modal"><i class="fas fa-edit"></i></a>
         </div>

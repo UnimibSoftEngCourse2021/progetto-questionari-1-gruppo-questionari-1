@@ -22,8 +22,8 @@ public class Compilazione {
     @Column(name = "ID")
     private String id;
     
-    @ManyToOne
-    @JoinColumn(name = "Questionario_ID")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "Questionario_ID" )
     private Questionario questionarioId;
 
     @ManyToOne

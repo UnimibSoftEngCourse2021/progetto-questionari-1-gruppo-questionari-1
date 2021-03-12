@@ -178,6 +178,7 @@
 
 		<put-attribute name="head" value="/viste/head.jsp" />
 		<put-attribute name="navBar" value="navBar" /> 
+		<put-attribute name="popUpModificaQuestionario" value="/viste/popUpModificaQuestionario.jsp" />
 		<put-attribute name="popUpStats" value="/viste/popUpStats.jsp" />
 		<put-attribute name="scripts" value="/viste/scripts.jsp" />
 
@@ -192,6 +193,7 @@
 	</definition>
 	
 	<definition name="compilazione" template = "/viste/compilazione.jsp">
+		
 		
 	</definition>
 

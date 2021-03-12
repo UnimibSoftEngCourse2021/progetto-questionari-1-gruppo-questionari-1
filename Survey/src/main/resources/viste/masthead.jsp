@@ -10,7 +10,7 @@
     <div class="container">
       <div class="row">
       <div class="col-xl-9 mx-auto">
-        <h1 class="mb-5">Cerca un questionario in base a una parola chiave o un codice</h1>
+        <h1 class="mb-5">Cerca un questionario in base al suo codice identificativo o categoria</h1>
       </div>
       <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
 

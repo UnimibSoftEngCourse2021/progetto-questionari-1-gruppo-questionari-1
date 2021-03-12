@@ -11,6 +11,7 @@ Tecnologie adottate :
 - Hibernate 
 - JPA
 - Tomcat 7
+- Apache Tiles
 
 Software utilizzato :
 

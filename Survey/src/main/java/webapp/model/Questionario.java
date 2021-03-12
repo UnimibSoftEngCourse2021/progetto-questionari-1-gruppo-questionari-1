@@ -37,7 +37,7 @@ public class Questionario {
     @JoinColumn(name = "Creatore")
     private UtenteRegistrato creatore;
 
-    @OneToMany(mappedBy="questionarioId", orphanRemoval = true)
+    @OneToMany(mappedBy="questionarioId", orphanRemoval = true, fetch=FetchType.EAGER)
     private Set<Compilazione> compilazioni = new HashSet<>();
 
 

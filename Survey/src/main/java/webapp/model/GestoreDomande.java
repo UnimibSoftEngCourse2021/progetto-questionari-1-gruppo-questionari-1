@@ -37,12 +37,8 @@ public class GestoreDomande {
 		return domandaDataMapper.remove(id);
 	}
 
-	public List<Domanda> getDomandaByCategoria(String categoria) {
-		return domandaDataMapper.findByCategory(categoria);
-	}
-	
-	public List<Domanda> getDomandaByWord(String word) {
-		return domandaDataMapper.findByCategory(word);
+	public List<Domanda> getDomandaByCategoria(String categoria, UtenteRegistrato creatore) {
+		return domandaDataMapper.findByCategory(categoria, creatore);
 	}
 	
 	public Domanda getDomandaByID(int id) {

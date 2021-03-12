@@ -4,7 +4,12 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import webapp.model.*;
 
@@ -33,6 +38,24 @@ public class CompilazioneDataMapper {
 		entityManager.getTransaction().commit();
 		entityManager.close();
 		return questionario;
+    }
+    
+    public List<Compilazione> findByCompilatore(UtenteRegistrato compilatore){
+    	EntityManager entityManager = entityManagerFactory.createEntityManager();
+		entityManager.getTransaction().begin();
+		System.out.println("Sto cercando le domande");
+		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+		CriteriaQuery<Compilazione> criteria = builder.createQuery(Compilazione.class);
+		Root<Compilazione> from = criteria.from(Compilazione.class);
+		criteria.select(from);
+		criteria.where(builder.equal(from.get("compilatore"), compilatore));
+		TypedQuery<Compilazione> typed = entityManager.createQuery(criteria);
+		    try {
+		        	List<Compilazione> listaCompilazioni = typed.getResultList();
+		        	return listaCompilazioni;
+		    } catch (final NoResultException nre) {
+		        return null;
+		    }
     }
 
     public boolean remove(String Id) {

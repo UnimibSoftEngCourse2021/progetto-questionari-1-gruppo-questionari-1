@@ -9,5 +9,8 @@
 </head>
 <body>
 	<p>per scaricare pdf </p>
+	<a href="${questionario.ID}.pdf">scarica pdf</a>
+	
+	<a href="/Survey/questionari">torna ai questionari</a>
 </body>
 </html> 
