@@ -11,6 +11,8 @@
 <body>
     <tiles:insertAttribute name="navBar"/>
 
+    <tiles:insertAttribute name ="saveButton"/>
+
     <tiles:insertAttribute name="containerDomande"/>
 
   	<tiles:insertAttribute name ="saveButton"/>
