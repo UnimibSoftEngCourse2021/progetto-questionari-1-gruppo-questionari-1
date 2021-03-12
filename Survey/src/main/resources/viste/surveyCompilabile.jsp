@@ -4,11 +4,7 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 
 
-
-
-
 <div class="domande p-2 bg-light">
-    
     
     <form action = "surveyToCompile", method= "GET">
         <p>${idQuestionario}</p>

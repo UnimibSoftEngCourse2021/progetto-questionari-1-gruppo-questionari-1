@@ -171,6 +171,14 @@ public class UtenteLoggedController{
 		model.addAttribute("compilazione", c);
 		return "compilazione";
 	}
+
+
+	@GetMapping(value="/questionariCompilati")
+	public String questionariCompilati(Model model){
+		return "surveyCompilati";
+	}
+
+
 	//---------------------> fine creazione questionari
 	
 	//---------------------> Funzioni Controller

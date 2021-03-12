@@ -6,33 +6,12 @@
 <!DOCTYPE html>
 <html lang="en" style="height: 100%;">
 
-  
-    <tiles:insertAttribute name="head" />
-  
-  
-
+<tiles:insertAttribute name="head" />
 <body>
-
- 
-
-    
-    
     <tiles:insertAttribute name="masthead"/>
 
-    
     <tiles:insertAttribute name="containerSearchResultSurvey"/>
-  
 
-	  
-
-
-  
     <tiles:insertAttribute name="scripts"/>
-  
-  
- 
-
-  
 </body>
-
 </html>

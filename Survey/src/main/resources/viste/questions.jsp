@@ -6,25 +6,13 @@
 <!DOCTYPE html>
 <html lang="en" style="height: 100%;">
 
-  <tiles:insertAttribute name="head"/>
-
+<tiles:insertAttribute name="head"/>
 <body>
-
- 
-
     <tiles:insertAttribute name="navBar"/>
+    
     <tiles:insertAttribute name="containerDomande"/>
-  
 
-	  
-
-
-  
     <tiles:insertAttribute name="scripts"/>
-  
-  
- 
-
   
 </body>
 

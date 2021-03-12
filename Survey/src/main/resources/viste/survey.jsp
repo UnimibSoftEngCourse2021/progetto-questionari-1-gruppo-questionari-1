@@ -14,6 +14,7 @@
 	          <input type="text" name="categoria" class="form-control" placeholder="category1"/>
 		 <input style="margin-left: 40%;" class="btn trigger " type="submit" value="Conferma" />
 	</form>
+	
 </div>
 
 

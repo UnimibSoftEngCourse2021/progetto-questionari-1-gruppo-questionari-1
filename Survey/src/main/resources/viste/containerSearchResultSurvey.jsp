@@ -4,20 +4,9 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 
 
-
-
-
-
 <div class="containeritem d-grid mx-auto">
-    
     <h1 class="display-4">Surveys</h1>
-
-    
     <tiles:insertAttribute name="surveyCompilabile"/>
-
-    
-
-
 </div>
 
 

@@ -4,7 +4,6 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 
 
-
 <head>
 
     <meta charset="utf-8">
@@ -29,4 +28,4 @@
     <link href="style/accedipoup.css" rel="stylesheet" type="text/css">
     <link href="style/question-search.css" rel="stylesheet">
   
-  </head>
+</head>

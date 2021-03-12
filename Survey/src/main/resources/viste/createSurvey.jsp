@@ -5,26 +5,13 @@
 
 <!DOCTYPE html>
 <html lang="en" style="height: 100%;">
-
-  
-    <tiles:insertAttribute name="head" />
-  
-  
-
+<tiles:insertAttribute name="head" />
 <body>
-
-
- 
-
     <tiles:insertAttribute name="navBar"/>
+
     <tiles:insertAttribute name="survey"/>
-    
+
     <tiles:insertAttribute name="scripts"/>
-  
-  
- 
 
-  
 </body>
-
 </html>
