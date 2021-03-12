@@ -122,6 +122,12 @@ public class UtenteLoggedController{
 	{
 		System.out.println("cerca per:"+categoria);
 		List<Domanda> listaDomande = cercaDomanda(categoria, utente);
+		if(listaDomande.isEmpty()) {
+			System.out.println("nessuna domanda della categoria cercata");
+			Questionario q = (Questionario) utente.getAttribute("questionario");
+			model.addAttribute("listaDomande",q.getDomande());
+			return "aggiungiDomande";
+		}
 		model.addAttribute("listaDomande",listaDomande);
 		return "popUpViewQuestion";
 	}
