@@ -166,6 +166,14 @@
 		<put-attribute name="scripts" value="/viste/scripts.jsp" />
 
 	</definition>
+	
+	<definition name="codiceCompilazione" template = "/viste/codiceCompilazione.jsp" >
+	
+		<put-attribute name="head" value="/viste/head.jsp" /> 
+		<put-attribute name="navBar" value="navBar" /> 
+		<put-attribute name="scripts" value="/viste/scripts.jsp" />
+
+	</definition>
 
 <!--end compilazione questionario layout-->
 	<definition name="errore" template = "/viste/errore.jsp" >

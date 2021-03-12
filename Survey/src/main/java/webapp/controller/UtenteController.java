@@ -74,19 +74,20 @@ public class UtenteController {
     }
 
     @PostMapping(value = "compilaQuestionario")
-    public String compilaQuestionario(HttpSession sessione, @RequestParam("id") int idQuestionarioCompilato, HttpServletRequest request) {
+    public String compilaQuestionario(HttpSession sessione, @RequestParam("id") int idQuestionarioCompilato, HttpServletRequest request, Model model) {
         Questionario questionarioCompilato = gestoreQuestionario.getQuestionarioById(idQuestionarioCompilato);
         List<String> listaRisposte = new ArrayList<>();
         for (Domanda domanda : questionarioCompilato.getDomande()) {
             String risposta = request.getParameter(domanda.getId()+"");
             listaRisposte.add("{\"id\":\"" + domanda.getId() + "\",\"risposta\":\"" + risposta + "\"}");
         }
-        
+        Compilazione c;
         if(sessione.getAttribute("email") == null)
-            this.compilaQuestionario(idQuestionarioCompilato, listaRisposte, "unknown");
+            c = this.compilaQuestionario(idQuestionarioCompilato, listaRisposte, "unknown");
         else
-            this.compilaQuestionario(idQuestionarioCompilato, listaRisposte, (String)sessione.getAttribute("email"));
-        return "redirect:/";
+        	c = this.compilaQuestionario(idQuestionarioCompilato, listaRisposte, (String)sessione.getAttribute("email"));
+        model.addAttribute("idCompilazione", c.getID());
+        return "codiceCompilazione";
     }
     
 
