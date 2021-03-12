@@ -48,9 +48,18 @@ public class UtenteController {
     }
     */
     @GetMapping(value = "ricercaQuestionario")
-    public String getSurvey(Model model, @RequestParam("id") String categoria) {
-        System.out.println("Show Survey by id" + categoria);
-        List<Questionario> listaQuestionari = gestoreQuestionario.getQuestionarioByCategory(categoria);
+    public String getSurvey(Model model, @RequestParam("id") String id) {
+        boolean isIdANum = true;
+        System.out.println("Show Survey by id or category : " + id);
+        Questionario questionario = null;
+        try{
+            questionario = gestoreQuestionario.getQuestionarioById(Integer.parseInt(id));
+        }catch(NumberFormatException e){
+            isIdANum = false;
+        }
+        List<Questionario> listaQuestionari = gestoreQuestionario.getQuestionarioByCategory(id);
+        if(isIdANum)
+            listaQuestionari.add(questionario);
         model.addAttribute("listaQuestionari", listaQuestionari);
         return "searchResult";
     }
