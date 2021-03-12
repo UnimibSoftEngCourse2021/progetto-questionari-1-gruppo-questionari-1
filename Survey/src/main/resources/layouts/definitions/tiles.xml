@@ -185,6 +185,14 @@
 
 	</definition>
 
+	<definition name="questionariCompilati" template = "/viste/questionariCompilati.jsp">
+
+		<put-attribute name="head" value="/viste/head.jsp" />
+		<put-attribute name="navBar" value="navBar" /> 
+		<put-attribute name="scripts" value="/viste/scripts.jsp" />
+
+	</definition>
+
 	<definition name="surveyCompilati" template = "/viste/surveyCompilati.jsp">
 
 		<put-attribute name="head" value="/viste/head.jsp" />
