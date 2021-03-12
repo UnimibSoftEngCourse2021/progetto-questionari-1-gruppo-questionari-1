@@ -2,6 +2,7 @@ package webapp.controller;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -106,6 +107,14 @@ public class UtenteLoggedController{
 		return "aggiungiDomande";
 	}
 	
+	@GetMapping(value="/togliDomandaQuestionario")
+	public String gestTogliDomanda(  HttpSession utente,
+									 @RequestParam("id") int id,
+										Model model) {
+		rimuoviDomandaDaQuestionario(id, utente, model);
+		return "aggiungiDomande";
+	}
+	
 	@GetMapping(value="/cercaDomandaQuestionario")
 	public String gestCercaDomandaQuestionario(@RequestParam("categoria") String categoria, Model model, HttpSession utente)
 	{
@@ -162,15 +171,14 @@ public class UtenteLoggedController{
 	@GetMapping(value="/questionariCompilati")
 	public String questionariCompilati(Model model, HttpSession utente){
 		List<Compilazione> listaCompilazioni = visualizzaQuestionariCompilati(utente);
-		
-		/*List<Questionario> listaQuestionari = new ArrayList<Questionario>();
-		for(Compilazione c : listaCompilazioni) {
-			listaQuestionari.add(c.getQuestionarioId());
-			System.out.println(c.getQuestionarioId());
-		}
-		*/
 		model.addAttribute("listaCompilazioni",listaCompilazioni);
 		return "surveyCompilati";
+	}
+	
+	@GetMapping(value="/elimina")
+	public String eliminaCompilazione(@RequestParam("id") String idCompilazione) {
+		eliminaQuestionarioCompilato(idCompilazione);
+		return "redirect:/questionariCompilati";
 	}
 	
 	//visualizza le compilazioni dei questionari creati dall'utente
@@ -218,14 +226,12 @@ public class UtenteLoggedController{
 		return listaDomandeCercate;
 	} 
 	
-	/*
+	
 	private Domanda cercaDomandaById(int id) { // Cerca una lista di domande in base ad una categoria
 		System.out.println("Controller : cercando la domanda");
 		Domanda d = gestoreDomande.getDomandaByID(id);
 		return d;
 	} 
-	
-	*/
 
 	private void aggiungiDomanda(Questionario questionario, int idDomanda) { 
 		// Aggiunge una domanda esistente ad un questionario
@@ -234,9 +240,20 @@ public class UtenteLoggedController{
 		gestoreQuestionario.addDomanda(questionario, d);
 	}
 	
-	private boolean eliminaDomanda(int IdDomanda){ // Questa funzione elimina una domanda con id IdDomanda dal database
+	private boolean rimuoviDomandaDaQuestionario(int id, HttpSession utente, Model model){ // Questa funzione toglie dal questionario in creazione una domanda
 		System.out.println("Controller : eliminando la domanda");
-		gestoreDomande.rimuoviDomanda(IdDomanda);
+		Questionario q = (Questionario) utente.getAttribute("questionario");
+		Iterator<Domanda> i = q.getDomande().iterator();
+		while(i.hasNext())
+		{
+			Domanda c = (Domanda) i.next();
+			if(c.getId()==id) {
+				q.getDomande().remove(c);
+			}
+		}
+		System.out.println(q.getDomande().toString());
+		utente.setAttribute("questionario", q);
+		model.addAttribute("listaDomande", q.getDomande());
 		return true;
 	}
 
@@ -289,7 +306,8 @@ public class UtenteLoggedController{
 
 	private boolean eliminaQuestionarioCompilato(String id) {
 		System.out.println("eliminando una compilazione di un questionario");
-		return gestoreQuestionario.rimuoviCompilazione(id);
+		Compilazione c = gestoreQuestionario.cercaCompilazione(id);
+		return gestoreQuestionario.rimuoviCompilazione(c);
 	}
 	
 	private void salvaQuestionario(Questionario questionario) {

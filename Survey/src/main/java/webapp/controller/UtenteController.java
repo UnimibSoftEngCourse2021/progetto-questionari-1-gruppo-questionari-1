@@ -99,8 +99,8 @@ public class UtenteController {
 		return questionario;
     } 
      
-    public boolean eliminazioneQuestionarioCompilato(String compilazioneId) {
-        return gestoreQuestionario.rimuoviCompilazione(compilazioneId);
+    public boolean eliminazioneQuestionarioCompilato(Compilazione c) {
+        return gestoreQuestionario.rimuoviCompilazione(c);
     }
     
     public boolean modificaQuestionarioCompilato(String compId, List<String> risposte) {
