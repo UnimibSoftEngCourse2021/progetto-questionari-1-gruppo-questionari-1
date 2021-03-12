@@ -20,7 +20,7 @@
     			<input type="radio" id=${domanda.id} name=${domanda.id}/><label>${opzione.descrizioneOpzione}</label><br/>
     		</div>
     	</c:forEach>
-    	<a class="btn btn-light trigger pulsanti-edit" ><i class="fas fa-trash-alt"></i></a>
+    	<a class="btn btn-light trigger pulsanti-edit" href="togliDomandaQuestionario?id=${domanda.id}"><i class="fas fa-trash-alt"></i></a>
     	<a class="btn btn-light trigger pulsanti-edit" data-target="#aggiungi-domanda" data-toggle="modal" ><i class="fas fa-edit"></i></a>
 
 		</div>				

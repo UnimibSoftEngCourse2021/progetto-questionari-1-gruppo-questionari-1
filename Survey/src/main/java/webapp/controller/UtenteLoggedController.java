@@ -2,6 +2,7 @@ package webapp.controller;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -105,6 +106,14 @@ public class UtenteLoggedController{
 		Domanda d = creaDomanda(testo, /*immagine,*/ categoria, listaOpzioni, utente);
 		aggiungiDomanda(q, d.getId());
 		model.addAttribute("listaDomande", q.getDomande());
+		return "aggiungiDomande";
+	}
+	
+	@GetMapping(value="/togliDomandaQuestionario")
+	public String gestTogliDomanda(  HttpSession utente,
+									 @RequestParam("id") int id,
+										Model model) {
+		rimuoviDomandaDaQuestionario(id, utente, model);
 		return "aggiungiDomande";
 	}
 	
@@ -219,14 +228,12 @@ public class UtenteLoggedController{
 		return listaDomandeCercate;
 	} 
 	
-	/*
+	
 	private Domanda cercaDomandaById(int id) { // Cerca una lista di domande in base ad una categoria
 		System.out.println("Controller : cercando la domanda");
 		Domanda d = gestoreDomande.getDomandaByID(id);
 		return d;
 	} 
-	
-	*/
 
 	private void aggiungiDomanda(Questionario questionario, int idDomanda) { 
 		// Aggiunge una domanda esistente ad un questionario
@@ -235,9 +242,20 @@ public class UtenteLoggedController{
 		gestoreQuestionario.addDomanda(questionario, d);
 	}
 	
-	private boolean eliminaDomanda(int IdDomanda){ // Questa funzione elimina una domanda con id IdDomanda dal database
+	private boolean rimuoviDomandaDaQuestionario(int id, HttpSession utente, Model model){ // Questa funzione toglie dal questionario in creazione una domanda
 		System.out.println("Controller : eliminando la domanda");
-		gestoreDomande.rimuoviDomanda(IdDomanda);
+		Questionario q = (Questionario) utente.getAttribute("questionario");
+		Iterator<Domanda> i = q.getDomande().iterator();
+		while(i.hasNext())
+		{
+			Domanda c = (Domanda) i.next();
+			if(c.getId()==id) {
+				q.getDomande().remove(c);
+			}
+		}
+		System.out.println(q.getDomande().toString());
+		utente.setAttribute("questionario", q);
+		model.addAttribute("listaDomande", q.getDomande());
 		return true;
 	}
 
