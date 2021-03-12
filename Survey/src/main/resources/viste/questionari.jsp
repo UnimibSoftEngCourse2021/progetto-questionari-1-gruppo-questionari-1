@@ -13,7 +13,7 @@
         <h4 class="display-4">Your Surveys</h4>
 	    <c:forEach items="${questionariCreati}" var="quest">
             <div class="domande p-2 bg-light">
-                 <p>id: ${quest.getID()}</p>
+                 <p>Id: ${quest.getID()}</p>
                  <p>Title: ${quest.nome}</p>
                  <p>Author: ${quest.creatore.mail}</p>  
                  <p>Categories: ${quest.categoria}</p> 

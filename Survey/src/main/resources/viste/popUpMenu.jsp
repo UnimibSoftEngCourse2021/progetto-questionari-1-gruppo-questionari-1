@@ -5,11 +5,11 @@
 
 
 <div id="menu" class="modal fade" role="dialog">
-	<div class="modal-dialog modal-dialog-centered"> 
+	<div class="modal-dialog modal-dialog-centered">
 	  <div class="modal-content" style="display: flex; align-items: center;" >
 		  <div class="modal-body">
         <div class="btn-group-vertical"style="display: inline-block">
-		  <a class="btn btn-light trigger bottone-menu" href=""  >Home</a>
+		  <a class="btn btn-light trigger bottone-menu" href="/"  >Home</a>
           <a class="btn btn-light trigger bottone-menu" href="nuovoQuestionario">Create new survey</a>
           <a class="btn btn-light trigger bottone-menu" href="gestisciDomande">Manage your questions</a>
           <a class="btn btn-light trigger bottone-menu" href="questionari">Manage your surveys</a>

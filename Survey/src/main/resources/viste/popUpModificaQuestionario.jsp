@@ -12,7 +12,8 @@
 
         <form action = "modificaQuestionario" method ="get">
           <input type="text" name="nome" placeholder="Nome"/>
-          <input type="text" name="cognome" placeholder="Categoria"/>
+          <input type="text" name="categoria" placeholder="Categoria"/>
+          <input type="hidden" name="id" value="${quest.getID()}" />
           <input class="btn signup" type="submit" value="Modifica" />
         </form>
         

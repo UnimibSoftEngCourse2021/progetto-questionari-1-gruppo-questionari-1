@@ -164,14 +164,10 @@ public class UtenteLoggedController{
 	}
 
 	@GetMapping(value="/modificaQuestionario")
-	public String modQuestionario(Model model, HttpSession utente){
-
-	boolean check = modificaQuestionario((int) model.getAttribute("id"), 
-										 (String) model.getAttribute("nome"),
-										 (String) model.getAttribute("categoria"), 
-										 utente);
+	public String modQuestionario(@RequestParam int id, @RequestParam("nome") String nome, @RequestParam("categoria") String categoria,Model model, HttpSession utente){
+	boolean check = modificaQuestionario(id, nome,categoria, utente);
 	System.out.println("Modificato il questionario: "+ check);
-	return "questionari";
+	return "redirect:/questionari";
 	}
 	
 	@GetMapping(value="/questionariCompilati")
