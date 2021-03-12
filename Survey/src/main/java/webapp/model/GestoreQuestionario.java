@@ -105,11 +105,11 @@ per creare vari oggetti di tipo CompilazioneDomanda. */
 
 
     public String generatoreCompilazioneKey(int ID){
-        return ID + "-" + Math.floor(Math.random() * Math.floor(100000));
+        return ID + "-" + (int) Math.floor(Math.random() * Math.floor(100000));
     }
 
     public String generatoreCompilazioneDomandaKey(){
-        return Math.floor(Math.random() * Math.floor(100000)) + "";
+        return (int) Math.floor(Math.random() * Math.floor(100000)) + "";
     }
 
     public boolean rimuoviCompilazione(Compilazione c) {
@@ -141,4 +141,8 @@ per creare vari oggetti di tipo CompilazioneDomanda. */
 		System.out.println("Aggiungendo al database il questionario appena generato..");
 		qdm.insert(questionario);
 	}
+
+    public List<CompilazioneDomanda> findRispByComp(String id){
+        return cdm.findRispByCompId(id);
+    }
 }

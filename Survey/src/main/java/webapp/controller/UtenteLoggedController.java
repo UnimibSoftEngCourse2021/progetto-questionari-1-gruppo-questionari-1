@@ -192,13 +192,21 @@ public class UtenteLoggedController{
 		return "compilazione";
 	}
 
-	@GetMapping(value = "visualizzaCompilazioniUtenti/{id}")
+	@GetMapping(value = "/visualizzaCompilazioniUtenti/{id}")
 	public String getCompilazioniUtentiByQuestionario(@PathVariable("id") int idQuestionario, Model model) {
 		Questionario questionario = gestoreQuestionario.getQuestionarioById(idQuestionario);
 		List<Compilazione> listaCompilazioni = new ArrayList<>(questionario.getCompilazioni());
-		model.addAttribute("compilazioni", listaCompilazioni);
+		model.addAttribute("compi", listaCompilazioni);
 
-		return "";
+		return "questionariComp";
+	}
+
+	@GetMapping(value="visualizzaCompilazioniUtenti/visualizzaQuestionarioCompilato/{id}")
+	public String getCompilazione(Model model, @PathVariable String id){
+		List<CompilazioneDomanda> risp = gestoreQuestionario.findRispByComp(id);
+		System.out.println(risp);
+		model.addAttribute("risp", risp);
+		return "visualizzaCompilazione";
 	}
 
 

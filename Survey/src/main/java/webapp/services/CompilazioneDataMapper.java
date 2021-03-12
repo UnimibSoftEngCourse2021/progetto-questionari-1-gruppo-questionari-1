@@ -69,4 +69,16 @@ public class CompilazioneDataMapper {
 		return true;
     }
 
+
+	public List<CompilazioneDomanda> findRispByCompId(String id){
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		entityManager.getTransaction().begin();
+		System.out.println(id);
+		List<CompilazioneDomanda> risposte = entityManager.createQuery("from compilazionidomande where Compilazione_ID like :id", CompilazioneDomanda.class).setParameter("id", id).getResultList();
+		entityManager.getTransaction().commit();
+		entityManager.close();
+		System.out.println(risposte);
+		return risposte;
+
+	}
 }

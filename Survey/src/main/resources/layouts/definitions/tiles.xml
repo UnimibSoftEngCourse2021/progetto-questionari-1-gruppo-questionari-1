@@ -193,7 +193,7 @@
 
 	</definition>
 
-	<definition name="questionariCompilati" template = "/viste/questionariCompilati.jsp">
+	<definition name="questionariComp" template = "/viste/questionariCompi.jsp">
 
 		<put-attribute name="head" value="/viste/head.jsp" />
 		<put-attribute name="navBar" value="navBar" /> 
@@ -210,8 +210,15 @@
 	</definition>
 	
 	<definition name="compilazione" template = "/viste/compilazione.jsp">
-		
-		
+		<put-attribute name="head" value="/viste/head.jsp" />
+		<put-attribute name="navBar" value="navBar" /> 
+		<put-attribute name="scripts" value="/viste/scripts.jsp" />
 	</definition>
+
+	<definition name="visualizzaCompilazione" template = "/viste/visualizzaCompilazione.jsp">
+
+	</definition>
+
+
 
 </tiles-definitions>

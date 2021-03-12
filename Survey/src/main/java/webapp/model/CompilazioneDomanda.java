@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 
-@Entity
+@Entity(name = "compilazionidomande")
 @Table(name = "compilazionidomande")
 public class CompilazioneDomanda{
 

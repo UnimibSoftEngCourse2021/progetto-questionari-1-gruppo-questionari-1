@@ -5,15 +5,23 @@
 
 <!DOCTYPE html>
 <html lang="en" style="height: 100%;">
+<head>
 
-<tiles:insertAttribute name="head" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Survey.io</title>
+    <link rel = "icon" href ="../img/Survey_symbol.png" type = "image/x-icon"> 
+   
+</head>
 <body>
-    <!--view nuova che si occupa attraverso un foreach di stampare tutti i dati delle compilazioni con un bottone ogniuna che permette di vederne le risposte-->
-    <tiles:insertAttribute name="navBar"/>
-    <div class="containeritem d-grid mx-auto">
+    <div>
         <h4 class="display-4">Your Surveys</h4>
-	    <c:forEach items="${compilazioni}" var="comp">
-            <div class="domande p-2 bg-light">
+	    <c:forEach items="${compi}" var="comp">
+            <div>
+                <p>-----------------------------------------------</p>
                  <p>Id: ${comp.getID()}</p>
                  <c:if test = "${comp.getCompilatore() != null}">
                     <p>Author: ${comp.getCompilatore().getMail()}</p> 
@@ -21,13 +29,11 @@
                  <c:if test = "${comp.getCompilatore() == null}">
                     <p>Author: Unknown</p> 
                  </c:if>
-                   
-                 <!-- da fare funzione mapper nel controller che gestisce 'visualizzaQuestionarioCompilato/{id}' -->
-                 <a class="btn btn-light trigger pulsanti-edit" href="visualizzaQuestionarioCompilato/${comp.getID()}" ><i class="fas fa-trash-alt"></i></a>
+                 <a href="visualizzaQuestionarioCompilato/${comp.getID()}" >Visualizza risposte</a>
+                 <p>-----------------------------------------------</p>
             </div>
         </c:forEach>          
     </div>
     
-    <tiles:insertAttribute name="scripts"/>
 </body>
 </html>
