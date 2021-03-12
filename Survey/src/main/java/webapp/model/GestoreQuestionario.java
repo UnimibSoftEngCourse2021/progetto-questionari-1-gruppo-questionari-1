@@ -41,16 +41,8 @@ public class GestoreQuestionario {
         return qdm.findByName(name);
     }
 
-    public List<Questionario> getQuestionarioByWord(List<Domanda> domande){
-        //HashSet per salvare i qeustionari evitando rindondanze
-        HashSet<Questionario> questionariCercati = new HashSet<>();
-        for(Domanda domandaIter : domande ){
-            Set<Questionario> questionari = domandaIter.getQuestionari();
-            for(Questionario questionarioIter : questionari){
-                questionariCercati.add(questionarioIter);
-            }
-        }
-        return new ArrayList<>(questionariCercati);
+    public List<Questionario> getQuestionarioByCategory(String categoria){
+        return qdm.findByCategory(categoria);
     }
 
     public List<Questionario> getQuestionarioByUtente(String email) {

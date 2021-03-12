@@ -38,7 +38,6 @@ public class UtenteLoggedController{
 	
 	@GetMapping(value = "/gestisciDomande")
 	public String VisualizzaCreaDomanda(Model model){
-		model.addAttribute("testo", " ");
 		return "questions";
 	}
 	@GetMapping(value="/creaDomanda")
@@ -57,10 +56,10 @@ public class UtenteLoggedController{
 	}
 	
 	@GetMapping(value="/cercaDomanda")
-	public String gestCercaDomanda(@RequestParam("categoria") String categoria, Model model)
+	public String gestCercaDomanda(@RequestParam("categoria") String categoria, Model model, HttpSession utente)
 	{
 		System.out.println("cerca per:"+categoria);
-		List<Domanda> listaDomande = cercaDomanda(categoria);
+		List<Domanda> listaDomande = cercaDomanda(categoria, utente);
 		model.addAttribute("listaDomande",listaDomande);
 		return "questions";
 	}
@@ -111,10 +110,10 @@ public class UtenteLoggedController{
 	}
 	
 	@GetMapping(value="/cercaDomandaQuestionario")
-	public String gestCercaDomandaQuestionario(@RequestParam("categoria") String categoria, Model model)
+	public String gestCercaDomandaQuestionario(@RequestParam("categoria") String categoria, Model model, HttpSession utente)
 	{
 		System.out.println("cerca per:"+categoria);
-		List<Domanda> listaDomande = cercaDomanda(categoria);
+		List<Domanda> listaDomande = cercaDomanda(categoria, utente);
 		model.addAttribute("listaDomande",listaDomande);
 		return "popUpViewQuestion";
 	}
@@ -131,7 +130,7 @@ public class UtenteLoggedController{
 	public String gestCercaQuestionario(@RequestParam("categoria") String categoria,  Model model)
 	{
 		System.out.println("cerca Questionario");
-		List<Questionario> listaQuestionario = cercaQuestionarioByWord(categoria);  
+		List<Questionario> listaQuestionario = cercaQuestionarioByCategory(categoria);  
 		model.addAttribute("questionario",listaQuestionario);
 		return "searchResult";
 	}
@@ -162,19 +161,6 @@ public class UtenteLoggedController{
 	System.out.println("Modificato il questionario: "+ check);
 	return "questionari";
 	}
-
-	/*
-	//crea il pdf della compilazione con id fornito dal form
-
-	@GetMapping(value="/pdfCompilazione/{idCompilazione}")
-	public String downloadCompilazioniPDF(@PathVariable("idCompilazione") String idCompilazione, Model model) {
-		Compilazione c = gestoreQuestionario.cercaCompilazione(idCompilazione);
-		System.out.println(c.getDomande().toArray());
-		model.addAttribute("compilazione", c);
-		return "compilazione";
-	}
-
-	*/
 	
 	@GetMapping(value="/questionariCompilati")
 	public String questionariCompilati(Model model){
@@ -218,17 +204,22 @@ public class UtenteLoggedController{
 		return true;
 	}
 
-	private List<Domanda> cercaDomanda(String categoria) { // Cerca una lista di domande in base ad una categoria
+	private List<Domanda> cercaDomanda(String categoria, HttpSession utente) { // Cerca una lista di domande in base ad una categoria
 		System.out.println("Controller : cercando la domanda");
-		List<Domanda> listaDomandeCercate = gestoreDomande.getDomandaByCategoria(categoria);
+		UtenteRegistrato u = getUtenteSession(utente);
+		List<Domanda> listaDomandeCercate = gestoreDomande.getDomandaByCategoria(categoria, u);
+		
 		return listaDomandeCercate;
 	} 
 	
+	/*
 	private Domanda cercaDomandaById(int id) { // Cerca una lista di domande in base ad una categoria
 		System.out.println("Controller : cercando la domanda");
 		Domanda d = gestoreDomande.getDomandaByID(id);
 		return d;
 	} 
+	
+	*/
 
 	private void aggiungiDomanda(Questionario questionario, int idDomanda) { 
 		// Aggiunge una domanda esistente ad un questionario
@@ -236,16 +227,6 @@ public class UtenteLoggedController{
 		Domanda d = gestoreDomande.getDomandaByID(idDomanda);
 		gestoreQuestionario.addDomanda(questionario, d);
 	}
-	
-	/*
-	private boolean aggiungiDomanda(String IdQuestionario, String testo, byte[] Immagine, String categoria, String opzioni) {
-		// Aggiunge una domanda al qustionario IdQuestionario subito dopo averla creata 
-		System.out.println("Controller : creando la domanda e aggiungendola al questionario");
-		//Domanda d = this.creaDomanda(testo,  Immagine, categoria, opzioni); 
-		//gestoreQuestionario.addDomanda(d, IdQuestionario);
-		return true;
-	}
-	*/
 	
 	private boolean eliminaDomanda(int IdDomanda){ // Questa funzione elimina una domanda con id IdDomanda dal database
 		System.out.println("Controller : eliminando la domanda");
@@ -271,13 +252,13 @@ public class UtenteLoggedController{
 		return  gestoreQuestionario.getQuestionarioById(ID);
 	}
 
-	private List<Questionario> cercaQuestionarioByWord (String word) { // Questo metodo cerca all'interno del databse tutti i questionari con all'interno la parola word
+	
+	private List<Questionario> cercaQuestionarioByCategory (String categoria) { // Questo metodo cerca all'interno del databse tutti i questionari con all'interno la parola word
 		System.out.println("Controller : cercando un questionario in base ad una parola");
-		List<Domanda> listaDomande = gestoreDomande.getDomandaByWord(word);
-		List<Questionario> questionariTrovati = gestoreQuestionario.getQuestionarioByWord(listaDomande);
+		List<Questionario> questionariTrovati = gestoreQuestionario.getQuestionarioByCategory(categoria);
 		return questionariTrovati;
 	}
-
+	
 	private Set<Compilazione> visualizzaDatiSulleRisposte(int id) {
 		Set<Compilazione> listaCompilazioni = gestoreQuestionario.cercaCompilazioni(id);
 		return listaCompilazioni;
