@@ -269,8 +269,6 @@ public class UtenteLoggedController{
 		return true;
 	}
 
-	//TODO : visualizza questionari compilati
-
 	private List<Questionario> getQuestionariCreati(HttpSession utente) {
 		String email = (String) utente.getAttribute("email");
 		System.out.println("Controller : cercando tutti i questiornari creati da un utente con mail " + email);
