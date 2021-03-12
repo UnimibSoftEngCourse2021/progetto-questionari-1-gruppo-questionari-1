@@ -163,7 +163,16 @@ public class UtenteLoggedController{
 	}
 	
 	@GetMapping(value="/questionariCompilati")
-	public String questionariCompilati(Model model){
+	public String questionariCompilati(Model model, HttpSession utente){
+		List<Compilazione> listaCompilazioni = visualizzaQuestionariCompilati(utente);
+		
+		/*List<Questionario> listaQuestionari = new ArrayList<Questionario>();
+		for(Compilazione c : listaCompilazioni) {
+			listaQuestionari.add(c.getQuestionarioId());
+			System.out.println(c.getQuestionarioId());
+		}
+		*/
+		model.addAttribute("listaCompilazioni",listaCompilazioni);
 		return "surveyCompilati";
 	}
 	
@@ -278,8 +287,9 @@ public class UtenteLoggedController{
 		return gestoreQuestionario.getQuestionarioByUtente(email);
 	}
 
-	private List<Compilazione> visualizzaQuestionariCompilati(String email) {
-		return gestoreUtente.getUtenteByMail(email).getQuestionariCompilati();
+	private List<Compilazione> visualizzaQuestionariCompilati(HttpSession utente) {
+		UtenteRegistrato u = getUtenteSession(utente);
+		return gestoreQuestionario.cercaCompilazioniUtente(u);
 	}
 
 	private boolean eliminaQuestionarioCompilato(String id) {
